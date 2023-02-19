@@ -5,6 +5,30 @@ Publish your roadmap inside your app and allow users to vote for upcoming featur
 <HIDDE_TO_SHOW_IMAGE>
 
 ## Setting up Roadmap
+### Create a Roadmap JSON
+Roadmap works with a remote JSON configuration listing all features and their statuses. We recommend hosting it at [simplejsoncms.com](https://simplejsoncms.com/).
+
+An example JSON looks as follows:
+
+```json
+[
+    {
+        "id": "1",
+        "title": "Combine sentences",
+        "status": "planned"
+    },
+    {
+        "id": "2",
+        "title": "Open with Finder support",
+        "status": "planned"
+    }
+]
+```
+
+The keys `id`, `title` and `status` are mandatory and all have to be strings. You can use any value for `status`.
+
+### Create a Roadmap Configuration instance
+
 Create a new Roadmap configuration following the documentation:
 
 ```swift
@@ -33,6 +57,7 @@ let configuration = RoadmapConfiguration(
 )
 ```
 
+### Use the configuration to construct the view
 And use the configuration inside the `RoadmapView`:
 
 ```swift
