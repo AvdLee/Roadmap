@@ -1,10 +1,11 @@
 //
 //  ContentView.swift
-//  Roadmap
+//  RoadmapExample
 //
-//  Created by Jordi Bruin on 18/02/2023.
+//  Created by Antoine van der Lee on 19/02/2023.
 //
 
+import Roadmap
 import SwiftUI
 
 struct ContentView: View {

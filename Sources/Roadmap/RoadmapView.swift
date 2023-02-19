@@ -7,10 +7,14 @@
 
 import SwiftUI
 
-struct RoadmapView: View {
+public struct RoadmapView: View {
     @StateObject var viewModel = RoadmapViewModel()
 
-    var body: some View {
+    public init() {
+
+    }
+
+    public var body: some View {
         List {
             ForEach(viewModel.features) { feature in
                 Section {
