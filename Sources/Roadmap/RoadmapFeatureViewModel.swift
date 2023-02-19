@@ -10,11 +10,13 @@ import SwiftUI
 
 final class RoadmapFeatureViewModel: ObservableObject {
     let feature: RoadmapFeature
+    let configuration: RoadmapConfiguration
 
     @Published var voteCount = 0
 
-    init(feature: RoadmapFeature) {
+    init(feature: RoadmapFeature, configuration: RoadmapConfiguration) {
         self.feature = feature
+        self.configuration = configuration
     }
 
     func getCurrentVotes() {
@@ -29,7 +31,7 @@ final class RoadmapFeatureViewModel: ObservableObject {
             return
         }
         Task { @MainActor in
-            let newCount = await FeatureVoter(feature: feature).vote()
+            let newCount = await FeatureVoter(feature: feature, configuration: configuration).vote()
             voteCount = newCount ?? (voteCount + 1)
         }
     }

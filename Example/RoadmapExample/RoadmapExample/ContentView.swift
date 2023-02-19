@@ -9,8 +9,13 @@ import Roadmap
 import SwiftUI
 
 struct ContentView: View {
+    let configuration = RoadmapConfiguration(
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
+        namespace: "roadmaptest"
+    )
+
     var body: some View {
-        RoadmapView()
+        RoadmapView(configuration: configuration)
     }
 }
 

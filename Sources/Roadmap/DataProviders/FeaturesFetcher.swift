@@ -8,11 +8,11 @@
 import Foundation
 
 struct FeaturesFetcher {
-    let featureJSONURLString: String
+    let featureJSONURL: URL
 
     func fetch() async -> [RoadmapFeature] {
         do {
-            return try await JSONDataFetcher.loadJSON(fromURLString: featureJSONURLString)
+            return try await JSONDataFetcher.loadJSON(url: featureJSONURL)
         } catch {
             print("error:", error.localizedDescription)
             return []

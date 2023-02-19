@@ -16,12 +16,15 @@ struct JSONDataFetcher {
         URLSession(configuration: .ephemeral)
     }()
 
+    static func loadJSON<T: Decodable>(url: URL) async throws -> T {
+        let data = try await urlSession.data(from: url).0
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+
     static func loadJSON<T: Decodable>(fromURLString urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw Error.invalidURL
         }
-
-        let data = try await urlSession.data(from: url).0
-        return try JSONDecoder().decode(T.self, from: data)
+        return try await loadJSON(url: url)
     }
 }

@@ -9,15 +9,20 @@ import Foundation
 
 final class RoadmapViewModel: ObservableObject {
     @Published private(set) var features: [RoadmapFeature] = []
+    private let configuration: RoadmapConfiguration
 
-    init() {
-        loadFeatures()
+    init(configuration: RoadmapConfiguration) {
+        self.configuration = configuration
+        loadFeatures(roadmapJSONURL: configuration.roadmapJSONURL)
     }
 
-    func loadFeatures() {
+    func loadFeatures(roadmapJSONURL: URL) {
         Task { @MainActor in
-            let urlString = "https://simplejsoncms.com/api/vq2juq1xhg"
-            self.features = await FeaturesFetcher(featureJSONURLString: urlString).fetch()
+            self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch()
         }
+    }
+
+    func featureViewModel(for feature: RoadmapFeature) -> RoadmapFeatureViewModel {
+        .init(feature: feature, configuration: configuration)
     }
 }
