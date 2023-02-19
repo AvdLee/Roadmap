@@ -7,26 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		846EBA7229A28D33007BF652 /* RoadmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA7129A28D33007BF652 /* RoadmapView.swift */; };
+		846EBA7429A297AD007BF652 /* RoadmapFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA7329A297AD007BF652 /* RoadmapFeature.swift */; };
+		846EBA7629A297CC007BF652 /* RoadmapFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA7529A297CC007BF652 /* RoadmapFeatureView.swift */; };
+		846EBA7929A2983A007BF652 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA7829A2983A007BF652 /* ArrayExtensions.swift */; };
+		846EBA7B29A298F2007BF652 /* RoadmapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA7A29A298F2007BF652 /* RoadmapViewModel.swift */; };
+		846EBA7E29A299A4007BF652 /* RoadmapFeatureVotingCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA7D29A299A4007BF652 /* RoadmapFeatureVotingCount.swift */; };
+		846EBA8129A299DA007BF652 /* FeatureVotingCountFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA8029A299DA007BF652 /* FeatureVotingCountFetcher.swift */; };
+		846EBA8329A299F9007BF652 /* JSONDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA8229A299F9007BF652 /* JSONDataFetcher.swift */; };
+		846EBA8529A29C51007BF652 /* RoadmapFeatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA8429A29C51007BF652 /* RoadmapFeatureViewModel.swift */; };
 		C2F7FECB29A1221D0044CD30 /* RoadmapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7FECA29A1221D0044CD30 /* RoadmapApp.swift */; };
 		C2F7FECD29A1221D0044CD30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7FECC29A1221D0044CD30 /* ContentView.swift */; };
 		C2F7FECF29A1221E0044CD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2F7FECE29A1221E0044CD30 /* Assets.xcassets */; };
 		C2F7FED229A1221E0044CD30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2F7FED129A1221E0044CD30 /* Preview Assets.xcassets */; };
-		C2F7FEDB29A14A370044CD30 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7FEDA29A14A370044CD30 /* Array+Extensions.swift */; };
-		C2F7FEDD29A14A460044CD30 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7FEDC29A14A460044CD30 /* Count.swift */; };
-		C2F7FEDF29A14A520044CD30 /* FeatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7FEDE29A14A520044CD30 /* FeatureCell.swift */; };
-		C2F7FEE229A14A700044CD30 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7FEE129A14A700044CD30 /* Feature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		846EBA7129A28D33007BF652 /* RoadmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapView.swift; sourceTree = "<group>"; };
+		846EBA7329A297AD007BF652 /* RoadmapFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapFeature.swift; sourceTree = "<group>"; };
+		846EBA7529A297CC007BF652 /* RoadmapFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapFeatureView.swift; sourceTree = "<group>"; };
+		846EBA7829A2983A007BF652 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		846EBA7A29A298F2007BF652 /* RoadmapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapViewModel.swift; sourceTree = "<group>"; };
+		846EBA7D29A299A4007BF652 /* RoadmapFeatureVotingCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapFeatureVotingCount.swift; sourceTree = "<group>"; };
+		846EBA8029A299DA007BF652 /* FeatureVotingCountFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureVotingCountFetcher.swift; sourceTree = "<group>"; };
+		846EBA8229A299F9007BF652 /* JSONDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDataFetcher.swift; sourceTree = "<group>"; };
+		846EBA8429A29C51007BF652 /* RoadmapFeatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapFeatureViewModel.swift; sourceTree = "<group>"; };
 		C2F7FEC729A1221D0044CD30 /* Roadmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2F7FECA29A1221D0044CD30 /* RoadmapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapApp.swift; sourceTree = "<group>"; };
 		C2F7FECC29A1221D0044CD30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C2F7FECE29A1221E0044CD30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2F7FED129A1221E0044CD30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C2F7FEDA29A14A370044CD30 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
-		C2F7FEDC29A14A460044CD30 /* Count.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
-		C2F7FEDE29A14A520044CD30 /* FeatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCell.swift; sourceTree = "<group>"; };
-		C2F7FEE129A14A700044CD30 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +50,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		846EBA6F29A28D1F007BF652 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				846EBA7029A28D23007BF652 /* Roadmap */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		846EBA7029A28D23007BF652 /* Roadmap */ = {
+			isa = PBXGroup;
+			children = (
+				846EBA7F29A299C8007BF652 /* Fetchers */,
+				846EBA7C29A29991007BF652 /* Models */,
+				846EBA7729A29831007BF652 /* Extensions */,
+				846EBA7129A28D33007BF652 /* RoadmapView.swift */,
+				846EBA7A29A298F2007BF652 /* RoadmapViewModel.swift */,
+				846EBA7529A297CC007BF652 /* RoadmapFeatureView.swift */,
+				846EBA8429A29C51007BF652 /* RoadmapFeatureViewModel.swift */,
+			);
+			path = Roadmap;
+			sourceTree = "<group>";
+		};
+		846EBA7729A29831007BF652 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				846EBA7829A2983A007BF652 /* ArrayExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		846EBA7C29A29991007BF652 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				846EBA7329A297AD007BF652 /* RoadmapFeature.swift */,
+				846EBA7D29A299A4007BF652 /* RoadmapFeatureVotingCount.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		846EBA7F29A299C8007BF652 /* Fetchers */ = {
+			isa = PBXGroup;
+			children = (
+				846EBA8029A299DA007BF652 /* FeatureVotingCountFetcher.swift */,
+				846EBA8229A299F9007BF652 /* JSONDataFetcher.swift */,
+			);
+			path = Fetchers;
+			sourceTree = "<group>";
+		};
 		C2F7FEBE29A1221D0044CD30 = {
 			isa = PBXGroup;
 			children = (
@@ -59,11 +117,9 @@
 		C2F7FEC929A1221D0044CD30 /* Roadmap */ = {
 			isa = PBXGroup;
 			children = (
+				846EBA6F29A28D1F007BF652 /* Sources */,
 				C2F7FECA29A1221D0044CD30 /* RoadmapApp.swift */,
 				C2F7FECC29A1221D0044CD30 /* ContentView.swift */,
-				C2F7FEE029A14A660044CD30 /* Views */,
-				C2F7FED929A14A2D0044CD30 /* Extensions */,
-				C2F7FED829A14A280044CD30 /* Model */,
 				C2F7FECE29A1221E0044CD30 /* Assets.xcassets */,
 				C2F7FED029A1221E0044CD30 /* Preview Content */,
 			);
@@ -76,31 +132,6 @@
 				C2F7FED129A1221E0044CD30 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		C2F7FED829A14A280044CD30 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C2F7FEDC29A14A460044CD30 /* Count.swift */,
-				C2F7FEE129A14A700044CD30 /* Feature.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C2F7FED929A14A2D0044CD30 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C2F7FEDA29A14A370044CD30 /* Array+Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		C2F7FEE029A14A660044CD30 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C2F7FEDE29A14A520044CD30 /* FeatureCell.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,12 +204,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2F7FEE229A14A700044CD30 /* Feature.swift in Sources */,
+				846EBA7229A28D33007BF652 /* RoadmapView.swift in Sources */,
+				846EBA7929A2983A007BF652 /* ArrayExtensions.swift in Sources */,
+				846EBA8529A29C51007BF652 /* RoadmapFeatureViewModel.swift in Sources */,
+				846EBA7E29A299A4007BF652 /* RoadmapFeatureVotingCount.swift in Sources */,
 				C2F7FECD29A1221D0044CD30 /* ContentView.swift in Sources */,
-				C2F7FEDB29A14A370044CD30 /* Array+Extensions.swift in Sources */,
+				846EBA7629A297CC007BF652 /* RoadmapFeatureView.swift in Sources */,
+				846EBA7B29A298F2007BF652 /* RoadmapViewModel.swift in Sources */,
 				C2F7FECB29A1221D0044CD30 /* RoadmapApp.swift in Sources */,
-				C2F7FEDF29A14A520044CD30 /* FeatureCell.swift in Sources */,
-				C2F7FEDD29A14A460044CD30 /* Count.swift in Sources */,
+				846EBA8329A299F9007BF652 /* JSONDataFetcher.swift in Sources */,
+				846EBA7429A297AD007BF652 /* RoadmapFeature.swift in Sources */,
+				846EBA8129A299DA007BF652 /* FeatureVotingCountFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
