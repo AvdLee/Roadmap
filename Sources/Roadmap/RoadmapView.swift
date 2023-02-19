@@ -8,25 +8,27 @@
 import SwiftUI
 
 public struct RoadmapView: View {
-    @StateObject var viewModel = RoadmapViewModel()
-
-    public init() {
-
-    }
+    @StateObject var viewModel: RoadmapViewModel
 
     public var body: some View {
         List {
             ForEach(viewModel.features) { feature in
                 Section {
-                    RoadmapFeatureView(viewModel: .init(feature: feature))
+                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                 }
             }
         }
     }
 }
 
+public extension RoadmapView {
+    init(configuration: RoadmapConfiguration) {
+        self.init(viewModel: .init(configuration: configuration))
+    }
+}
+
 struct RoadmapView_Previews: PreviewProvider {
     static var previews: some View {
-        RoadmapView()
+        RoadmapView(configuration: .sample())
     }
 }
