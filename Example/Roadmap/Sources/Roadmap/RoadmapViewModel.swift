@@ -15,17 +15,9 @@ final class RoadmapViewModel: ObservableObject {
     }
 
     func loadFeatures() {
-        Task {
-            do {
-                let urlString = "https://simplejsoncms.com/api/vq2juq1xhg"
-                let features: [RoadmapFeature] = try await JSONDataFetcher.loadJSON(fromURLString: urlString)
-                await MainActor.run {
-                    self.features = features
-                }
-            } catch {
-                print("error:", error.localizedDescription)
-            }
+        Task { @MainActor in
+            let urlString = "https://simplejsoncms.com/api/vq2juq1xhg"
+            self.features = await FeaturesFetcher(featureJSONURLString: urlString).fetch()
         }
     }
-
 }

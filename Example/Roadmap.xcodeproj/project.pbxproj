@@ -16,6 +16,8 @@
 		846EBA8129A299DA007BF652 /* FeatureVotingCountFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA8029A299DA007BF652 /* FeatureVotingCountFetcher.swift */; };
 		846EBA8329A299F9007BF652 /* JSONDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA8229A299F9007BF652 /* JSONDataFetcher.swift */; };
 		846EBA8529A29C51007BF652 /* RoadmapFeatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA8429A29C51007BF652 /* RoadmapFeatureViewModel.swift */; };
+		846EBA8929A2A6DC007BF652 /* FeatureVoter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA8829A2A6DC007BF652 /* FeatureVoter.swift */; };
+		846EBA8B29A2A7AF007BF652 /* FeaturesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846EBA8A29A2A7AF007BF652 /* FeaturesFetcher.swift */; };
 		C2F7FECB29A1221D0044CD30 /* RoadmapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7FECA29A1221D0044CD30 /* RoadmapApp.swift */; };
 		C2F7FECD29A1221D0044CD30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7FECC29A1221D0044CD30 /* ContentView.swift */; };
 		C2F7FECF29A1221E0044CD30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2F7FECE29A1221E0044CD30 /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 		846EBA8029A299DA007BF652 /* FeatureVotingCountFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureVotingCountFetcher.swift; sourceTree = "<group>"; };
 		846EBA8229A299F9007BF652 /* JSONDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDataFetcher.swift; sourceTree = "<group>"; };
 		846EBA8429A29C51007BF652 /* RoadmapFeatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapFeatureViewModel.swift; sourceTree = "<group>"; };
+		846EBA8829A2A6DC007BF652 /* FeatureVoter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureVoter.swift; sourceTree = "<group>"; };
+		846EBA8A29A2A7AF007BF652 /* FeaturesFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesFetcher.swift; sourceTree = "<group>"; };
 		C2F7FEC729A1221D0044CD30 /* Roadmap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roadmap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2F7FECA29A1221D0044CD30 /* RoadmapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapApp.swift; sourceTree = "<group>"; };
 		C2F7FECC29A1221D0044CD30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,7 +65,7 @@
 		846EBA7029A28D23007BF652 /* Roadmap */ = {
 			isa = PBXGroup;
 			children = (
-				846EBA7F29A299C8007BF652 /* Fetchers */,
+				846EBA7F29A299C8007BF652 /* DataProviders */,
 				846EBA7C29A29991007BF652 /* Models */,
 				846EBA7729A29831007BF652 /* Extensions */,
 				846EBA7129A28D33007BF652 /* RoadmapView.swift */,
@@ -89,13 +93,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		846EBA7F29A299C8007BF652 /* Fetchers */ = {
+		846EBA7F29A299C8007BF652 /* DataProviders */ = {
 			isa = PBXGroup;
 			children = (
 				846EBA8029A299DA007BF652 /* FeatureVotingCountFetcher.swift */,
 				846EBA8229A299F9007BF652 /* JSONDataFetcher.swift */,
+				846EBA8829A2A6DC007BF652 /* FeatureVoter.swift */,
+				846EBA8A29A2A7AF007BF652 /* FeaturesFetcher.swift */,
 			);
-			path = Fetchers;
+			path = DataProviders;
 			sourceTree = "<group>";
 		};
 		C2F7FEBE29A1221D0044CD30 = {
@@ -207,12 +213,14 @@
 				846EBA7229A28D33007BF652 /* RoadmapView.swift in Sources */,
 				846EBA7929A2983A007BF652 /* ArrayExtensions.swift in Sources */,
 				846EBA8529A29C51007BF652 /* RoadmapFeatureViewModel.swift in Sources */,
+				846EBA8B29A2A7AF007BF652 /* FeaturesFetcher.swift in Sources */,
 				846EBA7E29A299A4007BF652 /* RoadmapFeatureVotingCount.swift in Sources */,
 				C2F7FECD29A1221D0044CD30 /* ContentView.swift in Sources */,
 				846EBA7629A297CC007BF652 /* RoadmapFeatureView.swift in Sources */,
 				846EBA7B29A298F2007BF652 /* RoadmapViewModel.swift in Sources */,
 				C2F7FECB29A1221D0044CD30 /* RoadmapApp.swift in Sources */,
 				846EBA8329A299F9007BF652 /* JSONDataFetcher.swift in Sources */,
+				846EBA8929A2A6DC007BF652 /* FeatureVoter.swift in Sources */,
 				846EBA7429A297AD007BF652 /* RoadmapFeature.swift in Sources */,
 				846EBA8129A299DA007BF652 /* FeatureVotingCountFetcher.swift in Sources */,
 			);

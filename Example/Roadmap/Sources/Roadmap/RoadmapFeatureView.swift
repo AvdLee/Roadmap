@@ -31,7 +31,7 @@ struct RoadmapFeatureView: View {
             Text("\(viewModel.voteCount)")
                 .font(.title)
 
-            if !viewModel.hasVoted {
+            if !viewModel.feature.hasVoted {
                 Button {
                     viewModel.vote()
                 } label: {
