@@ -50,6 +50,7 @@ struct ContentView: View {
 
 ## Projects using Roadmap
 - [MacWhisper](https://goodsnooze.gumroad.com/l/macwhisper)
+- [RocketSim](https://www.rocketsim.app)
 
 ## Installation
 ### Swift Package Manager
