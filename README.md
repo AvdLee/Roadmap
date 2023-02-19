@@ -27,6 +27,10 @@ An example JSON looks as follows:
 
 The keys `id`, `title` and `status` are mandatory and all have to be strings. You can use any value for `status`.
 
+### Add Roadmap using Swift Package Manager
+
+Add `https://github.com/AvdLee/Roadmap.git` within Xcode's package manager.
+
 ### Create a Roadmap Configuration instance
 
 Create a new Roadmap configuration following the documentation:
@@ -73,41 +77,16 @@ struct ContentView: View {
 }
 ```
 
+## FAQ
+### How does Roadmap store votes?
+We make use of the [Free Counting API](https://countapi.xyz/)
+
+### Why can't I open issues?
+Since we'd love to invite you to contribute directly with a pull request. Join us in making this project a success!
+
 ## Projects using Roadmap
 - [MacWhisper](https://goodsnooze.gumroad.com/l/macwhisper)
 - [RocketSim](https://www.rocketsim.app)
-
-## Installation
-### Swift Package Manager
-
-Add `https://github.com/AvdLee/Roadmap.git` within Xcode's package manager.
-
-#### Manifest File
-
-Add Roadmap as a package to your `Package.swift` file and then specify it as a dependency of the Target in which you wish to use it.
-
-```swift
-import PackageDescription
-
-let package = Package(
-    name: "MyProject",
-    platforms: [
-       .macOS(.v10_15)
-       .iOS(.v13)
-    ],
-    dependencies: [
-        .package(url: "https://github.com/AvdLee/Roadmap.git", .upToNextMajor(from: "1.0.0"))
-    ],
-    targets: [
-        .target(
-            name: "MyProject",
-            dependencies: ["Roadmap"]),
-        .testTarget(
-            name: "MyProjectTests",
-            dependencies: ["MyProject"]),
-    ]
-)
-```
 
 ## Authors
 This library is created in collaboration between [Jordi Bruin](https://twitter.com/jordibruin), [Hidde van der Ploeg](https://twitter.com/hiddevdploeg), and [Antoine van der Lee](https://www.twitter.com/twannl)
