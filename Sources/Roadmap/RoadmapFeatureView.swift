@@ -12,13 +12,12 @@ struct RoadmapFeatureView: View {
     @StateObject var viewModel: RoadmapFeatureViewModel
 
     var body: some View {
-        HStack(alignment: .top) {
+        HStack {
             VStack(alignment: .leading) {
                 Text(viewModel.feature.title)
                     .font(viewModel.configuration.style.titleFont)
 
                 if let status = viewModel.feature.status {
-                    
                         Text(status)
                             .bold()
                             .padding(6)
@@ -36,7 +35,7 @@ struct RoadmapFeatureView: View {
             RoadmapVoteButton(viewModel: viewModel)
         }
         .padding()
-        .background(Color.primary.opacity(0.05))
+        .background(Color.primary.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
         .task {
             await viewModel.getCurrentVotes()
