@@ -21,7 +21,7 @@ final class RoadmapFeatureViewModel: ObservableObject {
     
     @MainActor
     func getCurrentVotes() async {
-        voteCount = await FeatureVotingCountFetcher(feature: feature).fetch()
+        voteCount = await FeatureVotingCountFetcher(feature: feature, configuration: configuration).fetch()
     }
 
     func vote() {
