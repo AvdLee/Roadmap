@@ -19,10 +19,9 @@ struct RoadmapFeatureView: View {
 
                 if let status = viewModel.feature.status {
                         Text(status)
-                            .bold()
                             .padding(6)
-                            .background(Color.secondary.opacity(0.1))
-                            .foregroundColor(Color.secondary)
+                            .background(Color.primary.opacity(0.05))
+                            .foregroundColor(Color.primary.opacity(0.75))
                             .cornerRadius(5)
                             .font(viewModel.configuration.style.statusFont)
                    
@@ -35,7 +34,7 @@ struct RoadmapFeatureView: View {
             RoadmapVoteButton(viewModel: viewModel)
         }
         .padding()
-        .background(Color.primary.opacity(0.08))
+        .background(viewModel.configuration.style.cellColor)
         .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
         .task {
             await viewModel.getCurrentVotes()
