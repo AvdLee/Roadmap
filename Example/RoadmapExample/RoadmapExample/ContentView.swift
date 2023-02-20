@@ -18,6 +18,14 @@ struct ContentView: View {
         NavigationStack {
             RoadmapView(configuration: configuration)
                 .navigationTitle("Roadmap Example")
+                .toolbar {
+                    ToolbarItem {
+                        Link(destination: URL(string: "https://github.com/AvdLee/Roadmap")!) {
+                            Image(systemName: "questionmark.app.fill")
+                                .symbolRenderingMode(.hierarchical)
+                        }
+                    }
+                }
         }
     }
 }

@@ -1,10 +1,9 @@
 //
 //  RoadmapStyle.swift
-//  
+//
 //
 //  Created by Hidde van der Ploeg on 20/02/2023.
 //
-
 import Foundation
 import SwiftUI
 
@@ -27,6 +26,7 @@ public struct RoadmapStyle {
     /// The backgroundColor of each cell
     let cellColor : Color
     
+    /// The color of the text and icon when voted
     let selectedForegroundColor : Color
     
     public init(icon: Image,

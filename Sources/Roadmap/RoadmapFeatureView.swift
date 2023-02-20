@@ -13,9 +13,15 @@ struct RoadmapFeatureView: View {
 
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(viewModel.feature.title)
                     .font(viewModel.configuration.style.titleFont)
+                
+                if let description = viewModel.feature.description {
+                    Text(description)
+                        .font(viewModel.configuration.style.numberFont)
+                        .foregroundColor(Color.secondary)
+                }
 
                 if let status = viewModel.feature.status {
                         Text(status)
@@ -24,7 +30,6 @@ struct RoadmapFeatureView: View {
                             .foregroundColor(Color.primary.opacity(0.75))
                             .cornerRadius(5)
                             .font(viewModel.configuration.style.statusFont)
-                   
                 }
             }
             .padding(.top, 4)
