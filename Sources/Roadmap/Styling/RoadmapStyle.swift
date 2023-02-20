@@ -14,4 +14,12 @@ public struct RoadmapStyle {
     let numberFont : Font
     let statusFont : Font
     let radius : CGFloat
+    
+    public init(icon: Image, titleFont: Font, numberFont: Font, statusFont: Font, cornerRadius: CGFloat) {
+        self.upvoteIcon = icon
+        self.titleFont = titleFont
+        self.numberFont = numberFont
+        self.statusFont = statusFont
+        self.radius = cornerRadius
+    }
 }
