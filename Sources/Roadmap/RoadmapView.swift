@@ -20,6 +20,7 @@ public struct RoadmapView: View {
                         .listRowSeparator(.hidden)
                 }
             }
+            .scrollContentBackground(.hidden)
             .listStyle(.plain)
         } else {
             List {
@@ -37,6 +38,7 @@ public struct RoadmapView: View {
                     .listRowSeparator(.hidden)
             }
         }
+        .scrollContentBackground(.hidden)
         .listStyle(.plain)
         #endif
     }

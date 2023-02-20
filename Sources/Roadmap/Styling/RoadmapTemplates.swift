@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-public enum RoadmapTemplate {
+public enum RoadmapTemplate : CaseIterable {
     case standard
     case playful
     case classy
