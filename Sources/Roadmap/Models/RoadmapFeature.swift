@@ -10,7 +10,7 @@ import Foundation
 struct RoadmapFeature: Codable, Identifiable {
     let id: String
     let title: String
-    let status: String
+    let status: String?
     var hasVoted: Bool {
         get {
             guard let votes = UserDefaults.standard.array(forKey: "roadmap_votes") as? [String] else { return false }
