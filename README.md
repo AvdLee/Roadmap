@@ -53,7 +53,7 @@ public struct RoadmapConfiguration {
 
     public init(roadmapJSONURL: URL, 
                 namespace: String, 
-                style: style: RoadmapStyle = RoadmapTemplates.standard.style, 
+                style: RoadmapStyle = RoadmapTemplates.standard.style, 
                 tint: Color = .accentColor) {
         self.roadmapJSONURL = roadmapJSONURL
         self.namespace = namespace
