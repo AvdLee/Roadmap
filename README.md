@@ -37,7 +37,7 @@ Create a new Roadmap configuration following the documentation:
 
 ```swift
 let configuration = RoadmapConfiguration(
-    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!
+    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!
 )
 ```
 
@@ -47,7 +47,7 @@ And use the configuration inside the `RoadmapView`:
 ```swift
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
-        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!
     )
 
     var body: some View {
@@ -64,7 +64,7 @@ Example
 ```swift
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
-        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
         namespace: "roadmaptest",
         style: RoadmapTemplate.playful.style, // You can also create your own RoadmapStyle
         tine: Color.teal
