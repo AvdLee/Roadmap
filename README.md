@@ -118,7 +118,7 @@ We make use of the [Free Counting API](https://countapi.xyz/)
 Since we'd love to invite you to contribute directly with a pull request. Join us in making this project a success!
 
 ## Projects using Roadmap
-- [MacWhisper](https://goodsnooze.gumroad.com/l/macwhisper)
+- [MacWhisper](https://www.macwhisper.com)
 - [RocketSim](https://www.rocketsim.app)
 - [NowPlaying](https://apps.apple.com/us/app/nowplaying-record-display/id1596487035?l=en)
 
