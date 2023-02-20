@@ -12,38 +12,36 @@ struct RoadmapFeatureView: View {
     @StateObject var viewModel: RoadmapFeatureViewModel
 
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 Text(viewModel.feature.title)
-                    .bold()
+                    .font(viewModel.configuration.style.titleFont)
 
-                Text(viewModel.feature.status)
-                    .bold()
-                    .padding(6)
-                    .background(Color.red.opacity(0.1))
-                    .foregroundColor(Color.red)
-                    .cornerRadius(5)
-                    .font(.caption)
-            }
-            .padding(.vertical, 4)
-
-            Spacer()
-            Text("\(viewModel.voteCount)")
-                .font(.title)
-
-            if !viewModel.feature.hasVoted {
-                Button {
-                    viewModel.vote()
-                } label: {
-                    Image(systemName: "arrow.up.circle.fill")
-                        .foregroundColor(.blue.opacity(0.7))
-                        .font(.title)
+                if let status = viewModel.feature.status {
+                    
+                        Text(status)
+                            .bold()
+                            .padding(6)
+                            .background(Color.secondary.opacity(0.1))
+                            .foregroundColor(Color.secondary)
+                            .cornerRadius(5)
+                            .font(viewModel.configuration.style.captionFont)
+                   
                 }
             }
+            .padding(.top, 4)
+
+            Spacer()
+            
+            RoadmapVoteButton(viewModel: viewModel)
         }
-        .onAppear {
-            viewModel.getCurrentVotes()
+        .padding()
+        .background(Color.primary.opacity(0.05))
+        .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
+        .task {
+            await viewModel.getCurrentVotes()
         }
+        
     }
 }
 

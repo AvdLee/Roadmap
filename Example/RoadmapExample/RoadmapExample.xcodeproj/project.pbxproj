@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80657BAE29A3A0D000CAF5EF /* Roadmap in Resources */ = {isa = PBXBuildFile; fileRef = 8419130929A2AA3D00D1A0F6 /* Roadmap */; };
 		841912FB29A2AA2300D1A0F6 /* RoadmapExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841912FA29A2AA2300D1A0F6 /* RoadmapExampleApp.swift */; };
 		841912FD29A2AA2300D1A0F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841912FC29A2AA2300D1A0F6 /* ContentView.swift */; };
 		841912FF29A2AA2400D1A0F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841912FE29A2AA2400D1A0F6 /* Assets.xcassets */; };
@@ -142,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80657BAE29A3A0D000CAF5EF /* Roadmap in Resources */,
 				8419130329A2AA2400D1A0F6 /* Preview Assets.xcassets in Resources */,
 				841912FF29A2AA2400D1A0F6 /* Assets.xcassets in Resources */,
 			);
@@ -284,6 +286,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Roadmap Example";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -322,6 +325,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Roadmap Example";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
