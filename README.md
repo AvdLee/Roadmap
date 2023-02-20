@@ -86,6 +86,15 @@ struct ContentView: View {
 ### How does Roadmap store votes?
 We make use of the [Free Counting API](https://countapi.xyz/)
 
+### Does Roadmap prevent users from voting multiple times?
+Yes, if a user has voted on a feature they won't be able to vote again.
+
+### Can Roadmap be customized to fit the look and feel of my app?
+Roadmap comes with four different preconfigured styles to match most apps. You can change the tintColor, upvote image and more.
+
+### What OS versions are supported?
+To keep development of Roadmap easy and fun, we've decided to only support iOS 16 and macOS Ventura for now.
+
 ### Can I help contributing?
 Yes, please! We would love to invite you to pick up any of the open issues. We'll review your Pull Requests accordingly.
 
