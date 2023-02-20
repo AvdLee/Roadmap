@@ -9,10 +9,11 @@ import Foundation
 
 struct FeatureVotingCountFetcher {
     let feature: RoadmapFeature
-    let configuration: RoadmapConfiguration
+    let namespace: String
+
     func fetch() async -> Int {
         do {
-            let urlString = "https://api.countapi.xyz/get/\(configuration.namespace)/feature\(feature.id)"
+            let urlString = "https://api.countapi.xyz/get/\(namespace)/feature\(feature.id)"
             let count: RoadmapFeatureVotingCount = try await JSONDataFetcher.loadJSON(fromURLString: urlString)
             return count.value ?? 0
         } catch {
