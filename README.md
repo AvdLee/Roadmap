@@ -2,7 +2,7 @@
 Publish your roadmap inside your app and allow users to vote for upcoming features
 
 ## Example
-<HIDDE_TO_SHOW_IMAGE>
+<img width="1206" alt="IMG_8113" src="https://user-images.githubusercontent.com/170948/220112677-fdd0b374-7112-47ce-8f20-0eb015e2529c.png">
 
 ## Setting up Roadmap
 ### Create a Roadmap JSON
