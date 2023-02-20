@@ -31,17 +31,17 @@ struct RoadmapVoteButton : View {
                     .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
                 
                 VStack(spacing: isHovering ? 2 : 0) {
-                    Image(systemName: viewModel.configuration.style.iconName)
+                    viewModel.configuration.style.upvoteIcon
                         .foregroundColor(hasVoted ? .white : viewModel.configuration.tintColor)
-                        .symbolVariant(hasVoted ? .fill : .none)
-                        .font(.title3)
+                        .imageScale(.large)
+                        .font(viewModel.configuration.style.numberFont)
                     
                     if showNumber {
                         Text("\(viewModel.voteCount)")
                             .lineLimit(1)
                             .foregroundColor(hasVoted ? .white : viewModel.configuration.tintColor)
                             .minimumScaleFactor(0.5)
-                            .font(viewModel.configuration.style.bodyFont)
+                            .font(viewModel.configuration.style.numberFont)
                     }
                 }
             }
@@ -63,8 +63,10 @@ struct RoadmapVoteButton : View {
             }
         }
         .onHover { newHover in
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.7, blendDuration: 0)) {
-                isHovering = newHover
+            if !hasVoted {            
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.7, blendDuration: 0)) {
+                    isHovering = newHover
+                }
             }
         }
         .onAppear {

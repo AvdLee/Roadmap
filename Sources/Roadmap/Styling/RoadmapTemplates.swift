@@ -1,27 +1,43 @@
 //
-//  RoadmapStyle.swift
+//  RoadmapTemplates.swift
 //  
 //
 //  Created by Hidde van der Ploeg on 20/02/2023.
 //
 
-import Foundation
 import SwiftUI
-
-public enum RoadmapStyle {
+public enum RoadmapTemplate {
     case standard
     case playful
     case classy
     case technical
     
-    var iconName : String {
+    public var style : RoadmapStyle {
         switch self {
         case .standard:
-            return "arrowtriangle.up.fill"
+            return RoadmapStyle(upvoteIcon: Image(systemName: "arrowtriangle.up.fill"),
+                                titleFont: self.titleFont,
+                                numberFont: self.numberFont,
+                                statusFont: self.captionFont,
+                                radius: 10)
         case .playful:
-            return "arrow.up"
-        case .classy, .technical:
-            return "chevron.up"
+            return RoadmapStyle(upvoteIcon: Image(systemName: "arrow.up"),
+                                titleFont: self.titleFont,
+                                numberFont: self.numberFont,
+                                statusFont: self.captionFont,
+                                radius: 15)
+        case .classy:
+            return RoadmapStyle(upvoteIcon: Image(systemName: "chevron.up"),
+                                titleFont: self.titleFont,
+                                numberFont: self.numberFont,
+                                statusFont: self.captionFont,
+                                radius: 5)
+        case .technical:
+            return RoadmapStyle(upvoteIcon: Image(systemName: "chevron.up"),
+                                titleFont: self.titleFont,
+                                numberFont: self.numberFont,
+                                statusFont: self.captionFont,
+                                radius: 2)
         }
     }
     
@@ -50,7 +66,7 @@ public enum RoadmapStyle {
         #endif
     }
     
-    var bodyFont: Font {
+    var numberFont: Font {
         #if os(macOS)
             if #available(macOS 13.0, *) {
                 return Font.system(.body, design: self.fontDesign, weight: .medium).monospacedDigit()
@@ -72,19 +88,5 @@ public enum RoadmapStyle {
         #else
             return Font.system(.caption, design: self.fontDesign, weight: .bold)
         #endif
-    }
-    
-    
-    var radius : CGFloat {
-        switch self {
-        case .classy:
-            return 4
-        case .technical:
-            return 0
-        case .playful:
-            return 15
-        default:
-            return 10
-        }
     }
 }

@@ -51,7 +51,10 @@ public struct RoadmapConfiguration {
     /// The main tintColor for the roadmap views
     public let tintColor : Color
 
-    public init(roadmapJSONURL: URL, namespace: String, style: RoadmapStyle = .standard, tint: Color = .accentColor) {
+    public init(roadmapJSONURL: URL, 
+                namespace: String, 
+                style: style: RoadmapStyle = RoadmapTemplates.standard.style, 
+                tint: Color = .accentColor) {
         self.roadmapJSONURL = roadmapJSONURL
         self.namespace = namespace
         self.style = style
@@ -70,21 +73,6 @@ let configuration = RoadmapConfiguration(
 ```
 
 
-Alternatively you can setup the style for your Roadmap by initializing the `RoadmapConfiguration` with a style and/or tint.
-
-For example:
-
-```swift
-let configuration = RoadmapConfiguration(
-    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
-    namespace: "roadmaptest",
-    style: .playful,
-    tint: Color.teal
-)
-```
-
-
-
 ### Use the configuration to construct the view
 And use the configuration inside the `RoadmapView`:
 
@@ -100,6 +88,27 @@ struct ContentView: View {
     }
 }
 ```
+
+### Styling
+By initializing the `RoadmapConfiguration` with a `RoadmapStyle` you can create your own styling or use one of the four ready-to-use `RoadmapTemplate`.  
+
+Example
+
+```swift
+struct ContentView: View {
+    let configuration = RoadmapConfiguration(
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
+        namespace: "roadmaptest",
+        style: RoadmapTemplate.playful.style, // You can also create your own RoadmapStyle
+        tine: Color.teal
+    )
+
+    var body: some View {
+        RoadmapView(configuration: configuration)
+    }
+}
+```
+
 
 ## FAQ
 ### How does Roadmap store votes?

@@ -23,7 +23,7 @@ public struct RoadmapConfiguration {
     /// The main tintColor for the roadmap views
     public let tintColor : Color
 
-    public init(roadmapJSONURL: URL, namespace: String, style: RoadmapStyle = .standard, tint: Color = .accentColor) {
+    public init(roadmapJSONURL: URL, namespace: String, style: RoadmapStyle = RoadmapTemplate.standard.style, tint: Color = .accentColor) {
         self.roadmapJSONURL = roadmapJSONURL
         self.namespace = namespace
         self.style = style

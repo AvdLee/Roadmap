@@ -25,7 +25,7 @@ struct RoadmapFeatureView: View {
                             .background(Color.secondary.opacity(0.1))
                             .foregroundColor(Color.secondary)
                             .cornerRadius(5)
-                            .font(viewModel.configuration.style.captionFont)
+                            .font(viewModel.configuration.style.statusFont)
                    
                 }
             }
