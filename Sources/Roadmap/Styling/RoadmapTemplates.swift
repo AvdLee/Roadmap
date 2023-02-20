@@ -15,29 +15,29 @@ public enum RoadmapTemplate {
     public var style : RoadmapStyle {
         switch self {
         case .standard:
-            return RoadmapStyle(upvoteIcon: Image(systemName: "arrowtriangle.up.fill"),
+            return RoadmapStyle(icon: Image(systemName: "arrowtriangle.up.fill"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
-                                radius: 10)
+                                cornerRadius: 10)
         case .playful:
-            return RoadmapStyle(upvoteIcon: Image(systemName: "arrow.up"),
+            return RoadmapStyle(icon: Image(systemName: "arrow.up"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
-                                radius: 15)
+                                cornerRadius: 15)
         case .classy:
-            return RoadmapStyle(upvoteIcon: Image(systemName: "chevron.up"),
+            return RoadmapStyle(icon: Image(systemName: "chevron.up"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
-                                radius: 5)
+                                cornerRadius: 5)
         case .technical:
-            return RoadmapStyle(upvoteIcon: Image(systemName: "chevron.up"),
+            return RoadmapStyle(icon: Image(systemName: "chevron.up"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
-                                radius: 2)
+                                cornerRadius: 2)
         }
     }
     
