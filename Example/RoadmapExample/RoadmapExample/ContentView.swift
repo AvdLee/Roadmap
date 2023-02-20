@@ -15,7 +15,10 @@ struct ContentView: View {
     )
 
     var body: some View {
-        RoadmapView(configuration: configuration)
+        NavigationStack {
+            RoadmapView(configuration: configuration)
+                .navigationTitle("Roadmap Example")
+        }
     }
 }
 
