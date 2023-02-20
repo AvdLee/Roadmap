@@ -21,7 +21,7 @@ final class RoadmapFeatureViewModel: ObservableObject {
     
     @MainActor
     func getCurrentVotes() async {
-        voteCount = await FeatureVotingCountFetcher(feature: feature, configuration: configuration).fetch()
+        voteCount = await FeatureVotingCountFetcher(feature: feature, namespace: configuration.namespace).fetch()
     }
 
     func vote() {
@@ -30,7 +30,7 @@ final class RoadmapFeatureViewModel: ObservableObject {
             return
         }
         Task { @MainActor in
-            let newCount = await FeatureVoter(feature: feature, configuration: configuration).vote()
+            let newCount = await FeatureVoter(feature: feature, namespace: configuration.namespace).vote()
             voteCount = newCount ?? (voteCount + 1)
         }
     }

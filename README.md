@@ -36,42 +36,10 @@ Add `https://github.com/AvdLee/Roadmap.git` within Xcode's package manager.
 Create a new Roadmap configuration following the documentation:
 
 ```swift
-public struct RoadmapConfiguration {
-    /// The URL pointing to the JSON in the `RoadmapFeature` format.
-    public let roadmapJSONURL: URL
-
-    /// A unique namespace to use matching your app.
-    /// See `https://countapi.xyz/` for more information.
-    /// Recommended: your bundle identifier.
-    public let namespace: String
-    
-    /// Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used
-    public let style: RoadmapStyle
-    
-    /// The main tintColor for the roadmap views
-    public let tintColor : Color
-
-    public init(roadmapJSONURL: URL, 
-                namespace: String, 
-                style: RoadmapStyle = RoadmapTemplates.standard.style, 
-                tint: Color = .accentColor) {
-        self.roadmapJSONURL = roadmapJSONURL
-        self.namespace = namespace
-        self.style = style
-        self.tintColor = tint
-    }
-}
-```
-
-For example:
-
-```swift
 let configuration = RoadmapConfiguration(
-    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
-    namespace: "roadmaptest"
+    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!
 )
 ```
-
 
 ### Use the configuration to construct the view
 And use the configuration inside the `RoadmapView`:
@@ -79,8 +47,7 @@ And use the configuration inside the `RoadmapView`:
 ```swift
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
-        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
-        namespace: "roadmaptest"
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!
     )
 
     var body: some View {
@@ -114,8 +81,8 @@ struct ContentView: View {
 ### How does Roadmap store votes?
 We make use of the [Free Counting API](https://countapi.xyz/)
 
-### Why can't I open issues?
-Since we'd love to invite you to contribute directly with a pull request. Join us in making this project a success!
+### Can I help contributing?
+Yes, please! We would love to invite you to pick up any of the open issues. We'll review your Pull Requests accordingly.
 
 ## Projects using Roadmap
 - [MacWhisper](https://www.macwhisper.com)
