@@ -24,11 +24,26 @@ public struct RoadmapStyle {
     /// The corner radius for the upvote button
     let radius : CGFloat
     
-    public init(icon: Image, titleFont: Font, numberFont: Font, statusFont: Font, cornerRadius: CGFloat) {
+    /// The backgroundColor of each cell
+    let cellColor : Color
+    
+    let selectedForegroundColor : Color
+    
+    public init(icon: Image,
+                titleFont: Font,
+                numberFont: Font,
+                statusFont: Font,
+                cornerRadius: CGFloat,
+                cellColor: Color = Color.defaultCellColor,
+                selectedColor: Color = .white) {
         self.upvoteIcon = icon
         self.titleFont = titleFont
         self.numberFont = numberFont
         self.statusFont = statusFont
         self.radius = cornerRadius
+        self.cellColor = cellColor
+        self.selectedForegroundColor = selectedColor
     }
 }
+
+
