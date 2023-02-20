@@ -60,6 +60,8 @@ struct ContentView: View {
 }
 ```
 
+![Post Portrait Copy@1x](https://user-images.githubusercontent.com/5016984/220203716-2e4a90ad-dd80-4acb-a240-ad26adfca2ef.png)
+
 ## Styling
 By initializing the `RoadmapConfiguration` with a `RoadmapStyle` you can create your own styling or use one of the four ready-to-use `RoadmapTemplate`.  
 
@@ -80,7 +82,7 @@ struct ContentView: View {
 }
 ```
 
-![Post Portrait Copy@1x](https://user-images.githubusercontent.com/5016984/220203716-2e4a90ad-dd80-4acb-a240-ad26adfca2ef.png)
+![Post Portrait@1x](https://user-images.githubusercontent.com/5016984/220203876-48e5d745-f0cf-4f2a-a4a2-2b801f1407e9.png)
 
 ## FAQ
 ### How does Roadmap store votes?
@@ -106,7 +108,7 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 ## Authors
 This library is created in collaboration between [Jordi Bruin](https://twitter.com/jordibruin), [Hidde van der Ploeg](https://twitter.com/hiddevdploeg), and [Antoine van der Lee](https://www.twitter.com/twannl)
 
-![Post Portrait@1x](https://user-images.githubusercontent.com/5016984/220203876-48e5d745-f0cf-4f2a-a4a2-2b801f1407e9.png)
+
 
 ## License
 
