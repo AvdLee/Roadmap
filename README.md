@@ -37,17 +37,28 @@ Create a new Roadmap configuration following the documentation:
 
 ```swift
 public struct RoadmapConfiguration {
-    /// The URL pointing to the JSON in the `Roadmap` format.
+    /// The URL pointing to the JSON in the `RoadmapFeature` format.
     public let roadmapJSONURL: URL
 
     /// A unique namespace to use matching your app.
     /// See `https://countapi.xyz/` for more information.
     /// Recommended: your bundle identifier.
     public let namespace: String
+    
+    /// Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used
+    public let style: RoadmapStyle
+    
+    /// The main tintColor for the roadmap views
+    public let tintColor : Color
 
-    public init(roadmapJSONURL: URL, namespace: String) {
+    public init(roadmapJSONURL: URL, 
+                namespace: String, 
+                style: RoadmapStyle = RoadmapTemplates.standard.style, 
+                tint: Color = .accentColor) {
         self.roadmapJSONURL = roadmapJSONURL
         self.namespace = namespace
+        self.style = style
+        self.tintColor = tint
     }
 }
 ```
@@ -60,6 +71,7 @@ let configuration = RoadmapConfiguration(
     namespace: "roadmaptest"
 )
 ```
+
 
 ### Use the configuration to construct the view
 And use the configuration inside the `RoadmapView`:
@@ -77,6 +89,27 @@ struct ContentView: View {
 }
 ```
 
+### Styling
+By initializing the `RoadmapConfiguration` with a `RoadmapStyle` you can create your own styling or use one of the four ready-to-use `RoadmapTemplate`.  
+
+Example
+
+```swift
+struct ContentView: View {
+    let configuration = RoadmapConfiguration(
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
+        namespace: "roadmaptest",
+        style: RoadmapTemplate.playful.style, // You can also create your own RoadmapStyle
+        tine: Color.teal
+    )
+
+    var body: some View {
+        RoadmapView(configuration: configuration)
+    }
+}
+```
+
+
 ## FAQ
 ### How does Roadmap store votes?
 We make use of the [Free Counting API](https://countapi.xyz/)
@@ -87,6 +120,7 @@ Since we'd love to invite you to contribute directly with a pull request. Join u
 ## Projects using Roadmap
 - [MacWhisper](https://goodsnooze.gumroad.com/l/macwhisper)
 - [RocketSim](https://www.rocketsim.app)
+- [NowPlaying](https://apps.apple.com/us/app/nowplaying-record-display/id1596487035?l=en)
 
 ## Authors
 This library is created in collaboration between [Jordi Bruin](https://twitter.com/jordibruin), [Hidde van der Ploeg](https://twitter.com/hiddevdploeg), and [Antoine van der Lee](https://www.twitter.com/twannl)

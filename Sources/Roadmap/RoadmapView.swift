@@ -9,16 +9,38 @@ import SwiftUI
 
 public struct RoadmapView: View {
     @StateObject var viewModel: RoadmapViewModel
-
+    
     public var body: some View {
-        List {
-            ForEach(viewModel.features) { feature in
-                Section {
+        
+        #if os(macOS)
+        if #available(macOS 13.0, *) {
+            List {
+                ForEach(viewModel.features) { feature in
                     RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                        .listRowSeparator(.hidden)
+                }
+            }
+            .listStyle(.plain)
+        } else {
+            List {
+                ForEach(viewModel.features) { feature in
+                    Section {
+                        RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                    }
                 }
             }
         }
+        #else
+        List {
+            ForEach(viewModel.features) { feature in
+                RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                    .listRowSeparator(.hidden)
+            }
+        }
+        .listStyle(.plain)
+        #endif
     }
+
 }
 
 public extension RoadmapView {

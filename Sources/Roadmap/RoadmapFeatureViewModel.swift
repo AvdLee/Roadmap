@@ -18,11 +18,10 @@ final class RoadmapFeatureViewModel: ObservableObject {
         self.feature = feature
         self.configuration = configuration
     }
-
-    func getCurrentVotes() {
-        Task { @MainActor in
-            voteCount = await FeatureVotingCountFetcher(feature: feature).fetch()
-        }
+    
+    @MainActor
+    func getCurrentVotes() async {
+        voteCount = await FeatureVotingCountFetcher(feature: feature, configuration: configuration).fetch()
     }
 
     func vote() {
