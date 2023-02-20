@@ -120,6 +120,7 @@ Since we'd love to invite you to contribute directly with a pull request. Join u
 ## Projects using Roadmap
 - [MacWhisper](https://goodsnooze.gumroad.com/l/macwhisper)
 - [RocketSim](https://www.rocketsim.app)
+- [NowPlaying](https://apps.apple.com/us/app/nowplaying-record-display/id1596487035?l=en)
 
 ## Authors
 This library is created in collaboration between [Jordi Bruin](https://twitter.com/jordibruin), [Hidde van der Ploeg](https://twitter.com/hiddevdploeg), and [Antoine van der Lee](https://www.twitter.com/twannl)
