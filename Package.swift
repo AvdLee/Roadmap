@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "Roadmap",
     platforms: [
-        .iOS(.v14),
-        .macOS(.v11)
+        .iOS(.v16),
+        .macOS(.v12)
     ],
     products: [
         .library(name: "Roadmap", targets: ["Roadmap"]),
