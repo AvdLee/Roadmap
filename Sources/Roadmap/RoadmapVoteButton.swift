@@ -34,7 +34,7 @@ struct RoadmapVoteButton : View {
                         viewModel.configuration.style.upvoteIcon
                             .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
                             .imageScale(.large)
-                            .font(iconFont)
+                            .font(Font.system(size: 17, weight: .medium))
                             .frame(maxWidth: 24, maxHeight: 24)
                         
                         if showNumber {
@@ -53,7 +53,7 @@ struct RoadmapVoteButton : View {
                         viewModel.configuration.style.upvoteIcon
                             .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
                             .imageScale(.large)
-                            .font(iconFont)
+                            .font(viewModel.configuration.style.numberFont)
                             .frame(maxWidth: 24, maxHeight: 24)
                         
                         if showNumber {
@@ -105,7 +105,6 @@ struct RoadmapVoteButton : View {
         .accessibilityShowsLargeContentViewer()
     }
     
-    
     @ViewBuilder
     var overlayBorder : some View {
         if isHovering {
@@ -119,18 +118,5 @@ struct RoadmapVoteButton : View {
             .opacity(hasVoted ? 1 : 0.1)
             .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
     }
-    
-    
-    private var iconFont: Font {
-#if os(macOS)
-    if #available(macOS 13.0, *) {
-        return Font.system(size: 17, weight: .medium, design: .default)
-    } else {
-        return Font.body.monospacedDigit()
-    }
-#else
-        return Font.system(size: 17, weight: .medium, design: .default)
-#endif
-}
     
 }
