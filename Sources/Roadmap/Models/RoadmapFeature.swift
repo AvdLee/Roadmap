@@ -11,7 +11,7 @@ struct RoadmapFeature: Codable, Identifiable {
     let id: String
     
     var title: String {
-        localizedTitle.currentLocal ?? originalTitle
+        localizedTitle.currentLocal ?? originalTitle ?? "N/A"
     }
     var description: String? {
         localizedDescription.currentLocal ?? originalDescription
@@ -20,7 +20,7 @@ struct RoadmapFeature: Codable, Identifiable {
         localizedStatus.currentLocal ?? originalStatus
     }
     
-    let originalTitle: String
+    let originalTitle: String?
     var originalStatus: String? = nil
     var originalDescription : String? = nil
     
