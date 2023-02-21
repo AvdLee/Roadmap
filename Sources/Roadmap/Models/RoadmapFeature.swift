@@ -9,9 +9,27 @@ import Foundation
 
 struct RoadmapFeature: Codable, Identifiable {
     let id: String
-    let title: String
-    var status: String? = nil
-    var description : String? = nil
+    
+    var title: String {
+        localizedTitle?.first(where: { $0.language == L.code })?.value ?? originalTitle
+    }
+    
+    var description: String? {
+        localizedDescription?.first(where: { $0.language == L.code })?.value ?? originalDescription
+    }
+    
+    var status: String? {
+        localizedStatus?.first(where: { $0.language == L.code })?.value ?? originalStatus
+    }
+    
+    let originalTitle: String
+    var originalStatus: String? = nil
+    var originalDescription : String? = nil
+    
+    private var localizedTitle: [LocalizedItem]? = nil
+    private var localizedStatus: [LocalizedItem]? = nil
+    private var localizedDescription: [LocalizedItem]? = nil
+    
     
     var hasVoted: Bool {
         get {
@@ -28,10 +46,25 @@ struct RoadmapFeature: Codable, Identifiable {
             UserDefaults.standard.set(votes, forKey: "roadmap_votes")
         }
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case originalTitle = "title"
+        case originalStatus = "status"
+        case originalDescription = "description"
+        case localizedTitle
+        case localizedStatus
+        case localizedDescription
+    }
+}
+
+struct LocalizedItem: Codable {
+    let language: String
+    let value: String
 }
 
 extension RoadmapFeature {
     static func sample() -> RoadmapFeature {
-        .init(id: UUID().uuidString, title: "WatchOS Support", status: "Backlog")
+        .init(id: UUID().uuidString, originalTitle: "WatchOS Support", originalStatus: "Backlog")
     }
 }
