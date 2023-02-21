@@ -42,8 +42,8 @@ struct RoadmapFeatureView: View {
                 if let status = viewModel.feature.status {
                         Text(status)
                             .padding(6)
-                            .background(Color.primary.opacity(0.05))
-                            .foregroundColor(Color.primary.opacity(0.75))
+                            .background(viewModel.configuration.style.statusTintColor(status).opacity(0.05))
+                            .foregroundColor(viewModel.configuration.style.statusTintColor(status).opacity(0.75))
                             .cornerRadius(5)
                             .font(viewModel.configuration.style.statusFont)
                 }
@@ -77,8 +77,8 @@ struct RoadmapFeatureView: View {
                 if let status = viewModel.feature.status {
                         Text(status)
                             .padding(6)
-                            .background(Color.primary.opacity(0.05))
-                            .foregroundColor(Color.primary.opacity(0.75))
+                            .background(viewModel.configuration.style.statusTintColor(status).opacity(0.05))
+                            .foregroundColor(viewModel.configuration.style.statusTintColor(status).opacity(0.75))
                             .cornerRadius(5)
                             .font(viewModel.configuration.style.statusFont)
                 }
