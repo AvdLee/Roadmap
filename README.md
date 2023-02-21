@@ -162,10 +162,10 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 - [RocketSim](https://www.rocketsim.app)
 - [NowPlaying](https://apps.apple.com/us/app/nowplaying-record-display/id1596487035?l=en)
 
+If you've integrated Roadmap into your app and you want to add it to this list, please make a Pull Request.
+
 ## Authors
 This library is created in collaboration between [Jordi Bruin](https://twitter.com/jordibruin), [Hidde van der Ploeg](https://twitter.com/hiddevdploeg), and [Antoine van der Lee](https://www.twitter.com/twannl)
-
-
 
 ## License
 
