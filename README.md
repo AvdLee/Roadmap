@@ -31,6 +31,49 @@ An example JSON looks as follows:
 
 The keys `id`, `title` are mandatory and all have to be strings. You can use any value for `status` or `description`.
 
+#### Support For Localization 
+If you are looking to support localization, then you need to add extra optional parameters in your JSON `localizedTitle`, `localizedDescription` and `localizedStatus` like:
+```
+[
+  {
+    "id": "0",
+    "title": "Adding a map",
+    "localizedTitle": [
+      {
+        "language": "ar",
+        "value": "اضافة خارطة"
+      },
+      {
+        "language": "en",
+        "value": "Adding a map"
+      }
+    ],
+    "status": "planned",
+    "localizedStatus": [
+      {
+        "language": "ar",
+        "value": "مجدولة"
+      },
+      {
+        "language": "en",
+        "value": "Planned"
+      }
+    ],
+    "description": "some description",
+    "localizedDescription": [
+      {
+        "language": "ar",
+        "value": "اضافة خارطة لمعرفة الاماكن القريبة"
+      },
+      {
+        "language": "en",
+        "value": "Adding a map to view nearby places"
+      }
+    ]
+  }
+]
+```
+
 ### Add Roadmap using Swift Package Manager
 
 Add `https://github.com/AvdLee/Roadmap.git` within Xcode's package manager.
