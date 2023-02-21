@@ -151,6 +151,9 @@ Roadmap comes with four different preconfigured styles to match most apps. You c
 ### What OS versions are supported?
 To keep development of Roadmap easy and fun, we've decided to only support iOS 16 and macOS Monterey & Ventura for now.
 
+### Can I sort my roadmap by most voted?
+Right now the list of features is loaded in random order. Our thinking is that this will prevent bias for the top voted features. We'll look into ways to make this possible in the future but since the votes are retrieved after the view has been loaded we'll need to look into it.
+
 ### Is it possible for stupid people to manipulate my roadmap?
 Yes, we wanted to keep Roadmap as simple as possible to setup. If you're worried about competitors messing with your priority list, maybe use something else.
 
