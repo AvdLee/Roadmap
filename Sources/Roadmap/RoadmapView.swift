@@ -22,6 +22,7 @@ public struct RoadmapView: View {
             }
             .scrollContentBackground(.hidden)
             .listStyle(.plain)
+            .loadingView(viewModel.isLoading)
         } else {
             List {
                 ForEach(viewModel.features) { feature in
@@ -30,6 +31,7 @@ public struct RoadmapView: View {
                     }
                 }
             }
+            .loadingView(viewModel.isLoading)
         }
         #else
         List {
@@ -40,6 +42,7 @@ public struct RoadmapView: View {
         }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
+        .loadingView(viewModel.isLoading)
         #endif
     }
 
