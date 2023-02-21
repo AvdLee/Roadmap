@@ -9,25 +9,22 @@ import Foundation
 
 struct RoadmapFeature: Codable, Identifiable {
     let id: String
-    
-    var title: String {
-        localizedTitle.currentLocal ?? originalTitle ?? "N/A"
-    }
-    var description: String? {
-        localizedDescription.currentLocal ?? originalDescription
-    }
-    var status: String? {
-        localizedStatus.currentLocal ?? originalStatus
-    }
-    
-    let originalTitle: String?
-    var originalStatus: String? = nil
-    var originalDescription : String? = nil
-    
+    private let title: String?
+    private var status: String? = nil
+    private var description : String? = nil
     private var localizedTitle: [LocalizedItem]? = nil
     private var localizedStatus: [LocalizedItem]? = nil
     private var localizedDescription: [LocalizedItem]? = nil
     
+    var featureTitle: String {
+        localizedTitle.currentLocal ?? title ?? "N/A"
+    }
+    var featureDescription: String? {
+        localizedDescription.currentLocal ?? description
+    }
+    var featureStatus: String? {
+        localizedStatus.currentLocal ?? status
+    }
     
     var hasVoted: Bool {
         get {
@@ -44,16 +41,6 @@ struct RoadmapFeature: Codable, Identifiable {
             UserDefaults.standard.set(votes, forKey: "roadmap_votes")
         }
     }
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case originalTitle = "title"
-        case originalStatus = "status"
-        case originalDescription = "description"
-        case localizedTitle
-        case localizedStatus
-        case localizedDescription
-    }
 }
 
 struct LocalizedItem: Codable {
@@ -63,12 +50,12 @@ struct LocalizedItem: Codable {
 
 extension [LocalizedItem]? {
     var currentLocal: String? {
-        self?.first(where: { $0.language == L.code })?.value
+        self?.first(where: { $0.language == Language.code })?.value
     }
 }
 
 extension RoadmapFeature {
     static func sample() -> RoadmapFeature {
-        .init(id: UUID().uuidString, originalTitle: "WatchOS Support", originalStatus: "Backlog")
+        .init(id: UUID().uuidString, title: "WatchOS Support", status: "Backlog")
     }
 }
