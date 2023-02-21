@@ -9,6 +9,7 @@ import Roadmap
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isAlreadyVotedAlertPresented = false
     let configuration = RoadmapConfiguration(
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
         namespace: "roadmaptest"
@@ -16,7 +17,10 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            RoadmapView(configuration: configuration)
+            RoadmapView(configuration: configuration,
+                        alreadyVoted: {
+                self.isAlreadyVotedAlertPresented.toggle()
+            })
                 .navigationTitle("Roadmap Example")
                 .toolbar {
                     ToolbarItem {
@@ -26,6 +30,9 @@ struct ContentView: View {
                         }
                     }
                 }
+                .alert("You already voted for this feature",
+                       isPresented: $isAlreadyVotedAlertPresented,
+                       actions: { Button("OK", role: .cancel) { } })
         }
     }
 }

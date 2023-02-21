@@ -46,13 +46,15 @@ public struct RoadmapView: View {
 }
 
 public extension RoadmapView {
-    init(configuration: RoadmapConfiguration) {
-        self.init(viewModel: .init(configuration: configuration))
+    init(configuration: RoadmapConfiguration,
+         alreadyVoted: @escaping () -> ()) {
+        self.init(viewModel: .init(configuration: configuration, alreadyVoted: alreadyVoted))
     }
 }
 
 struct RoadmapView_Previews: PreviewProvider {
     static var previews: some View {
-        RoadmapView(configuration: .sample())
+        RoadmapView(configuration: .sample(),
+                    alreadyVoted: {})
     }
 }
