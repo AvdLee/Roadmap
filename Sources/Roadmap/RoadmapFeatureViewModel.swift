@@ -36,6 +36,7 @@ final class RoadmapFeatureViewModel: ObservableObject {
         Task { @MainActor in
             let newCount = await FeatureVoter(feature: feature, namespace: configuration.namespace).vote()
             voteCount = newCount ?? (voteCount + 1)
+            onSuccess()
         }
     }
 }
