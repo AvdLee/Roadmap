@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias L = Language
-
 enum Language {
     case LTR, RTL
     
