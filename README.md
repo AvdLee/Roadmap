@@ -60,8 +60,8 @@ struct ContentView: View {
 }
 ```
 
-![Post Portrait Copy@1x](https://user-images.githubusercontent.com/5016984/220203716-2e4a90ad-dd80-4acb-a240-ad26adfca2ef.png)
 
+![Post Portrait@1x](https://user-images.githubusercontent.com/5016984/220203876-48e5d745-f0cf-4f2a-a4a2-2b801f1407e9.png)
 ## Styling
 By initializing the `RoadmapConfiguration` with a `RoadmapStyle` you can create your own styling.
 
@@ -114,6 +114,8 @@ public struct RoadmapStyle {
 }
 
 ```
+![Post Portrait Copy@1x](https://user-images.githubusercontent.com/5016984/220203716-2e4a90ad-dd80-4acb-a240-ad26adfca2ef.png)
+
 ### Templates
 If you don't wan't to configure your own style you can also use one of the templates. You have the option between `Standard`, `Playful`, `Classy` and `Technical` so pick whichever works best for your app. 
 
@@ -134,7 +136,7 @@ struct ContentView: View {
 }
 ```
 
-![Post Portrait@1x](https://user-images.githubusercontent.com/5016984/220203876-48e5d745-f0cf-4f2a-a4a2-2b801f1407e9.png)
+
 
 ## FAQ
 ### How does Roadmap store votes?
