@@ -151,7 +151,10 @@ Roadmap comes with four different preconfigured styles to match most apps. You c
 ### What OS versions are supported?
 To keep development of Roadmap easy and fun, we've decided to only support iOS 16 and macOS Monterey & Ventura for now.
 
-### Can I help contributing?
+### Is it possible for stupid people to manipulate my roadmap?
+Yes, we wanted to keep Roadmap as simple as possible to setup. If you're worried about competitors messing with your priority list, maybe use something else.
+
+### Can I help contribute?
 Yes, please! We would love to invite you to pick up any of the open issues. We'll review your Pull Requests accordingly.
 
 ## Projects using Roadmap
