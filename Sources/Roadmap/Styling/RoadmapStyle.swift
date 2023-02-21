@@ -9,28 +9,28 @@ import SwiftUI
 
 public struct RoadmapStyle {
     /// The image used for the upvote button
-    let upvoteIcon : Image
+    public var upvoteIcon : Image
     
     /// The font used for the feature
-    let titleFont : Font
+    public var titleFont : Font
     
     /// The font used for the count label
-    let numberFont : Font
+    public var numberFont : Font
     
     /// The font used for the status views
-    let statusFont : Font
+    public var statusFont : Font
     
     /// The corner radius for the upvote button
-    let radius : CGFloat
+    public var radius : CGFloat
     
     /// The backgroundColor of each cell
-    let cellColor : Color
+    public var cellColor : Color
     
     /// The color of the text and icon when voted
-    let selectedForegroundColor : Color
+    public var selectedForegroundColor : Color
     
     /// The main tintColor for the roadmap views.
-    let tintColor : Color
+    public var tintColor : Color
     
     public init(icon: Image,
                 titleFont: Font,
@@ -49,8 +49,5 @@ public struct RoadmapStyle {
         self.cellColor = cellColor
         self.selectedForegroundColor = selectedColor
         self.tintColor = tint
-        
     }
 }
-
-
