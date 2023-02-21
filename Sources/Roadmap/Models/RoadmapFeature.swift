@@ -11,15 +11,13 @@ struct RoadmapFeature: Codable, Identifiable {
     let id: String
     
     var title: String {
-        localizedTitle?.first(where: { $0.language == L.code })?.value ?? originalTitle
+        localizedTitle.currentLocal ?? originalTitle
     }
-    
     var description: String? {
-        localizedDescription?.first(where: { $0.language == L.code })?.value ?? originalDescription
+        localizedDescription.currentLocal ?? originalDescription
     }
-    
     var status: String? {
-        localizedStatus?.first(where: { $0.language == L.code })?.value ?? originalStatus
+        localizedStatus.currentLocal ?? originalStatus
     }
     
     let originalTitle: String
@@ -61,6 +59,12 @@ struct RoadmapFeature: Codable, Identifiable {
 struct LocalizedItem: Codable {
     let language: String
     let value: String
+}
+
+extension [LocalizedItem]? {
+    var currentLocal: String? {
+        self?.first(where: { $0.language == L.code })?.value
+    }
 }
 
 extension RoadmapFeature {
