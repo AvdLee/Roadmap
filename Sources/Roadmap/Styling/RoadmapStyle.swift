@@ -29,13 +29,18 @@ public struct RoadmapStyle {
     /// The color of the text and icon when voted
     let selectedForegroundColor : Color
     
+    /// The main tintColor for the roadmap views.
+    let tintColor : Color
+    
     public init(icon: Image,
                 titleFont: Font,
                 numberFont: Font,
                 statusFont: Font,
                 cornerRadius: CGFloat,
                 cellColor: Color = Color.defaultCellColor,
-                selectedColor: Color = .white) {
+                selectedColor: Color = .white,
+                tint: Color = .accentColor) {
+        
         self.upvoteIcon = icon
         self.titleFont = titleFont
         self.numberFont = numberFont
@@ -43,6 +48,8 @@ public struct RoadmapStyle {
         self.radius = cornerRadius
         self.cellColor = cellColor
         self.selectedForegroundColor = selectedColor
+        self.tintColor = tint
+        
     }
 }
 
