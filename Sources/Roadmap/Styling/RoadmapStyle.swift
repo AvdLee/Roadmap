@@ -39,7 +39,7 @@ public struct RoadmapStyle {
                 titleFont: Font,
                 numberFont: Font,
                 statusFont: Font,
-                statusTintColor: @escaping (String) -> Color,
+                statusTintColor: @escaping (String) -> Color = { _ in Color.primary },
                 cornerRadius: CGFloat,
                 cellColor: Color = Color.defaultCellColor,
                 selectedColor: Color = .white,

@@ -19,28 +19,24 @@ public enum RoadmapTemplate : CaseIterable {
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
-                                statusTintColor: self.statusTintColor,
                                 cornerRadius: 10)
         case .playful:
             return RoadmapStyle(icon: Image(systemName: "arrow.up"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
-                                statusTintColor: self.statusTintColor,
                                 cornerRadius: 15)
         case .classy:
             return RoadmapStyle(icon: Image(systemName: "chevron.up"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
-                                statusTintColor: self.statusTintColor,
                                 cornerRadius: 5)
         case .technical:
             return RoadmapStyle(icon: Image(systemName: "chevron.up"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
-                                statusTintColor: self.statusTintColor,
                                 cornerRadius: 2)
         }
     }
@@ -92,9 +88,5 @@ public enum RoadmapTemplate : CaseIterable {
         #else
             return Font.system(.caption, design: self.fontDesign, weight: .bold)
         #endif
-    }
-    
-    var statusTintColor: (String) -> Color {
-        { _ in Color.primary }
     }
 }
