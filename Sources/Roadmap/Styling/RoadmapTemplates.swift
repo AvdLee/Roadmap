@@ -69,12 +69,12 @@ public enum RoadmapTemplate : CaseIterable {
     var numberFont: Font {
         #if os(macOS)
             if #available(macOS 13.0, *) {
-                return Font.system(.body, design: self.fontDesign, weight: .medium).monospacedDigit()
+                return Font.system(.body, design: self.fontDesign, weight: .semibold).monospacedDigit()
             } else {
                 return Font.body.monospacedDigit()
             }
         #else
-            return Font.system(.body, design: self.fontDesign, weight: .medium).monospacedDigit()
+            return Font.system(.body, design: self.fontDesign, weight: .semibold).monospacedDigit()
         #endif
     }
     

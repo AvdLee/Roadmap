@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RoadmapVoteButton : View {
     @ObservedObject var viewModel : RoadmapFeatureViewModel
+    @Environment(\.dynamicTypeSize) var typeSize
     
     @State private var isHovering = false
     @State private var showNumber = false
@@ -26,28 +27,50 @@ struct RoadmapVoteButton : View {
             }
         } label: {
             ZStack {
-                viewModel.configuration.tintColor
-                    .opacity(hasVoted ? 1 : 0.1)
-                    .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
                 
-                VStack(spacing: isHovering ? 2 : 0) {
-                    viewModel.configuration.style.upvoteIcon
-                        .frame(maxWidth: 24, maxHeight: 24)
-                        .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.tintColor)
-                        .imageScale(.large)
-                        .font(viewModel.configuration.style.numberFont)
-                    
-                    if showNumber {
-                        Text("\(viewModel.voteCount)")
-                            .lineLimit(1)
-                            .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.tintColor)
-                            .minimumScaleFactor(0.5)
-                            .font(viewModel.configuration.style.numberFont)
+                
+                if typeSize.isAccessibilitySize {
+                    HStack(spacing: isHovering ? 2 : 0) {
+                        viewModel.configuration.style.upvoteIcon
+                            .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                            .imageScale(.large)
+                            .font(Font.system(size: 17, weight: .medium))
+                            .frame(maxWidth: 24, maxHeight: 24)
+                        
+                        if showNumber {
+                            Text("\(viewModel.voteCount)")
+                                .lineLimit(1)
+                                .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                                .minimumScaleFactor(0.5)
+                                .font(viewModel.configuration.style.numberFont)
+                        }
                     }
+                    .padding(viewModel.configuration.style.radius)
+                    .frame(minHeight: 64)
+                    .background(backgroundView)
+                } else {
+                    VStack(spacing: isHovering ? 2 : 0) {
+                        viewModel.configuration.style.upvoteIcon
+                            .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                            .imageScale(.large)
+                            .font(viewModel.configuration.style.numberFont)
+                            .frame(maxWidth: 24, maxHeight: 24)
+                        
+                        if showNumber {
+                            Text("\(viewModel.voteCount)")
+                                .lineLimit(1)
+                                .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                                .minimumScaleFactor(0.5)
+                                .font(viewModel.configuration.style.numberFont)
+                        }
+                    }
+                    .padding(viewModel.configuration.style.radius)
+                    .frame(minWidth: 56, minHeight: 64)
+                    .background(backgroundView)
                 }
+                
             }
             .contentShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
-            .frame(width: 56, height: 64)
             .overlay(overlayBorder)
         }
         .buttonStyle(.plain)
@@ -79,16 +102,21 @@ struct RoadmapVoteButton : View {
         .accessibilityHint(Text("Vote for \(viewModel.feature.title)"))
         .help("Vote for \(viewModel.feature.title)")
         .animateAccessible()
+        .accessibilityShowsLargeContentViewer()
     }
-    
     
     @ViewBuilder
     var overlayBorder : some View {
         if isHovering {
             RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous)
-                .stroke(viewModel.configuration.tintColor, lineWidth: 1)
+                .stroke(viewModel.configuration.style.tintColor, lineWidth: 1)
         }
     }
     
+    private var backgroundView : some View {
+        viewModel.configuration.style.tintColor
+            .opacity(hasVoted ? 1 : 0.1)
+            .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
+    }
     
 }

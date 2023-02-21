@@ -18,7 +18,11 @@ final class RoadmapViewModel: ObservableObject {
 
     func loadFeatures(roadmapJSONURL: URL) {
         Task { @MainActor in
-            self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch()
+            if configuration.shuffledOrder {
+                self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch().shuffled()
+            } else {
+                self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch()
+            }
         }
     }
 

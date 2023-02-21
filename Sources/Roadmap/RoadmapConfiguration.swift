@@ -20,8 +20,8 @@ public struct RoadmapConfiguration {
     /// Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
     public let style: RoadmapStyle
     
-    /// The main tintColor for the roadmap views.
-    public let tintColor : Color
+    /// Set this to true to have a different order of features everytime the view is presented
+    public let shuffledOrder: Bool
 
     /// Creates a new Roadmap configuration instance.
     /// - Parameters:
@@ -30,8 +30,7 @@ public struct RoadmapConfiguration {
     ///   See `https://countapi.xyz/` for more information.
     ///   Defaults to your main bundle identifier.
     ///   - style: Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
-    ///   - tint: The main tintColor for the roadmap views.
-    public init(roadmapJSONURL: URL, namespace: String? = nil, style: RoadmapStyle = RoadmapTemplate.standard.style, tint: Color = .accentColor) {
+    public init(roadmapJSONURL: URL, namespace: String? = nil, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false) {
         guard let namespace = namespace ?? Bundle.main.bundleIdentifier else {
             fatalError("Missing namespace")
         }
@@ -39,7 +38,7 @@ public struct RoadmapConfiguration {
         self.roadmapJSONURL = roadmapJSONURL
         self.namespace = namespace
         self.style = style
-        self.tintColor = tint
+        self.shuffledOrder = shuffledOrder
     }
 }
 

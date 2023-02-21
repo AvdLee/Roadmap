@@ -63,7 +63,60 @@ struct ContentView: View {
 ![Post Portrait Copy@1x](https://user-images.githubusercontent.com/5016984/220203716-2e4a90ad-dd80-4acb-a240-ad26adfca2ef.png)
 
 ## Styling
-By initializing the `RoadmapConfiguration` with a `RoadmapStyle` you can create your own styling or use one of the four ready-to-use `RoadmapTemplate`.  
+By initializing the `RoadmapConfiguration` with a `RoadmapStyle` you can create your own styling.
+
+
+```swift
+public struct RoadmapStyle {
+    /// The image used for the upvote button
+    let upvoteIcon : Image
+    
+    /// The font used for the feature
+    let titleFont : Font
+    
+    /// The font used for the count label
+    let numberFont : Font
+    
+    /// The font used for the status views
+    let statusFont : Font
+    
+    /// The corner radius for the upvote button
+    let radius : CGFloat
+    
+    /// The backgroundColor of each cell
+    let cellColor : Color
+    
+    /// The color of the text and icon when voted
+    let selectedForegroundColor : Color
+    
+    /// The main tintColor for the roadmap views.
+    let tintColor : Color
+    
+    public init(icon: Image,
+                titleFont: Font,
+                numberFont: Font,
+                statusFont: Font,
+                cornerRadius: CGFloat,
+                cellColor: Color = Color.defaultCellColor,
+                selectedColor: Color = .white,
+                tint: Color = .accentColor) {
+        
+        self.upvoteIcon = icon
+        self.titleFont = titleFont
+        self.numberFont = numberFont
+        self.statusFont = statusFont
+        self.radius = cornerRadius
+        self.cellColor = cellColor
+        self.selectedForegroundColor = selectedColor
+        self.tintColor = tint
+        
+    }
+}
+
+```
+### Templates
+If you don't wan't to configure your own style you can also use one of the templates. You have the option between `Standard`, `Playful`, `Classy` and `Technical` so pick whichever works best for your app. 
+
 
 Example
 
@@ -73,7 +126,6 @@ struct ContentView: View {
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
         namespace: "roadmaptest",
         style: RoadmapTemplate.playful.style, // You can also create your own RoadmapStyle
-        tint: Color.teal
     )
 
     var body: some View {
