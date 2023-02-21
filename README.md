@@ -164,6 +164,7 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 - [MacWhisper](https://www.macwhisper.com)
 - [RocketSim](https://www.rocketsim.app)
 - [NowPlaying](https://apps.apple.com/us/app/nowplaying-record-display/id1596487035?l=en)
+- [Stuny](https://apple.co/3HM88Pv)
 
 If you've integrated Roadmap into your app and you want to add it to this list, please make a Pull Request.
 
