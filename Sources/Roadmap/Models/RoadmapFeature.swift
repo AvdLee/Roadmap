@@ -9,9 +9,22 @@ import Foundation
 
 struct RoadmapFeature: Codable, Identifiable {
     let id: String
-    let title: String
-    var status: String? = nil
-    var description : String? = nil
+    private let title: String?
+    private var status: String? = nil
+    private var description : String? = nil
+    private var localizedTitle: [LocalizedItem]? = nil
+    private var localizedStatus: [LocalizedItem]? = nil
+    private var localizedDescription: [LocalizedItem]? = nil
+    
+    var featureTitle: String {
+        localizedTitle.currentLocal ?? title ?? "N/A"
+    }
+    var featureDescription: String? {
+        localizedDescription.currentLocal ?? description
+    }
+    var featureStatus: String? {
+        localizedStatus.currentLocal ?? status
+    }
     
     var hasVoted: Bool {
         get {
@@ -27,6 +40,17 @@ struct RoadmapFeature: Codable, Identifiable {
             }
             UserDefaults.standard.set(votes, forKey: "roadmap_votes")
         }
+    }
+}
+
+struct LocalizedItem: Codable {
+    let language: String
+    let value: String
+}
+
+extension [LocalizedItem]? {
+    var currentLocal: String? {
+        self?.first(where: { $0.language == Language.code })?.value
     }
 }
 

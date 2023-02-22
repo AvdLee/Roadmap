@@ -30,16 +30,16 @@ struct RoadmapFeatureView: View {
     var horizontalCell : some View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
-                Text(viewModel.feature.title)
+                Text(viewModel.feature.featureTitle)
                     .font(viewModel.configuration.style.titleFont)
                 
-                if let description = viewModel.feature.description {
+                if let description = viewModel.feature.featureDescription {
                     Text(description)
                         .font(viewModel.configuration.style.numberFont)
                         .foregroundColor(Color.secondary)
                 }
 
-                if let status = viewModel.feature.status {
+                if let status = viewModel.feature.featureStatus {
                         Text(status)
                             .padding(6)
                             .background(Color.primary.opacity(0.05))
@@ -65,16 +65,16 @@ struct RoadmapFeatureView: View {
             }
             
             VStack(alignment: .leading, spacing: 8) {
-                Text(viewModel.feature.title)
+                Text(viewModel.feature.featureTitle)
                     .font(viewModel.configuration.style.titleFont)
                 
-                if let description = viewModel.feature.description {
+                if let description = viewModel.feature.featureDescription {
                     Text(description)
                         .font(viewModel.configuration.style.numberFont)
                         .foregroundColor(Color.secondary)
                 }
 
-                if let status = viewModel.feature.status {
+                if let status = viewModel.feature.featureStatus {
                         Text(status)
                             .padding(6)
                             .background(Color.primary.opacity(0.05))
