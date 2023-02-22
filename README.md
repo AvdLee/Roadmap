@@ -143,7 +143,7 @@ struct ContentView: View {
 We make use of the [Free Counting API](https://countapi.xyz/)
 
 ### Does Roadmap prevent users from voting multiple times?
-Yes, if a user has voted on a feature they won't be able to vote again.
+Yes, if a user has voted on a feature they won't be able to vote again from within your app. Users can intercept your network traffic and replay the api call if they're really desperate to manipulate your votes.
 
 ### Can Roadmap be customized to fit the look and feel of my app?
 Roadmap comes with four different preconfigured styles to match most apps. You can change the tintColor, upvote image and more.
@@ -155,7 +155,7 @@ To keep development of Roadmap easy and fun, we've decided to only support iOS 1
 Right now the list of features is loaded in random order. Our thinking is that this will prevent bias for the top voted features. We'll look into ways to make this possible in the future but since the votes are retrieved after the view has been loaded we'll need to look into it.
 
 ### Is it possible for stupid people to manipulate my roadmap?
-Yes, we wanted to keep Roadmap as simple as possible to setup. If you're worried about competitors messing with your priority list, maybe use something else.
+Yes, we wanted to keep Roadmap as simple as possible to setup. If you're worried about competitors (or a user that really wants a specific feature) messing with your priority list, maybe use something else.
 
 ### Can I help contribute?
 Yes, please! We would love to invite you to pick up any of the open issues. We'll review your Pull Requests accordingly.
