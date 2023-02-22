@@ -154,6 +154,8 @@ To keep development of Roadmap easy and fun, we've decided to only support iOS 1
 ### Can I sort my roadmap by most voted?
 Right now the list of features is loaded in random order. Our thinking is that this will prevent bias for the top voted features. We'll look into ways to make this possible in the future but since the votes are retrieved after the view has been loaded we'll need to look into it.
 
+### Do I need to make changes to my app privacy report if I use Roadmap?
+Roadmap does not do any analytics or tracking. If a user voted on a feature it will increment a number on the count api. No identifiers are stored, not even anonymous ones.
 ### Is it possible for stupid people to manipulate my roadmap?
 Yes, we wanted to keep Roadmap as simple as possible to setup. If you're worried about competitors (or a user that really wants a specific feature) messing with your priority list, maybe use something else.
 
