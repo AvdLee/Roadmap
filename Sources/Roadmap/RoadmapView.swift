@@ -12,7 +12,7 @@ public struct RoadmapView: View {
     
     public var body: some View {
         
-        #if os(macOS)
+#if os(macOS)
         if #available(macOS 13.0, *) {
             List {
                 ForEach(viewModel.features) { feature in
@@ -20,7 +20,6 @@ public struct RoadmapView: View {
                         .listRowSeparator(.hidden)
                 }
             }
-            .scrollContentBackground(.hidden)
             .listStyle(.plain)
         } else {
             List {
@@ -31,18 +30,18 @@ public struct RoadmapView: View {
                 }
             }
         }
-        #else
+#else
         List {
             ForEach(viewModel.features) { feature in
                 RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
             }
         }
-        .scrollContentBackground(.hidden)
         .listStyle(.plain)
-        #endif
+#endif
     }
-
+    
 }
 
 public extension RoadmapView {

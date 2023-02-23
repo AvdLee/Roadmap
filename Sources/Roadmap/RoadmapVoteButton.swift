@@ -65,7 +65,8 @@ struct RoadmapVoteButton : View {
                         }
                     }
                     .padding(viewModel.configuration.style.radius)
-                    .frame(minWidth: 56, minHeight: 64)
+                    .frame(minWidth: 56)
+                    .frame(height: 64)
                     .background(backgroundView)
                 }
                 

@@ -35,6 +35,17 @@ public struct RoadmapStyle {
     /// The main tintColor for the roadmap views.
     public var tintColor : Color
     
+    /// Define a `RoadmapStyle` to customise Roadmap to your needs
+    /// - Parameters:
+    ///   - icon: Image view that you want to use for the upvote icon 24x24 of size is best
+    ///   - titleFont: The font you want
+    ///   - numberFont: The font used for the count label
+    ///   - statusFont: The font used for the status views
+    ///   - statusTintColor: The tint color of the status view
+    ///   - cornerRadius: The corner radius for the upvote button
+    ///   - cellColor: The backgroundColor of each cell
+    ///   - selectedColor: The color of the text and icon when voted
+    ///   - tint: The main tintColor for the roadmap views.
     public init(icon: Image,
                 titleFont: Font,
                 numberFont: Font,
