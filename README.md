@@ -174,7 +174,7 @@ Example
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
-        namespace: "roadmaptest",
+        namespace: "roadmap",
         style: RoadmapTemplate.playful.style, // You can also create your own RoadmapStyle
     )
 
