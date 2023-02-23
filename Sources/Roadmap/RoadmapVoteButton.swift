@@ -18,8 +18,8 @@ struct RoadmapVoteButton : View {
     
     var body: some View {
         Button {
-            if !viewModel.feature.hasVoted {
-                    viewModel.vote()
+            Task {
+                await viewModel.vote()
                 #if os(iOS)
                 let haptic = UIImpactFeedbackGenerator(style: .soft)
                 haptic.impactOccurred()

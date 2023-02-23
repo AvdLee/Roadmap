@@ -15,18 +15,26 @@ struct ContentView: View {
     )
 
     var body: some View {
-        NavigationStack {
-            RoadmapView(configuration: configuration)
-                .navigationTitle("Roadmap Example")
-                .toolbar {
-                    ToolbarItem {
-                        Link(destination: URL(string: "https://github.com/AvdLee/Roadmap")!) {
-                            Image(systemName: "questionmark.app.fill")
-                                .symbolRenderingMode(.hierarchical)
-                        }
+        #if os(macOS)
+            roadmapView
+        #else
+        NavigationView {
+            roadmapView
+        }
+        #endif
+    }
+
+    private var roadmapView: some View {
+        RoadmapView(configuration: configuration)
+            .navigationTitle("Roadmap Example")
+            .toolbar {
+                ToolbarItem {
+                    Link(destination: URL(string: "https://github.com/AvdLee/Roadmap")!) {
+                        Image(systemName: "questionmark.app.fill")
+                            .symbolRenderingMode(.hierarchical)
                     }
                 }
-        }
+            }
     }
 }
 

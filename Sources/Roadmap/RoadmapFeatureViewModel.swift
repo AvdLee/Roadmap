@@ -24,14 +24,13 @@ final class RoadmapFeatureViewModel: ObservableObject {
         voteCount = await FeatureVotingCountFetcher(feature: feature, namespace: configuration.namespace).fetch()
     }
 
-    func vote() {
+    @MainActor
+    func vote() async {
         guard !feature.hasVoted else {
             print("already voted for this, can't vote again")
             return
         }
-        Task { @MainActor in
-            let newCount = await FeatureVoter(feature: feature, namespace: configuration.namespace).vote()
-            voteCount = newCount ?? (voteCount + 1)
-        }
+        let newCount = await FeatureVoter(feature: feature, namespace: configuration.namespace).vote()
+        voteCount = newCount ?? (voteCount + 1)
     }
 }
