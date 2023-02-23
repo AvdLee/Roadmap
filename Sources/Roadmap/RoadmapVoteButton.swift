@@ -49,22 +49,22 @@ struct RoadmapVoteButton : View {
                     .frame(minHeight: 64)
                     .background(backgroundView)
                 } else {
-                    VStack(spacing: isHovering ? 2 : 0) {
+                    VStack(spacing: isHovering ? 6 : 4) {
                         viewModel.configuration.style.upvoteIcon
                             .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
                             .imageScale(.large)
                             .font(viewModel.configuration.style.numberFont)
-                            .frame(maxWidth: 24, maxHeight: 24)
+                            .frame(maxWidth: 20, maxHeight: 20)
+                            .minimumScaleFactor(0.75)
                         
                         if showNumber {
                             Text("\(viewModel.voteCount)")
                                 .lineLimit(1)
                                 .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
-                                .minimumScaleFactor(0.5)
                                 .font(viewModel.configuration.style.numberFont)
+                                .minimumScaleFactor(0.9)
                         }
                     }
-                    .padding(viewModel.configuration.style.radius)
                     .frame(minWidth: 56)
                     .frame(height: 64)
                     .background(backgroundView)
