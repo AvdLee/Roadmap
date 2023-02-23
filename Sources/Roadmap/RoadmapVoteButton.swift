@@ -27,8 +27,6 @@ struct RoadmapVoteButton : View {
             }
         } label: {
             ZStack {
-                
-                
                 if typeSize.isAccessibilitySize {
                     HStack(spacing: isHovering ? 2 : 0) {
                         viewModel.configuration.style.upvoteIcon
