@@ -18,13 +18,12 @@ struct RoadmapVoteButton : View {
     
     var body: some View {
         Button {
-            if !viewModel.feature.hasVoted {
-                    viewModel.vote()
+            viewModel.vote(onSuccess: {
                 #if os(iOS)
                 let haptic = UIImpactFeedbackGenerator(style: .soft)
                 haptic.impactOccurred()
                 #endif
-            }
+            })
         } label: {
             ZStack {
                 

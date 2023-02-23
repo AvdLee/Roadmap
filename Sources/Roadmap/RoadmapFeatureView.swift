@@ -90,6 +90,8 @@ struct RoadmapFeatureView: View {
 
 struct RoadmapFeatureView_Previews: PreviewProvider {
     static var previews: some View {
-        RoadmapFeatureView(viewModel: .init(feature: .sample(), configuration: .sample()))
+        RoadmapFeatureView(viewModel: .init(feature: .sample(),
+                                            configuration: .sample(),
+                                            alreadyVoted: {}))
     }
 }
