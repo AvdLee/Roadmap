@@ -48,25 +48,34 @@ struct RoadmapFeatureView: View {
                             .font(viewModel.configuration.style.statusFont)
                 }
             }
-            .padding(.top, 4)
-
+            
             Spacer()
             
-            RoadmapVoteButton(viewModel: viewModel)
+            if viewModel.feature.hasNotFinished {
+                RoadmapVoteButton(viewModel: viewModel)
+            }
         }
         .padding()
     }
     
     var verticalCell : some View {
         VStack(alignment: .leading, spacing: 16) {
-            HStack {
-                RoadmapVoteButton(viewModel: viewModel)
-                Spacer()
+            if viewModel.feature.hasNotFinished {
+                HStack {
+                    RoadmapVoteButton(viewModel: viewModel)
+                    Spacer()
+                }
             }
             
             VStack(alignment: .leading, spacing: 8) {
-                Text(viewModel.feature.featureTitle)
-                    .font(viewModel.configuration.style.titleFont)
+                HStack {
+                    Text(viewModel.feature.featureTitle)
+                        .font(viewModel.configuration.style.titleFont)
+                    
+                    if !viewModel.feature.hasNotFinished {
+                        Spacer()
+                    }
+                }
                 
                 if let description = viewModel.feature.featureDescription {
                     Text(description)

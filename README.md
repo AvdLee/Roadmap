@@ -19,7 +19,8 @@ An example JSON looks as follows:
         "id": "1",
         "title": "Combine sentences",
         "status": "planned",
-        "description" : "You can add a little bit of extra context here."
+        "description" : "You can add a little bit of extra context here.",
+        "isFinished": true
     },
     {
         "id": "2",
@@ -73,6 +74,9 @@ If you are looking to support localization, then you need to add extra optional 
   }
 ]
 ```
+
+#### Keep a list of finished features
+If you send `isFinished` as `true`, then the voting view will be hidden for the users & no API call will be made to fetch votes. This is an optional value and it's default value is `false`.
 
 ### Add Roadmap using Swift Package Manager
 
