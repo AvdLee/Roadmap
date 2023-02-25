@@ -10,23 +10,31 @@ import SwiftUI
 
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
-        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/vq2juq1xhg")!,
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
         namespace: "roadmaptest"
     )
 
     var body: some View {
-        NavigationStack {
-            RoadmapView(configuration: configuration)
-                .navigationTitle("Roadmap Example")
-                .toolbar {
-                    ToolbarItem {
-                        Link(destination: URL(string: "https://github.com/AvdLee/Roadmap")!) {
-                            Image(systemName: "questionmark.app.fill")
-                                .symbolRenderingMode(.hierarchical)
-                        }
+        #if os(macOS)
+            roadmapView
+        #else
+        NavigationView {
+            roadmapView
+        }
+        #endif
+    }
+
+    private var roadmapView: some View {
+        RoadmapView(configuration: configuration)
+            .navigationTitle("Roadmap Example")
+            .toolbar {
+                ToolbarItem {
+                    Link(destination: URL(string: "https://github.com/AvdLee/Roadmap")!) {
+                        Image(systemName: "questionmark.app.fill")
+                            .symbolRenderingMode(.hierarchical)
                     }
                 }
-        }
+            }
     }
 }
 

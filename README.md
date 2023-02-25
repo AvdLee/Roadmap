@@ -123,6 +123,9 @@ public struct RoadmapStyle {
     /// The font used for the status views
     let statusFont : Font
     
+    /// The tint color of the status view
+    let statusTintColor: (String) -> Color
+    
     /// The corner radius for the upvote button
     let radius : CGFloat
     
@@ -139,6 +142,7 @@ public struct RoadmapStyle {
                 titleFont: Font,
                 numberFont: Font,
                 statusFont: Font,
+                statusTintColor: @escaping (String) -> Color = { _ in Color.primary },
                 cornerRadius: CGFloat,
                 cellColor: Color = Color.defaultCellColor,
                 selectedColor: Color = .white,
@@ -148,6 +152,7 @@ public struct RoadmapStyle {
         self.titleFont = titleFont
         self.numberFont = numberFont
         self.statusFont = statusFont
+        self.statusTintColor = statusTintColor
         self.radius = cornerRadius
         self.cellColor = cellColor
         self.selectedForegroundColor = selectedColor
@@ -169,7 +174,7 @@ Example
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
-        namespace: "roadmaptest",
+        namespace: "roadmap",
         style: RoadmapTemplate.playful.style, // You can also create your own RoadmapStyle
     )
 
@@ -186,7 +191,7 @@ struct ContentView: View {
 We make use of the [Free Counting API](https://countapi.xyz/)
 
 ### Does Roadmap prevent users from voting multiple times?
-Yes, if a user has voted on a feature they won't be able to vote again.
+Yes, if a user has voted on a feature they won't be able to vote again from within your app. Users can intercept your network traffic and replay the api call if they're really desperate to manipulate your votes.
 
 ### Can Roadmap be customized to fit the look and feel of my app?
 Roadmap comes with four different preconfigured styles to match most apps. You can change the tintColor, upvote image and more.
@@ -197,8 +202,10 @@ To keep development of Roadmap easy and fun, we've decided to only support iOS 1
 ### Can I sort my roadmap by most voted?
 Right now the list of features is loaded in random order. Our thinking is that this will prevent bias for the top voted features. We'll look into ways to make this possible in the future but since the votes are retrieved after the view has been loaded we'll need to look into it.
 
+### Do I need to make changes to my app privacy report if I use Roadmap?
+Roadmap does not do any analytics or tracking. If a user voted on a feature it will increment a number on the count api. No identifiers are stored, not even anonymous ones.
 ### Is it possible for stupid people to manipulate my roadmap?
-Yes, we wanted to keep Roadmap as simple as possible to setup. If you're worried about competitors messing with your priority list, maybe use something else.
+Yes, we wanted to keep Roadmap as simple as possible to setup. If you're worried about competitors (or a user that really wants a specific feature) messing with your priority list, maybe use something else.
 
 ### Can I help contribute?
 Yes, please! We would love to invite you to pick up any of the open issues. We'll review your Pull Requests accordingly.
@@ -207,6 +214,11 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 - [MacWhisper](https://www.macwhisper.com)
 - [RocketSim](https://www.rocketsim.app)
 - [NowPlaying](https://apps.apple.com/us/app/nowplaying-record-display/id1596487035?l=en)
+- [Stuny](https://apple.co/3HM88Pv)
+- [Stock Analyzer](https://apps.apple.com/nl/app/stock-analyzer/id1614853142)
+- [Super Coder](https://supercoder.lessimore.cn)
+- [SF Symbols Game](https://apps.apple.com/in/app/sf-symbols-game/id1507692602)
+- [Gola](https://apps.apple.com/us/app/gola-goal-tracking/id1661833753?l=en)
 
 If you've integrated Roadmap into your app and you want to add it to this list, please make a Pull Request.
 
