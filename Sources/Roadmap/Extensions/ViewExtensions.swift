@@ -16,7 +16,6 @@ extension View {
     public func loadingView(_ isLoading: Bool) -> some View {
         if isLoading {
             VStack(alignment: .center) {
-                // Spacer()
                 ProgressView()
                     .padding(.top)
                 Spacer()
