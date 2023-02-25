@@ -7,15 +7,15 @@
 
 import Foundation
 
-enum Language {
+public enum Language {
     case LTR, RTL
     
-    static var code: String {
+    public static var code: String {
         Locale.current.language.languageCode?.identifier.lowercased() ?? "en"
     }
     
     // In case we need some custom UI for lang direction..
-    static var isRTL: Bool {
+    public static var isRTL: Bool {
         Locale.Language(identifier: code).characterDirection == .rightToLeft
     }
 }
