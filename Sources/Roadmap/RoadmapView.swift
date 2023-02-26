@@ -7,36 +7,45 @@
 
 import SwiftUI
 
-public struct RoadmapView: View {
+public struct RoadmapView<Header: View, Footer: View>: View {
     @StateObject var viewModel: RoadmapViewModel
-    
+    let header: Header
+    let footer: Footer
+
     public var body: some View {
         
         #if os(macOS)
         if #available(macOS 13.0, *) {
             List {
+                header
                 ForEach(viewModel.features) { feature in
                     RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                         .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
                 }
+                footer
             }
             .scrollContentBackground(.hidden)
             .listStyle(.plain)
         } else {
             List {
+                header
                 ForEach(viewModel.features) { feature in
                     Section {
                         RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     }
                 }
+                footer
             }
         }
         #else
         List {
+            header
             ForEach(viewModel.features) { feature in
                 RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     .listRowSeparator(.hidden)
             }
+            footer
         }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
@@ -45,9 +54,27 @@ public struct RoadmapView: View {
 
 }
 
-public extension RoadmapView {
+public extension RoadmapView where Header == EmptyView, Footer == EmptyView {
     init(configuration: RoadmapConfiguration) {
-        self.init(viewModel: .init(configuration: configuration))
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: EmptyView())
+    }
+}
+
+public extension RoadmapView where Header: View, Footer == EmptyView {
+    init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header) {
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView())
+    }
+}
+
+public extension RoadmapView where Header == EmptyView, Footer: View {
+    init(configuration: RoadmapConfiguration, @ViewBuilder footer: () -> Footer) {
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer())
+    }
+}
+
+public extension RoadmapView where Header: View, Footer: View {
+    init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer())
     }
 }
 

@@ -42,9 +42,13 @@ struct RoadmapFeatureView: View {
                 if let status = viewModel.feature.featureStatus {
                         Text(status)
                             .padding(6)
-                            .background(viewModel.configuration.style.statusTintColor(status).opacity(0.05))
-                            .foregroundColor(viewModel.configuration.style.statusTintColor(status).opacity(0.75))
+                            .background(viewModel.configuration.style.statusTintColor(status).opacity(0.1))
+                            .foregroundColor(viewModel.configuration.style.statusTintColor(status))
                             .cornerRadius(5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(viewModel.configuration.style.statusTintColor(status).opacity(0.15), lineWidth: 1)
+                            )
                             .font(viewModel.configuration.style.statusFont)
                 }
             }
@@ -86,9 +90,13 @@ struct RoadmapFeatureView: View {
                 if let status = viewModel.feature.featureStatus {
                         Text(status)
                             .padding(6)
-                            .background(viewModel.configuration.style.statusTintColor(status).opacity(0.05))
-                            .foregroundColor(viewModel.configuration.style.statusTintColor(status).opacity(0.75))
+                            .background(viewModel.configuration.style.statusTintColor(status).opacity(0.1))
+                            .foregroundColor(viewModel.configuration.style.statusTintColor(status))
                             .cornerRadius(5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(viewModel.configuration.style.statusTintColor(status).opacity(0.15), lineWidth: 1)
+                            )
                             .font(viewModel.configuration.style.statusFont)
                 }
             }
