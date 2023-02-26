@@ -17,6 +17,7 @@ struct FeatureVotingCountFetcher {
             let count: RoadmapFeatureVotingCount = try await JSONDataFetcher.loadJSON(fromURLString: urlString)
             return count.value ?? 0
         } catch {
+            print(error)
             print("Fetching voting count failed with error: \(error.localizedDescription)")
             return 0
         }

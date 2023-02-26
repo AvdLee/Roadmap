@@ -18,22 +18,26 @@ struct RoadmapVoteButton : View {
     
     var body: some View {
         Button {
-            Task {
-                await viewModel.vote()
-                #if os(iOS)
-                let haptic = UIImpactFeedbackGenerator(style: .soft)
-                haptic.impactOccurred()
-                #endif
+            if viewModel.canVote {
+                Task {
+                    await viewModel.vote()
+                    #if os(iOS)
+                    let haptic = UIImpactFeedbackGenerator(style: .soft)
+                    haptic.impactOccurred()
+                    #endif
+                }
             }
         } label: {
             ZStack {
                 if typeSize.isAccessibilitySize {
                     HStack(spacing: isHovering ? 2 : 0) {
-                        viewModel.configuration.style.upvoteIcon
-                            .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
-                            .imageScale(.large)
-                            .font(Font.system(size: 17, weight: .medium))
-                            .frame(maxWidth: 24, maxHeight: 24)
+                        if viewModel.canVote {
+                            viewModel.configuration.style.upvoteIcon
+                                .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                                .imageScale(.large)
+                                .font(Font.system(size: 17, weight: .medium))
+                                .frame(maxWidth: 24, maxHeight: 24)
+                        }
                         
                         if showNumber {
                             Text("\(viewModel.voteCount)")
@@ -48,12 +52,14 @@ struct RoadmapVoteButton : View {
                     .background(backgroundView)
                 } else {
                     VStack(spacing: isHovering ? 6 : 4) {
-                        viewModel.configuration.style.upvoteIcon
-                            .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
-                            .imageScale(.large)
-                            .font(viewModel.configuration.style.numberFont)
-                            .frame(maxWidth: 20, maxHeight: 20)
-                            .minimumScaleFactor(0.75)
+                        if viewModel.canVote {
+                            viewModel.configuration.style.upvoteIcon
+                                .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                                .imageScale(.large)
+                                .font(viewModel.configuration.style.numberFont)
+                                .frame(maxWidth: 20, maxHeight: 20)
+                                .minimumScaleFactor(0.75)
+                        }
                         
                         if showNumber {
                             Text("\(viewModel.voteCount)")
@@ -86,7 +92,7 @@ struct RoadmapVoteButton : View {
             }
         }
         .onHover { newHover in
-            if !hasVoted {
+            if viewModel.canVote && !hasVoted {
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.7, blendDuration: 0)) {
                     isHovering = newHover
                 }
@@ -98,8 +104,8 @@ struct RoadmapVoteButton : View {
                 hasVoted = viewModel.feature.hasVoted
             }
         }
-        .accessibilityHint(Text("Vote for \(viewModel.feature.featureTitle)"))
-        .help("Vote for \(viewModel.feature.featureTitle)")
+        .accessibilityHint(viewModel.canVote ? Text("Vote for \(viewModel.feature.featureTitle)") : Text(""))
+        .help(viewModel.canVote ? "Vote for \(viewModel.feature.featureTitle)" : "")
         .animateAccessible()
         .accessibilityShowsLargeContentViewer()
     }
