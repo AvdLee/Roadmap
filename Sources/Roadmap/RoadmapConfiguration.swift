@@ -40,6 +40,7 @@ public struct RoadmapConfiguration {
         self.voter = FeatureVoterCountAPI(namespace: namespace)
         self.style = style
         self.shuffledOrder = shuffledOrder
+        self.allowVotes = allowVotes
     }
     
     /// Creates a new Roadmap configuration instance.
@@ -47,7 +48,7 @@ public struct RoadmapConfiguration {
     ///   - roadmapJSONURL: The URL pointing to the JSON in the `RoadmapFeature` format.
     ///   - voter: The interface to use for retrieving and persisting votes. To use https://countapi.xyz/, provide instance of `FeatureVoterCountAPI`.
     ///   - style: Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
-    public init(roadmapJSONURL: URL, voter: FeatureVoter, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false) {
+    public init(roadmapJSONURL: URL, voter: FeatureVoter, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false, allowVotes: Bool = true) {
         self.roadmapJSONURL = roadmapJSONURL
         self.voter = voter
         self.style = style
