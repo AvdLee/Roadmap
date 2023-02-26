@@ -20,12 +20,19 @@ An example JSON looks as follows:
         "title": "Combine sentences",
         "status": "planned",
         "description" : "You can add a little bit of extra context here.",
-        "isFinished": true
+        "isFinished": false
     },
     {
         "id": "2",
         "title": "Open with Finder support",
         "status": "planned"
+    },
+    {
+        "id": "3",
+        "title": "Initial Launch",
+        "status": "finished",
+        "description" : "Release v1 to the public.",
+        "isFinished": true
     }
 ]
 ```
