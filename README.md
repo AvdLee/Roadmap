@@ -19,8 +19,7 @@ An example JSON looks as follows:
         "id": "1",
         "title": "Combine sentences",
         "status": "planned",
-        "description" : "You can add a little bit of extra context here.",
-        "isFinished": false
+        "description" : "You can add a little bit of extra context here."
     },
     {
         "id": "2",
