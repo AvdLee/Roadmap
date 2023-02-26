@@ -18,6 +18,7 @@ public struct RoadmapView: View {
                 ForEach(viewModel.features) { feature in
                     RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                         .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
                 }
             }
             .listStyle(.plain)
