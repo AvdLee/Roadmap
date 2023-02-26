@@ -14,6 +14,10 @@ struct FeatureVoter {
     /// Votes for the given feature.
     /// - Returns: The new `count` if successful.
     func vote() async -> Int? {
+        guard feature.hasNotFinished else {
+            return nil
+        }
+        
         do {
             let urlString = "https://api.countapi.xyz/hit/\(namespace)/feature\(feature.id)"
             let count: RoadmapFeatureVotingCount = try await JSONDataFetcher.loadJSON(fromURLString: urlString)

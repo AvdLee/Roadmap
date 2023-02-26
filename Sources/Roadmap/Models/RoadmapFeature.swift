@@ -26,6 +26,8 @@ struct RoadmapFeature: Codable, Identifiable {
         localizedStatus.currentLocal ?? status
     }
     
+    var isFinished: Bool? = nil
+    
     var hasVoted: Bool {
         get {
             guard let votes = UserDefaults.standard.array(forKey: "roadmap_votes") as? [String] else { return false }
@@ -40,6 +42,10 @@ struct RoadmapFeature: Codable, Identifiable {
             }
             UserDefaults.standard.set(votes, forKey: "roadmap_votes")
         }
+    }
+    
+    var hasNotFinished: Bool {
+        !(isFinished ?? false)
     }
 }
 
