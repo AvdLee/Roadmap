@@ -17,47 +17,35 @@ public struct RoadmapView<Header: View, Footer: View>: View {
         #if os(macOS)
         if #available(macOS 13.0, *) {
             List {
-                Section {
-                    ForEach(viewModel.features) { feature in
-                        RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
-                    }
-                } header: {
-                    header
-                } footer: {
-                    footer
+                header
+                ForEach(viewModel.features) { feature in
+                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                        .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
                 }
+                footer
             }
             .scrollContentBackground(.hidden)
             .listStyle(.plain)
         } else {
             List {
-                Section {
-                    ForEach(viewModel.features) { feature in
-                        Section {
-                            RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                        }
+                header
+                ForEach(viewModel.features) { feature in
+                    Section {
+                        RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     }
-                } header: {
-                    header
-                } footer: {
-                    footer
                 }
+                footer
             }
         }
         #else
         List {
-            Section {
-                ForEach(viewModel.features) { feature in
-                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                        .listRowSeparator(.hidden)
-                }
-            } header: {
-                header
-            } footer: {
-                footer
+            header
+            ForEach(viewModel.features) { feature in
+                RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                    .listRowSeparator(.hidden)
             }
+            footer
         }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)

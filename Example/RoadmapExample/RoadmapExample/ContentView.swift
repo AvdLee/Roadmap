@@ -29,12 +29,13 @@ struct ContentView: View {
             configuration: configuration,
             header: {
                 GroupBox {
-                    Text("These are features that are coming to RocketSim soon. You can vote on the ones you'd love to see me add first. [Let me know](https://github.com/AvdLee/RocketSimApp/issues/new?assignees=AvdLee&labels=enhancement&template=feature_request.md) if you have a suggestion for a feature that needs to be added to this list.")
-                        .lineLimit(2)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(10)
-                }.padding(.horizontal, 20)
-                    .padding(.vertical, 20)
+                    HStack {
+                        Text("You can add a header to introduce your users to your Roadmap.")
+                            .padding(10)
+                        Spacer()
+                    }
+                        .frame(maxWidth: .infinity)
+                }.padding(.vertical, 20)
             }, footer: {
                 HStack {
                     Spacer()
