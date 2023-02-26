@@ -25,7 +25,23 @@ struct ContentView: View {
     }
 
     private var roadmapView: some View {
-        RoadmapView(configuration: configuration)
+        RoadmapView(
+            configuration: configuration,
+            header: {
+                GroupBox {
+                    Text("These are features that are coming to RocketSim soon. You can vote on the ones you'd love to see me add first. [Let me know](https://github.com/AvdLee/RocketSimApp/issues/new?assignees=AvdLee&labels=enhancement&template=feature_request.md) if you have a suggestion for a feature that needs to be added to this list.")
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(10)
+                }.padding(.horizontal, 20)
+                    .padding(.vertical, 20)
+            }, footer: {
+                HStack {
+                    Spacer()
+                    Text("Feature Voting with [Roadmap](https://github.com/AvdLee/Roadmap)")
+                    Spacer()
+                }.padding(.vertical, 10)
+            })
             .navigationTitle("Roadmap Example")
             .toolbar {
                 ToolbarItem {
