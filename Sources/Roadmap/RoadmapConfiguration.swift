@@ -22,6 +22,9 @@ public struct RoadmapConfiguration {
     
     /// Set this to true to have a different order of features everytime the view is presented
     public let shuffledOrder: Bool
+    
+    /// Set this to true to if you want to let users vote. Set it to false for read-only mode. This can be used to only let paying users vote for example.
+    public let allowVotes: Bool
 
     /// Creates a new Roadmap configuration instance.
     /// - Parameters:
@@ -30,7 +33,7 @@ public struct RoadmapConfiguration {
     ///   See `https://countapi.xyz/` for more information.
     ///   Defaults to your main bundle identifier.
     ///   - style: Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
-    public init(roadmapJSONURL: URL, namespace: String? = nil, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false) {
+    public init(roadmapJSONURL: URL, namespace: String? = nil, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false, allowVotes: Bool = true) {
         guard let namespace = namespace ?? Bundle.main.bundleIdentifier else {
             fatalError("Missing namespace")
         }
@@ -39,6 +42,7 @@ public struct RoadmapConfiguration {
         self.namespace = namespace
         self.style = style
         self.shuffledOrder = shuffledOrder
+        self.allowVotes = allowVotes
     }
 }
 

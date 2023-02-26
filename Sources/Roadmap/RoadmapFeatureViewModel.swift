@@ -11,12 +11,16 @@ import SwiftUI
 final class RoadmapFeatureViewModel: ObservableObject {
     let feature: RoadmapFeature
     let configuration: RoadmapConfiguration
+    let canVote: Bool
 
     @Published var voteCount = 0
+    
 
     init(feature: RoadmapFeature, configuration: RoadmapConfiguration) {
         self.feature = feature
         self.configuration = configuration
+        
+        self.canVote = configuration.allowVotes
     }
     
     @MainActor
