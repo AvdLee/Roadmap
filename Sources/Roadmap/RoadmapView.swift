@@ -15,68 +15,33 @@ public struct RoadmapView: View {
         #if os(macOS)
         if #available(macOS 13.0, *) {
             List {
-                if viewModel.features.isEmpty {
-                    macLoadingItems
-                } else {
-                    ForEach(viewModel.features) { feature in
-                        RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                            .listRowSeparator(.hidden)
-                    }
+                ForEach(viewModel.features) { feature in
+                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                        .listRowSeparator(.hidden)
                 }
             }
             .scrollContentBackground(.hidden)
             .listStyle(.plain)
         } else {
             List {
-                if viewModel.features.isEmpty {
-                    macLoadingItems
-                } else {
-                    ForEach(viewModel.features) { feature in
-                        Section {
-                            RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                        }
+                ForEach(viewModel.features) { feature in
+                    Section {
+                        RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     }
                 }
             }
         }
         #else
         List {
-            if viewModel.features.isEmpty {
-                iOSLoadingItems
-            } else {
-                ForEach(viewModel.features) { feature in
-                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                        .listRowSeparator(.hidden)
-                }
+            ForEach(viewModel.features) { feature in
+                RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                    .listRowSeparator(.hidden)
             }
         }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
         #endif
     }
-    
-    #if os(macOS)
-    var macLoadingItems: some View {
-        ForEach(1...6, id: \.self) { index in
-            if #available(macOS 13.0, *) {
-                RoadmapFeatureView(viewModel: RoadmapFeatureViewModel(feature: .sample(), configuration: .sample()))
-                    .redacted(reason: .placeholder)
-                    .listRowSeparator(.hidden)
-            } else {
-                RoadmapFeatureView(viewModel: RoadmapFeatureViewModel(feature: .sample(), configuration: .sample()))
-                    .redacted(reason: .placeholder)
-            }
-        }
-    }
-    #else
-    var iOSLoadingItems: some View {
-        ForEach(1...6, id: \.self) { index in
-            RoadmapFeatureView(viewModel: RoadmapFeatureViewModel(feature: .sample(), configuration: .sample()))
-                .listRowSeparator(.hidden)
-                .redacted(reason: .placeholder)
-        }
-    }
-    #endif
 
 }
 
