@@ -104,7 +104,10 @@ And use the configuration inside the `RoadmapView`:
 ```swift
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
-        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
+        nameSpace: "yourappname" // Defaults to your apps bundle id
+        allowVoting: true, // Present the roadmap in read-only mode by setting this to false
+        allowSearching: false // Allow users to filter the features list by adding a searchbar
     )
 
     var body: some View {
