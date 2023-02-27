@@ -25,6 +25,9 @@ public struct RoadmapConfiguration {
     
     /// Set this to true to if you want to let users vote. Set it to false for read-only mode. This can be used to only let paying users vote for example.
     public let allowVotes: Bool
+    
+    /// Set this to true to if you want to add a search bar so users can filter which features are shown.
+    public let allowSearching: Bool
 
     /// Creates a new Roadmap configuration instance.
     /// - Parameters:
@@ -33,7 +36,7 @@ public struct RoadmapConfiguration {
     ///   See `https://countapi.xyz/` for more information.
     ///   Defaults to your main bundle identifier.
     ///   - style: Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
-    public init(roadmapJSONURL: URL, namespace: String? = nil, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false, allowVotes: Bool = true) {
+    public init(roadmapJSONURL: URL, namespace: String? = nil, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false, allowVotes: Bool = true, allowSearching: Bool = false) {
         guard let namespace = namespace ?? Bundle.main.bundleIdentifier else {
             fatalError("Missing namespace")
         }
@@ -43,6 +46,7 @@ public struct RoadmapConfiguration {
         self.style = style
         self.shuffledOrder = shuffledOrder
         self.allowVotes = allowVotes
+        self.allowSearching = allowSearching
     }
 }
 
