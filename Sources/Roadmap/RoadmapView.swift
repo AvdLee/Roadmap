@@ -49,6 +49,9 @@ public struct RoadmapView<Header: View, Footer: View>: View {
         }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
+        .refreshable {
+            viewModel.refresh()
+        }
         #endif
     }
 

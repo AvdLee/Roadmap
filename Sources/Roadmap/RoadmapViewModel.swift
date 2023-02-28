@@ -29,4 +29,8 @@ final class RoadmapViewModel: ObservableObject {
     func featureViewModel(for feature: RoadmapFeature) -> RoadmapFeatureViewModel {
         .init(feature: feature, configuration: configuration)
     }
+    
+    func refresh() {
+        loadFeatures(roadmapJSONURL: configuration.roadmapJSONURL)
+    }
 }
