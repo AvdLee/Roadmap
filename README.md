@@ -9,7 +9,7 @@ Publish your roadmap inside your app and allow users to vote for upcoming featur
 
 ## Setting up Roadmap
 ### Create a Roadmap JSON
-Roadmap works with a remote JSON configuration listing all features and their statuses. We recommend hosting it at [simplejsoncms.com](https://simplejsoncms.com/).
+Roadmap works with a remote JSON configuration listing all features and their statuses. We recommend hosting it on GitHub Pages or [simplejsoncms.com](https://simplejsoncms.com/).
 
 An example JSON looks as follows:
 
