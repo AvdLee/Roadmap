@@ -62,7 +62,11 @@ public enum RoadmapTemplate : CaseIterable {
                 return Font.headline
             }
         #else
-            return Font.system(.headline, design: self.fontDesign, weight: .bold)
+            if #available(iOS 16.0, *) {
+                return Font.system(.headline, design: self.fontDesign, weight: .bold)
+            } else {
+                return Font.system(.headline, design: self.fontDesign).weight(.bold)
+            }
         #endif
     }
     
@@ -74,7 +78,11 @@ public enum RoadmapTemplate : CaseIterable {
                 return Font.body.monospacedDigit()
             }
         #else
-            return Font.system(.body, design: self.fontDesign, weight: .semibold).monospacedDigit()
+            if #available(iOS 16.0, *) {
+                return Font.system(.body, design: self.fontDesign, weight: .semibold).monospacedDigit()
+            } else {
+                return Font.system(.body, design: self.fontDesign).weight(.semibold).monospacedDigit()
+            }
         #endif
     }
     
@@ -86,7 +94,11 @@ public enum RoadmapTemplate : CaseIterable {
                 return Font.caption
             }
         #else
-            return Font.system(.caption, design: self.fontDesign, weight: .bold)
+            if #available(iOS 16.0, *) {
+                return Font.system(.caption, design: self.fontDesign, weight: .bold)
+            } else {
+                return Font.system(.caption, design: self.fontDesign).weight(.bold)
+            }
         #endif
     }
 }

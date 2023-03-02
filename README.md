@@ -207,7 +207,7 @@ Yes, if a user has voted on a feature they won't be able to vote again from with
 Roadmap comes with four different preconfigured styles to match most apps. You can change the tintColor, upvote image and more.
 
 ### What OS versions are supported?
-To keep development of Roadmap easy and fun, we've decided to only support iOS 16 and macOS Monterey & Ventura for now.
+To keep development of Roadmap easy and fun, we've decided to support iOS 15 & above and macOS Monterey & Ventura for now.
 
 ### Can I sort my roadmap by most voted?
 Right now the list of features is loaded in random order. Our thinking is that this will prevent bias for the top voted features. We'll look into ways to make this possible in the future but since the votes are retrieved after the view has been loaded we'll need to look into it.
