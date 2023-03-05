@@ -13,63 +13,22 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     let footer: Footer
     
     public var body: some View {
-        
-        #if os(macOS)
-        if #available(macOS 13.0, *) {
-            if viewModel.allowSearching {
-                filterableFeaturesList
-                    .searchable(text: $viewModel.searchText)
-                    .scrollContentBackground(.hidden)
-                    .listStyle(.plain)
-            } else {
-                featuresList
-                .scrollContentBackground(.hidden)
-                .listStyle(.plain)
-            }
-        } else {
-            if viewModel.allowSearching {
-                filterableFeaturesList
-                    .searchable(text: $viewModel.searchText)
-            } else {
-               featuresList
-            }
-        }
-        #else
-        if viewModel.allowSearching {
-            filterableFeaturesList
+            featuresList
                 .scrollContentHidden()
                 .listStyle(.plain)
-                .searchable(text: $viewModel.searchText)
-       } else {
-           featuresList
-               .scrollContentHidden()
-               .listStyle(.plain)
-       }
-        #endif
+                .conditionalSearchable(if: viewModel.allowSearching, text: $viewModel.searchText)
     }
     
     var featuresList: some View {
         List {
             header
-            ForEach(viewModel.features) { feature in
+            ForEach(viewModel.filteredFeatures) { feature in
                 RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     .macOSListRowSeparatorHidden()
             }
             footer
         }
     }
-    
-    var filterableFeaturesList: some View {
-        List {
-            header
-            ForEach(viewModel.features.filter { viewModel.searchText.isEmpty ? true : $0.featureTitle.lowercased().contains(viewModel.searchText.lowercased()) } ) { feature in
-                RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                    .macOSListRowSeparatorHidden()
-            }
-            footer
-        }
-    }
-
 }
 
 public extension RoadmapView where Header == EmptyView, Footer == EmptyView {

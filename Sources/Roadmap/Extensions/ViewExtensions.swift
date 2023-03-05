@@ -14,7 +14,7 @@ extension View {
 
     @ViewBuilder
     func scrollContentHidden() -> some View {
-        if #available(iOS 16.0, *) {
+        if #available(iOS 16.0, *), #available(macOS 13.0, *) {
             self.scrollContentBackground(.hidden)
         } else {
             self
@@ -25,6 +25,15 @@ extension View {
     func macOSListRowSeparatorHidden() -> some View {
         if #available(macOS 13.0, *) {
             self.listRowSeparator(.hidden)
+        } else {
+            self
+        }
+    }
+
+    @ViewBuilder
+    func conditionalSearchable(if condition: Bool, text: Binding<String>) -> some View {
+        if condition {
+            self.searchable(text: text)
         } else {
             self
         }

@@ -8,9 +8,20 @@
 import Foundation
 
 final class RoadmapViewModel: ObservableObject {
-    @Published private(set) var features: [RoadmapFeature] = []
+    @Published private var features: [RoadmapFeature] = []
     @Published var searchText = ""
 
+    var filteredFeatures: [RoadmapFeature] {
+        guard !searchText.isEmpty else {
+            return features
+        }
+        return features.filter { feature in
+            feature
+                .featureTitle
+                .lowercased()
+                .contains(searchText.lowercased())
+        }
+    }
     let allowSearching: Bool
     private let configuration: RoadmapConfiguration
 
