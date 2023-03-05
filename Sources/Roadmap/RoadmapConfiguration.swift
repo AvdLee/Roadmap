@@ -11,11 +11,9 @@ import SwiftUI
 public struct RoadmapConfiguration {
     /// The URL pointing to the JSON in the `RoadmapFeature` format.
     public let roadmapJSONURL: URL
-
-    /// A unique namespace to use matching your app.
-    /// See `https://countapi.xyz/` for more information.
-    /// Defaults to your main bundle identifier.
-    public let namespace: String
+    
+    /// The interface for retrieving and saving votes.
+    public let voter: FeatureVoter
     
     /// Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
     public let style: RoadmapStyle
@@ -39,7 +37,20 @@ public struct RoadmapConfiguration {
         }
 
         self.roadmapJSONURL = roadmapJSONURL
-        self.namespace = namespace
+        self.voter = FeatureVoterCountAPI(namespace: namespace)
+        self.style = style
+        self.shuffledOrder = shuffledOrder
+        self.allowVotes = allowVotes
+    }
+    
+    /// Creates a new Roadmap configuration instance.
+    /// - Parameters:
+    ///   - roadmapJSONURL: The URL pointing to the JSON in the `RoadmapFeature` format.
+    ///   - voter: The interface to use for retrieving and persisting votes. To use https://countapi.xyz/, provide instance of `FeatureVoterCountAPI`.
+    ///   - style: Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
+    public init(roadmapJSONURL: URL, voter: FeatureVoter, style: RoadmapStyle = RoadmapTemplate.standard.style, shuffledOrder: Bool = false, allowVotes: Bool = true) {
+        self.roadmapJSONURL = roadmapJSONURL
+        self.voter = voter
         self.style = style
         self.shuffledOrder = shuffledOrder
         self.allowVotes = allowVotes

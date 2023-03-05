@@ -25,7 +25,7 @@ final class RoadmapFeatureViewModel: ObservableObject {
     
     @MainActor
     func getCurrentVotes() async {
-        voteCount = await FeatureVotingCountFetcher(feature: feature, namespace: configuration.namespace).fetch()
+        voteCount = await configuration.voter.fetch(for: feature)
     }
 
     @MainActor
@@ -34,7 +34,8 @@ final class RoadmapFeatureViewModel: ObservableObject {
             print("already voted for this, can't vote again")
             return
         }
-        let newCount = await FeatureVoter(feature: feature, namespace: configuration.namespace).vote()
+        
+        let newCount = await configuration.voter.vote(for: feature)
         voteCount = newCount ?? (voteCount + 1)
     }
 }

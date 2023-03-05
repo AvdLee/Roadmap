@@ -194,12 +194,46 @@ struct ContentView: View {
 }
 ```
 
+## Persisting Votes
+By default, Roadmap will utilise the [Free Counting API](https://countapi.xyz/) to store votes, you can check out their website for more information. A namespace is provided for you, utilising your application's bundle identifier, but you can override this when initalising the `RoadmapConfiguration`.
 
+```swift
+let configuration = RoadmapConfiguration(
+    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
+    namespace: "my-custom-namespace"
+)
+```
+
+### Defining Custom Voter Service
+If you'd rather use your own API, you may create a new struct conforming to `FeatureVoter`. This has two required functions in order to retrieve the current vote count and to cast a new vote.
+
+```swift
+struct CustomFeatureVoter: FeatureVoter {
+    var count = 0
+
+    func fetch(for feature: RoadmapFeature) async -> Int {
+        // query data from your API here
+        return count
+    }
+    
+    func vote(for feature: RoadmapFeature) async -> Int? {
+        // push data to your API here
+        count += 1
+        return count
+    }
+}
+```
+
+You may then pass an instance of this struct to the `RoadmapConfiguration`.
+
+```swift
+let configuration = RoadmapConfiguration(
+    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
+    voter: CustomFeatureVoter()
+)
+```
 
 ## FAQ
-### How does Roadmap store votes?
-We make use of the [Free Counting API](https://countapi.xyz/)
-
 ### Does Roadmap prevent users from voting multiple times?
 Yes, if a user has voted on a feature they won't be able to vote again from within your app. Users can intercept your network traffic and replay the api call if they're really desperate to manipulate your votes.
 

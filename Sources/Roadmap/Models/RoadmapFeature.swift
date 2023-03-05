@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct RoadmapFeature: Codable, Identifiable {
-    let id: String
+public struct RoadmapFeature: Codable, Identifiable {
+    public let id: String
     private let title: String?
     private var status: String? = nil
     private var description : String? = nil
@@ -61,7 +61,7 @@ extension [LocalizedItem]? {
 }
 
 extension RoadmapFeature {
-    static func sample() -> RoadmapFeature {
-        .init(id: UUID().uuidString, title: "WatchOS Support", status: "Backlog")
+    static func sample(id: String = UUID().uuidString) -> RoadmapFeature {
+        .init(id: id, title: "WatchOS Support", status: "Backlog")
     }
 }
