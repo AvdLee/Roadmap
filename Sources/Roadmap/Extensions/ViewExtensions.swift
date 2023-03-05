@@ -20,6 +20,15 @@ extension View {
             self
         }
     }
+
+    @ViewBuilder
+    func macOSListRowSeparatorHidden() -> some View {
+        if #available(macOS 13.0, *) {
+            self.listRowSeparator(.hidden)
+        } else {
+            self
+        }
+    }
 }
 
 private struct ReduceMotionnModifier: ViewModifier {

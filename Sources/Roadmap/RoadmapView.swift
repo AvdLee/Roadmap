@@ -54,12 +54,8 @@ public struct RoadmapView<Header: View, Footer: View>: View {
         List {
             header
             ForEach(viewModel.features) { feature in
-                if #available(macOS 13.0, *) {
                 RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                    .listRowSeparator(.hidden)
-                } else {
-                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                }
+                    .macOSListRowSeparatorHidden()
             }
             footer
         }
@@ -69,12 +65,8 @@ public struct RoadmapView<Header: View, Footer: View>: View {
         List {
             header
             ForEach(viewModel.features.filter { searchText.isEmpty ? true : $0.featureTitle.lowercased().contains(searchText.lowercased()) } ) { feature in
-                if #available(macOS 13.0, *) {
                 RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                    .listRowSeparator(.hidden)
-                } else {
-                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                }
+                    .macOSListRowSeparatorHidden()
             }
             footer
         }
