@@ -38,15 +38,26 @@ public struct RoadmapView<Header: View, Footer: View>: View {
         }
         #else
         if viewModel.allowSearching {
-            filterableFeaturesList
-            .scrollContentBackground(.hidden)
-            .listStyle(.plain)
-            .searchable(text: $searchText)
-        } else {
-            featuresList
-                .scrollContentBackground(.hidden)
-                .listStyle(.plain)
-        }
+           if #available(iOS 16.0, *) {
+               filterableFeaturesList
+                   .scrollContentBackground(.hidden)
+                   .listStyle(.plain)
+                   .searchable(text: $searchText)
+           } else {
+               filterableFeaturesList
+                   .listStyle(.plain)
+                   .searchable(text: $searchText)
+           }
+       } else {
+           if #available(iOS 16.0, *) {
+               featuresList
+                   .scrollContentBackground(.hidden)
+                   .listStyle(.plain)
+           } else {
+               featuresList
+                   .listStyle(.plain)
+           }
+       }
         #endif
     }
     
