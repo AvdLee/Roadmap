@@ -11,6 +11,15 @@ extension View {
     public func animateAccessible() -> some View {
         modifier(ReduceMotionnModifier())
     }
+
+    @ViewBuilder
+    func scrollContentHidden() -> some View {
+        if #available(iOS 16.0, *) {
+            self.scrollContentBackground(.hidden)
+        } else {
+            self
+        }
+    }
 }
 
 private struct ReduceMotionnModifier: ViewModifier {
@@ -20,4 +29,3 @@ private struct ReduceMotionnModifier: ViewModifier {
         content.transaction { if reducedMotion { $0.animation = nil } }
     }
 }
-
