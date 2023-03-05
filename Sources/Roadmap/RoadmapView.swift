@@ -15,51 +15,121 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     @State var searchText = ""
     
     public var body: some View {
-        
         #if os(macOS)
         if #available(macOS 13.0, *) {
             if viewModel.allowSearching {
-                filterableFeaturesList
-                    .searchable(text: $searchText)
-                    .scrollContentBackground(.hidden)
-                    .listStyle(.plain)
+                if viewModel.features.isEmpty {
+                    header
+                    macLoadingItems
+                    footer
+                } else {
+                    filterableFeaturesList
+                        .searchable(text: $searchText)
+                        .scrollContentBackground(.hidden)
+                        .listStyle(.plain)
+                }
             } else {
-                featuresList
-                .scrollContentBackground(.hidden)
-                .listStyle(.plain)
+                if viewModel.features.isEmpty {
+                    header
+                    macLoadingItems
+                    footer
+                } else {
+                    featuresList
+                        .scrollContentBackground(.hidden)
+                        .listStyle(.plain)
+                }
             }
         } else {
             if viewModel.allowSearching {
-                filterableFeaturesList
-                    .searchable(text: $searchText)
+                if viewModel.features.isEmpty {
+                    header
+                    macLoadingItems
+                    footer
+                } else {
+                    filterableFeaturesList
+                        .searchable(text: $searchText)
+                }
             } else {
-               featuresList
+                if viewModel.features.isEmpty {
+                    header
+                    macLoadingItems
+                    footer
+                } else {
+                    featuresList
+                }
             }
         }
         #else
         if viewModel.allowSearching {
            if #available(iOS 16.0, *) {
-               filterableFeaturesList
-                   .scrollContentBackground(.hidden)
-                   .listStyle(.plain)
-                   .searchable(text: $searchText)
+               if viewModel.features.isEmpty {
+                   header
+                    iOSLoadingItems
+                   footer
+                } else {
+                    featuresList
+                        .scrollContentBackground(.hidden)
+                        .listStyle(.plain)
+                        .searchable(text: $searchText)
+                }
            } else {
-               filterableFeaturesList
-                   .listStyle(.plain)
-                   .searchable(text: $searchText)
+               if viewModel.features.isEmpty {
+                   header
+                    iOSLoadingItems
+                   footer
+                } else {
+                    featuresList
+                        .listStyle(.plain)
+                        .searchable(text: $searchText)
+                }
            }
        } else {
            if #available(iOS 16.0, *) {
-               featuresList
-                   .scrollContentBackground(.hidden)
-                   .listStyle(.plain)
+               if viewModel.features.isEmpty {
+                   header
+                    iOSLoadingItems
+                   footer
+                } else {
+                    featuresList
+                        .scrollContentBackground(.hidden)
+                        .listStyle(.plain)
+                }
            } else {
-               featuresList
-                   .listStyle(.plain)
+               if viewModel.features.isEmpty {
+                   header
+                    iOSLoadingItems
+                   footer
+                } else {
+                    featuresList
+                        .listStyle(.plain)
+                }
            }
        }
         #endif
     }
+    
+#if os(macOS)
+     var macLoadingItems: some View {
+         ForEach(1...4, id: \.self) { index in
+             if #available(macOS 13.0, *) {
+                 RoadmapFeatureView(viewModel: RoadmapFeatureViewModel(feature: .sample(), configuration: .sample()))
+                     .redacted(reason: .placeholder)
+                     .listRowSeparator(.hidden)
+             } else {
+                 RoadmapFeatureView(viewModel: RoadmapFeatureViewModel(feature: .sample(), configuration: .sample()))
+                     .redacted(reason: .placeholder)
+             }
+         }
+     }
+     #else
+     var iOSLoadingItems: some View {
+         ForEach(1...4, id: \.self) { index in
+             RoadmapFeatureView(viewModel: RoadmapFeatureViewModel(feature: .sample(), configuration: .sample()))
+                 .listRowSeparator(.hidden)
+                 .redacted(reason: .placeholder)
+         }
+     }
+     #endif
     
     var featuresList: some View {
         List {
