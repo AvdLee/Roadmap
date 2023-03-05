@@ -12,44 +12,72 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     let header: Header
     let footer: Footer
 
+    @State var searchText = ""
+    
     public var body: some View {
         
         #if os(macOS)
         if #available(macOS 13.0, *) {
-            List {
-                header
-                ForEach(viewModel.features) { feature in
-                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.clear)
-                }
-                footer
+            if viewModel.allowSearching {
+                filterableFeaturesList
+                    .searchable(text: $searchText)
+                    .scrollContentBackground(.hidden)
+                    .listStyle(.plain)
+            } else {
+                featuresList
+                .scrollContentBackground(.hidden)
+                .listStyle(.plain)
             }
-            .scrollContentBackground(.hidden)
-            .listStyle(.plain)
         } else {
-            List {
-                header
-                ForEach(viewModel.features) { feature in
-                    Section {
-                        RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                    }
-                }
-                footer
+            if viewModel.allowSearching {
+                filterableFeaturesList
+                    .searchable(text: $searchText)
+            } else {
+               featuresList
             }
         }
         #else
+        if viewModel.allowSearching {
+            filterableFeaturesList
+            .scrollContentBackground(.hidden)
+            .listStyle(.plain)
+            .searchable(text: $searchText)
+        } else {
+            featuresList
+                .scrollContentBackground(.hidden)
+                .listStyle(.plain)
+        }
+        #endif
+    }
+    
+    var featuresList: some View {
         List {
             header
             ForEach(viewModel.features) { feature in
+                if #available(macOS 13.0, *) {
                 RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     .listRowSeparator(.hidden)
+                } else {
+                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                }
             }
             footer
         }
-        .scrollContentBackground(.hidden)
-        .listStyle(.plain)
-        #endif
+    }
+    
+    var filterableFeaturesList: some View {
+        List {
+            header
+            ForEach(viewModel.features.filter { searchText.isEmpty ? true : $0.featureTitle.lowercased().contains(searchText.lowercased()) } ) { feature in
+                if #available(macOS 13.0, *) {
+                RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                    .listRowSeparator(.hidden)
+                } else {
+                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                }
+            }
+            footer
+        }
     }
 
 }

@@ -11,7 +11,9 @@ import SwiftUI
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
-        namespace: "roadmaptest"
+        namespace: "roadmaptest",
+        allowVotes: true,
+        allowSearching: true
     )
 
     var body: some View {
