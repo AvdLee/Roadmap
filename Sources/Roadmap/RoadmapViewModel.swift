@@ -9,7 +9,7 @@ import Foundation
 
 final class RoadmapViewModel: ObservableObject {
     @Published private(set) var features: [RoadmapFeature] = []
-    @Published private(set) var allowSearching: Bool
+    let allowSearching: Bool
     private let configuration: RoadmapConfiguration
 
     init(configuration: RoadmapConfiguration) {
