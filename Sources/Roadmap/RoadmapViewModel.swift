@@ -9,6 +9,8 @@ import Foundation
 
 final class RoadmapViewModel: ObservableObject {
     @Published private(set) var features: [RoadmapFeature] = []
+    @Published var searchText = ""
+
     let allowSearching: Bool
     private let configuration: RoadmapConfiguration
 

@@ -11,8 +11,6 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     @StateObject var viewModel: RoadmapViewModel
     let header: Header
     let footer: Footer
-
-    @State var searchText = ""
     
     public var body: some View {
         
@@ -20,7 +18,7 @@ public struct RoadmapView<Header: View, Footer: View>: View {
         if #available(macOS 13.0, *) {
             if viewModel.allowSearching {
                 filterableFeaturesList
-                    .searchable(text: $searchText)
+                    .searchable(text: $viewModel.searchText)
                     .scrollContentBackground(.hidden)
                     .listStyle(.plain)
             } else {
@@ -31,7 +29,7 @@ public struct RoadmapView<Header: View, Footer: View>: View {
         } else {
             if viewModel.allowSearching {
                 filterableFeaturesList
-                    .searchable(text: $searchText)
+                    .searchable(text: $viewModel.searchText)
             } else {
                featuresList
             }
@@ -41,7 +39,7 @@ public struct RoadmapView<Header: View, Footer: View>: View {
             filterableFeaturesList
                 .scrollContentHidden()
                 .listStyle(.plain)
-                .searchable(text: $searchText)
+                .searchable(text: $viewModel.searchText)
        } else {
            featuresList
                .scrollContentHidden()
@@ -64,7 +62,7 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     var filterableFeaturesList: some View {
         List {
             header
-            ForEach(viewModel.features.filter { searchText.isEmpty ? true : $0.featureTitle.lowercased().contains(searchText.lowercased()) } ) { feature in
+            ForEach(viewModel.features.filter { viewModel.searchText.isEmpty ? true : $0.featureTitle.lowercased().contains(viewModel.searchText.lowercased()) } ) { feature in
                 RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                     .macOSListRowSeparatorHidden()
             }
