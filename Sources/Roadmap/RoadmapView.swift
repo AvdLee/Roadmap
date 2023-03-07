@@ -7,49 +7,121 @@
 
 import SwiftUI
 
-public struct RoadmapView: View {
+public struct RoadmapView<Header: View, Footer: View>: View {
     @StateObject var viewModel: RoadmapViewModel
+    let header: Header
+    let footer: Footer
+
+    @State var searchText = ""
     
     public var body: some View {
         
-#if os(macOS)
+        #if os(macOS)
         if #available(macOS 13.0, *) {
-            List {
-                ForEach(viewModel.features) { feature in
-                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                        .listRowSeparator(.hidden)
-                }
+            if viewModel.allowSearching {
+                filterableFeaturesList
+                    .searchable(text: $searchText)
+                    .scrollContentBackground(.hidden)
+                    .listStyle(.plain)
+                    .loadingView(viewModel.isLoading)
+            } else {
+                featuresList
+                .scrollContentBackground(.hidden)
+                .listStyle(.plain)
+                .loadingView(viewModel.isLoading)
             }
-            .listStyle(.plain)
-            .loadingView(viewModel.isLoading)
         } else {
-            List {
-                ForEach(viewModel.features) { feature in
-                    Section {
-                        RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                    }
-                }
-            }
-            .loadingView(viewModel.isLoading)
-        }
-#else
-        List {
-            ForEach(viewModel.features) { feature in
-                RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.clear)
+            if viewModel.allowSearching {
+                filterableFeaturesList
+                    .searchable(text: $searchText)
+                    .loadingView(viewModel.isLoading)
+            } else {
+               featuresList
+                    .loadingView(viewModel.isLoading)
             }
         }
-        .listStyle(.plain)
-        .loadingView(viewModel.isLoading)
-#endif
+        #else
+        if viewModel.allowSearching {
+           if #available(iOS 16.0, *) {
+               filterableFeaturesList
+                   .scrollContentBackground(.hidden)
+                   .listStyle(.plain)
+                   .searchable(text: $searchText)
+                   .loadingView(viewModel.isLoading)
+           } else {
+               filterableFeaturesList
+                   .listStyle(.plain)
+                   .searchable(text: $searchText)
+                   .loadingView(viewModel.isLoading)
+           }
+       } else {
+           if #available(iOS 16.0, *) {
+               featuresList
+                   .scrollContentBackground(.hidden)
+                   .listStyle(.plain)
+                   .loadingView(viewModel.isLoading)
+           } else {
+               featuresList
+                   .listStyle(.plain)
+                   .loadingView(viewModel.isLoading)
+           }
+       }
+        #endif
     }
     
+    var featuresList: some View {
+        List {
+            header
+            ForEach(viewModel.features) { feature in
+                if #available(macOS 13.0, *) {
+                RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                    .listRowSeparator(.hidden)
+                } else {
+                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                }
+            }
+            footer
+        }
+    }
+    
+    var filterableFeaturesList: some View {
+        List {
+            header
+            ForEach(viewModel.features.filter { searchText.isEmpty ? true : $0.featureTitle.lowercased().contains(searchText.lowercased()) } ) { feature in
+                if #available(macOS 13.0, *) {
+                RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                    .listRowSeparator(.hidden)
+                } else {
+                    RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
+                }
+            }
+            footer
+        }
+    }
+
 }
 
-public extension RoadmapView {
+public extension RoadmapView where Header == EmptyView, Footer == EmptyView {
     init(configuration: RoadmapConfiguration) {
-        self.init(viewModel: .init(configuration: configuration))
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: EmptyView())
+    }
+}
+
+public extension RoadmapView where Header: View, Footer == EmptyView {
+    init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header) {
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView())
+    }
+}
+
+public extension RoadmapView where Header == EmptyView, Footer: View {
+    init(configuration: RoadmapConfiguration, @ViewBuilder footer: () -> Footer) {
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer())
+    }
+}
+
+public extension RoadmapView where Header: View, Footer: View {
+    init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer())
     }
 }
 

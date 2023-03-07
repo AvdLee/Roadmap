@@ -10,10 +10,12 @@ import Foundation
 final class RoadmapViewModel: ObservableObject {
     @Published private(set) var features: [RoadmapFeature] = []
     @Published private(set) var isLoading: Bool = false
+    @Published private(set) var allowSearching: Bool
     private let configuration: RoadmapConfiguration
 
     init(configuration: RoadmapConfiguration) {
         self.configuration = configuration
+        self.allowSearching = configuration.allowSearching
         loadFeatures(roadmapJSONURL: configuration.roadmapJSONURL)
     }
 

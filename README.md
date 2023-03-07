@@ -9,7 +9,7 @@ Publish your roadmap inside your app and allow users to vote for upcoming featur
 
 ## Setting up Roadmap
 ### Create a Roadmap JSON
-Roadmap works with a remote JSON configuration listing all features and their statuses. We recommend hosting it at [simplejsoncms.com](https://simplejsoncms.com/).
+Roadmap works with a remote JSON configuration listing all features and their statuses. We recommend hosting it on GitHub Pages or [simplejsoncms.com](https://simplejsoncms.com/).
 
 An example JSON looks as follows:
 
@@ -25,6 +25,13 @@ An example JSON looks as follows:
         "id": "2",
         "title": "Open with Finder support",
         "status": "planned"
+    },
+    {
+        "id": "3",
+        "title": "Initial Launch",
+        "status": "finished",
+        "description" : "Release v1 to the public.",
+        "isFinished": true
     }
 ]
 ```
@@ -74,6 +81,9 @@ If you are looking to support localization, then you need to add extra optional 
 ]
 ```
 
+#### Keep a list of finished features
+If you add `isFinished` as `true` to a feature in your JSON, the voting view will be hidden for the users & no API call will be made to fetch votes. This is an optional value and it's default value is `false`.
+
 ### Add Roadmap using Swift Package Manager
 
 Add `https://github.com/AvdLee/Roadmap.git` within Xcode's package manager.
@@ -94,7 +104,10 @@ And use the configuration inside the `RoadmapView`:
 ```swift
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
-        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!
+        roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
+        nameSpace: "yourappname" // Defaults to your apps bundle id
+        allowVoting: true, // Present the roadmap in read-only mode by setting this to false
+        allowSearching: false // Allow users to filter the features list by adding a searchbar
     )
 
     var body: some View {
@@ -184,12 +197,46 @@ struct ContentView: View {
 }
 ```
 
+## Persisting Votes
+By default, Roadmap will utilise the [Free Counting API](https://countapi.xyz/) to store votes, you can check out their website for more information. A namespace is provided for you, utilising your application's bundle identifier, but you can override this when initalising the `RoadmapConfiguration`.
 
+```swift
+let configuration = RoadmapConfiguration(
+    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
+    namespace: "my-custom-namespace"
+)
+```
+
+### Defining Custom Voter Service
+If you'd rather use your own API, you may create a new struct conforming to `FeatureVoter`. This has two required functions in order to retrieve the current vote count and to cast a new vote.
+
+```swift
+struct CustomFeatureVoter: FeatureVoter {
+    var count = 0
+
+    func fetch(for feature: RoadmapFeature) async -> Int {
+        // query data from your API here
+        return count
+    }
+    
+    func vote(for feature: RoadmapFeature) async -> Int? {
+        // push data to your API here
+        count += 1
+        return count
+    }
+}
+```
+
+You may then pass an instance of this struct to the `RoadmapConfiguration`.
+
+```swift
+let configuration = RoadmapConfiguration(
+    roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
+    voter: CustomFeatureVoter()
+)
+```
 
 ## FAQ
-### How does Roadmap store votes?
-We make use of the [Free Counting API](https://countapi.xyz/)
-
 ### Does Roadmap prevent users from voting multiple times?
 Yes, if a user has voted on a feature they won't be able to vote again from within your app. Users can intercept your network traffic and replay the api call if they're really desperate to manipulate your votes.
 
@@ -197,7 +244,7 @@ Yes, if a user has voted on a feature they won't be able to vote again from with
 Roadmap comes with four different preconfigured styles to match most apps. You can change the tintColor, upvote image and more.
 
 ### What OS versions are supported?
-To keep development of Roadmap easy and fun, we've decided to only support iOS 16 and macOS Monterey & Ventura for now.
+To keep development of Roadmap easy and fun, we've decided to support iOS 15 & above and macOS Monterey & Ventura for now.
 
 ### Can I sort my roadmap by most voted?
 Right now the list of features is loaded in random order. Our thinking is that this will prevent bias for the top voted features. We'll look into ways to make this possible in the future but since the votes are retrieved after the view has been loaded we'll need to look into it.

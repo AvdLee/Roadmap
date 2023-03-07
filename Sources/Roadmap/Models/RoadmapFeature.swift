@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct RoadmapFeature: Codable, Identifiable {
-    let id: String
+public struct RoadmapFeature: Codable, Identifiable {
+    public let id: String
     private let title: String?
     private var status: String? = nil
     private var description : String? = nil
@@ -26,6 +26,8 @@ struct RoadmapFeature: Codable, Identifiable {
         localizedStatus.currentLocal ?? status
     }
     
+    var isFinished: Bool? = nil
+    
     var hasVoted: Bool {
         get {
             guard let votes = UserDefaults.standard.array(forKey: "roadmap_votes") as? [String] else { return false }
@@ -41,6 +43,10 @@ struct RoadmapFeature: Codable, Identifiable {
             UserDefaults.standard.set(votes, forKey: "roadmap_votes")
         }
     }
+    
+    var hasNotFinished: Bool {
+        !(isFinished ?? false)
+    }
 }
 
 struct LocalizedItem: Codable {
@@ -55,7 +61,7 @@ extension [LocalizedItem]? {
 }
 
 extension RoadmapFeature {
-    static func sample() -> RoadmapFeature {
-        .init(id: UUID().uuidString, title: "WatchOS Support", status: "Backlog")
+    static func sample(id: String = UUID().uuidString) -> RoadmapFeature {
+        .init(id: id, title: "WatchOS Support", status: "Backlog")
     }
 }
