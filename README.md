@@ -266,6 +266,8 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 - [Super Coder](https://supercoder.lessimore.cn)
 - [SF Symbols Game](https://apps.apple.com/in/app/sf-symbols-game/id1507692602)
 - [Gola](https://apps.apple.com/us/app/gola-goal-tracking/id1661833753?l=en)
+- [Rahhal | رحَّال](https://apps.apple.com/app/id1672846506)
+
 
 If you've integrated Roadmap into your app and you want to add it to this list, please make a Pull Request.
 
