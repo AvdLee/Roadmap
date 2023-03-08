@@ -40,7 +40,7 @@ The keys `id`, `title` are mandatory and all have to be strings. You can use any
 
 #### Support For Localization 
 If you are looking to support localization, then you need to add extra optional parameters in your JSON `localizedTitle`, `localizedDescription` and `localizedStatus` like:
-```
+```json
 [
   {
     "id": "0",
