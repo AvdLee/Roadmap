@@ -23,17 +23,21 @@ public struct RoadmapView<Header: View, Footer: View>: View {
                     .searchable(text: $searchText)
                     .scrollContentBackground(.hidden)
                     .listStyle(.plain)
+                    .loadingView(viewModel.isLoading)
             } else {
                 featuresList
                 .scrollContentBackground(.hidden)
                 .listStyle(.plain)
+                .loadingView(viewModel.isLoading)
             }
         } else {
             if viewModel.allowSearching {
                 filterableFeaturesList
                     .searchable(text: $searchText)
+                    .loadingView(viewModel.isLoading)
             } else {
                featuresList
+                    .loadingView(viewModel.isLoading)
             }
         }
         #else
@@ -43,19 +47,23 @@ public struct RoadmapView<Header: View, Footer: View>: View {
                    .scrollContentBackground(.hidden)
                    .listStyle(.plain)
                    .searchable(text: $searchText)
+                   .loadingView(viewModel.isLoading)
            } else {
                filterableFeaturesList
                    .listStyle(.plain)
                    .searchable(text: $searchText)
+                   .loadingView(viewModel.isLoading)
            }
        } else {
            if #available(iOS 16.0, *) {
                featuresList
                    .scrollContentBackground(.hidden)
                    .listStyle(.plain)
+                   .loadingView(viewModel.isLoading)
            } else {
                featuresList
                    .listStyle(.plain)
+                   .loadingView(viewModel.isLoading)
            }
        }
         #endif

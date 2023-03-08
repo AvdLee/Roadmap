@@ -11,6 +11,19 @@ extension View {
     public func animateAccessible() -> some View {
         modifier(ReduceMotionnModifier())
     }
+    
+    @ViewBuilder
+    public func loadingView(_ isLoading: Bool) -> some View {
+        if isLoading {
+            VStack(alignment: .center) {
+                ProgressView()
+                    .padding(.top)
+                Spacer()
+            }
+        } else {
+            self
+        }
+    }
 }
 
 private struct ReduceMotionnModifier: ViewModifier {
