@@ -10,21 +10,41 @@ import Foundation
 final class RoadmapViewModel: ObservableObject {
     @Published private var features: [RoadmapFeature] = []
     @Published var searchText = ""
+    @Published var statusToFilter = "all"
 
     var filteredFeatures: [RoadmapFeature] {
-        guard !searchText.isEmpty else {
+        if statusToFilter == "all" && searchText.isEmpty {
             return features
-        }
-        return features.filter { feature in
-            feature
-                .featureTitle
-                .lowercased()
-                .contains(searchText.lowercased())
+        } else if statusToFilter != "all" && searchText.isEmpty {
+            if searchText.isEmpty {
+                return features.filter { feature in
+                    feature.featureStatus == statusToFilter
+                }
+            } else {
+                return features.filter { feature in
+                    feature
+                        .featureTitle
+                        .lowercased()
+                        .contains(searchText.lowercased())
+                    &&
+                    feature.featureStatus == statusToFilter
+                }
+            }
+        } else {
+            return features.filter { feature in
+                feature
+                    .featureTitle
+                    .lowercased()
+                    .contains(searchText.lowercased())
+            }
         }
     }
+    
     let allowSearching: Bool
-    private let configuration: RoadmapConfiguration
+    var statuses: [String] = []
 
+    private let configuration: RoadmapConfiguration
+    
     init(configuration: RoadmapConfiguration) {
         self.configuration = configuration
         self.allowSearching = configuration.allowSearching
@@ -38,7 +58,17 @@ final class RoadmapViewModel: ObservableObject {
             } else {
                 self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch()
             }
+            
+            self.statuses = {
+                var featureStatuses = ["all"]
+                featureStatuses.append(contentsOf: Array(Set(self.features.map { $0.featureStatus ?? "" })))
+                return featureStatuses
+            }()
         }
+    }
+    
+    func filterFeatures(by status: String) {
+        self.statusToFilter = status
     }
 
     func featureViewModel(for feature: RoadmapFeature) -> RoadmapFeatureViewModel {
