@@ -10,6 +10,7 @@ import Foundation
 final class RoadmapViewModel: ObservableObject {
     @Published private var features: [RoadmapFeature] = []
     @Published var searchText = ""
+    private var allFeatures: [RoadmapFeature] = []
 
     var filteredFeatures: [RoadmapFeature] {
         guard !searchText.isEmpty else {
@@ -23,8 +24,10 @@ final class RoadmapViewModel: ObservableObject {
         }
     }
     let allowSearching: Bool
-    private let configuration: RoadmapConfiguration
 
+    private let configuration: RoadmapConfiguration
+    var statuses: [String] = []
+    
     init(configuration: RoadmapConfiguration) {
         self.configuration = configuration
         self.allowSearching = configuration.allowSearching
@@ -34,10 +37,24 @@ final class RoadmapViewModel: ObservableObject {
     func loadFeatures(roadmapJSONURL: URL) {
         Task { @MainActor in
             if configuration.shuffledOrder {
-                self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch().shuffled()
+                self.allFeatures = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch().shuffled()
             } else {
-                self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch()
+                self.allFeatures = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch()
             }
+            self.statuses = {
+                var featureStatuses = ["all"]
+                featureStatuses.append(contentsOf: Array(Set(self.allFeatures.map { $0.featureStatus ?? "" })))
+                return featureStatuses
+            }()
+            self.features = self.allFeatures
+        }
+    }
+    
+    func filterFeatures(by status: String) {
+        if status == "all" {
+            self.features = self.allFeatures
+        } else {
+            self.features = self.allFeatures.filter { $0.featureStatus! == status }
         }
     }
 
