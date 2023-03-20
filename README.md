@@ -267,6 +267,7 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 - [SF Symbols Game](https://apps.apple.com/in/app/sf-symbols-game/id1507692602)
 - [Gola](https://apps.apple.com/us/app/gola-goal-tracking/id1661833753?l=en)
 - [Rahhal | رحَّال](https://apps.apple.com/app/id1672846506)
+- [Cronica](https://apps.apple.com/app/id1614950275)
 - [Photo Club Waalre](https://apps.apple.com/nl/app/fotogroep-waalre/id1178324330)
 
 
