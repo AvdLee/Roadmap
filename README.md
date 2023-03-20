@@ -268,6 +268,7 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 - [Gola](https://apps.apple.com/us/app/gola-goal-tracking/id1661833753?l=en)
 - [Rahhal | رحَّال](https://apps.apple.com/app/id1672846506)
 - [Cronica](https://apps.apple.com/app/id1614950275)
+- [Photo Club Waalre](https://apps.apple.com/nl/app/fotogroep-waalre/id1178324330)
 
 
 If you've integrated Roadmap into your app and you want to add it to this list, please make a Pull Request.
