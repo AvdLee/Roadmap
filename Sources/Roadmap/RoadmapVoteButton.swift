@@ -104,8 +104,8 @@ struct RoadmapVoteButton : View {
                 hasVoted = viewModel.feature.hasVoted
             }
         }
-        .accessibilityHint(viewModel.canVote ? Text("Vote for \(viewModel.feature.featureTitle)") : Text(""))
-        .help(viewModel.canVote ? "Vote for \(viewModel.feature.featureTitle)" : "")
+        .accessibilityHint(viewModel.canVote ? Text("Vote for \(viewModel.feature.localizedFeatureTitle)") : Text(""))
+        .help(viewModel.canVote ? "Vote for \(viewModel.feature.localizedFeatureTitle)" : "")
         .animateAccessible()
         .accessibilityShowsLargeContentViewer()
     }

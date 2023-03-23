@@ -17,7 +17,7 @@ final class RoadmapViewModel: ObservableObject {
         }
         return features.filter { feature in
             feature
-                .featureTitle
+                .localizedFeatureTitle
                 .lowercased()
                 .contains(searchText.lowercased())
         }
