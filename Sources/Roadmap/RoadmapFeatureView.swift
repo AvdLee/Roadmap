@@ -33,7 +33,8 @@ struct RoadmapFeatureView: View {
                 Text(viewModel.feature.localizedFeatureTitle)
                     .font(viewModel.configuration.style.titleFont)
                 
-                if let description = viewModel.feature.localizedFeatureDescription {
+                let description = viewModel.feature.localizedFeatureDescription
+                if description != "" {
                     Text(description)
                         .font(viewModel.configuration.style.numberFont)
                         .foregroundColor(Color.secondary)
@@ -82,7 +83,8 @@ struct RoadmapFeatureView: View {
                     }
                 }
                 
-                if let description = viewModel.feature.localizedFeatureDescription {
+                let description = viewModel.feature.localizedFeatureDescription
+                if !description.isEmpty {
                     Text(description)
                         .font(viewModel.configuration.style.numberFont)
                         .foregroundColor(Color.secondary)

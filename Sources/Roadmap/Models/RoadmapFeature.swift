@@ -19,8 +19,8 @@ public struct RoadmapFeature: Codable, Identifiable {
     var localizedFeatureTitle: String {
         localizedTitle.currentLocal ?? title ?? "N/A"
     }
-    var localizedFeatureDescription: String? {
-        localizedDescription.currentLocal ?? description
+    var localizedFeatureDescription: String {
+        localizedDescription.currentLocal ?? description ?? ""
     }
     var localizedFeatureStatus: String? {
         localizedStatus.currentLocal ?? status
