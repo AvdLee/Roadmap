@@ -13,6 +13,22 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     let footer: Footer
     @State private var selectedFilter: String
     
+    private var filterHorizontalPadding: CGFloat {
+        #if os(macOS)
+        return 12
+        #else
+        return 22
+        #endif
+    }
+    
+    private var filterTopPadding: CGFloat {
+        #if os(macOS)
+        return 12
+        #else
+        return 0
+        #endif
+    }
+    
     public var body: some View {
             featuresList
                 .scrollContentHidden()
@@ -22,21 +38,25 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     
     var featuresList: some View {
         VStack {
-            HStack(spacing: 8) {
-                Text("Filter:")
-                Picker("", selection: $selectedFilter) {
-                    ForEach(viewModel.statuses, id: \.self) {
-                        Text($0.localizedCapitalized)
+            if viewModel.allowsFilterByStatus {
+                HStack(spacing: 8) {
+                    Text("Filter:")
+                    Picker("", selection: $selectedFilter) {
+                        ForEach(viewModel.statuses, id: \.self) {
+                            Text($0.localizedCapitalized)
+                        }
                     }
+                    .fixedSize()
+                    .tint(.black)
+                    .pickerStyle(.menu)
+                    .onChange(of: selectedFilter, perform: { newValue in
+                        viewModel.filterFeatures(by: newValue)
+                    })
+                    Spacer()
                 }
-                .tint(.black)
-                .pickerStyle(.menu)
-                .onChange(of: selectedFilter, perform: { newValue in
-                    viewModel.filterFeatures(by: newValue)
-                })
-                Spacer()
+                .padding(.horizontal, filterHorizontalPadding)
+                .padding(.top, filterTopPadding)
             }
-            .padding(.horizontal, 22)
             
             List {
                 header

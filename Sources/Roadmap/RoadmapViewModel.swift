@@ -41,6 +41,7 @@ final class RoadmapViewModel: ObservableObject {
     }
     
     let allowSearching: Bool
+    let allowsFilterByStatus: Bool
     var statuses: [String] = []
 
     private let configuration: RoadmapConfiguration
@@ -48,6 +49,7 @@ final class RoadmapViewModel: ObservableObject {
     init(configuration: RoadmapConfiguration) {
         self.configuration = configuration
         self.allowSearching = configuration.allowSearching
+        self.allowsFilterByStatus = configuration.allowsFilterByStatus
         loadFeatures(roadmapJSONURL: configuration.roadmapJSONURL)
     }
 
