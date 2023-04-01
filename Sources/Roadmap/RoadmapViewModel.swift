@@ -23,7 +23,7 @@ final class RoadmapViewModel: ObservableObject {
             } else {
                 return features.filter { feature in
                     feature
-                        .featureTitle
+                        .localizedFeatureTitle
                         .lowercased()
                         .contains(searchText.lowercased())
                     &&
@@ -33,7 +33,7 @@ final class RoadmapViewModel: ObservableObject {
         } else {
             return features.filter { feature in
                 feature
-                    .featureTitle
+                    .localizedFeatureTitle
                     .lowercased()
                     .contains(searchText.lowercased())
             }

@@ -106,7 +106,7 @@ struct ContentView: View {
     let configuration = RoadmapConfiguration(
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
         nameSpace: "yourappname" // Defaults to your apps bundle id
-        allowVoting: true, // Present the roadmap in read-only mode by setting this to false
+        allowVotes: true, // Present the roadmap in read-only mode by setting this to false
         allowSearching: false // Allow users to filter the features list by adding a searchbar
     )
 
@@ -267,6 +267,8 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 - [SF Symbols Game](https://apps.apple.com/in/app/sf-symbols-game/id1507692602)
 - [Gola](https://apps.apple.com/us/app/gola-goal-tracking/id1661833753?l=en)
 - [Rahhal | رحَّال](https://apps.apple.com/app/id1672846506)
+- [Cronica](https://apps.apple.com/app/id1614950275)
+- [Photo Club Waalre](https://apps.apple.com/nl/app/fotogroep-waalre/id1178324330)
 
 
 If you've integrated Roadmap into your app and you want to add it to this list, please make a Pull Request.
