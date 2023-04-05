@@ -18,7 +18,7 @@ final class RoadmapViewModel: ObservableObject {
         } else if statusToFilter != "all" && searchText.isEmpty {
             if searchText.isEmpty {
                 return features.filter { feature in
-                    feature.featureStatus == statusToFilter
+                    feature.localizedFeatureStatus == statusToFilter
                 }
             } else {
                 return features.filter { feature in
@@ -27,7 +27,7 @@ final class RoadmapViewModel: ObservableObject {
                         .lowercased()
                         .contains(searchText.lowercased())
                     &&
-                    feature.featureStatus == statusToFilter
+                    feature.localizedFeatureStatus == statusToFilter
                 }
             }
         } else {
@@ -63,7 +63,7 @@ final class RoadmapViewModel: ObservableObject {
             
             self.statuses = {
                 var featureStatuses = ["all"]
-                featureStatuses.append(contentsOf: Array(Set(self.features.map { $0.featureStatus ?? "" })))
+                featureStatuses.append(contentsOf: Array(Set(self.features.map { $0.localizedFeatureStatus ?? "" })))
                 return featureStatuses
             }()
         }
