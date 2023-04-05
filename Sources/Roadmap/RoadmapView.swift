@@ -63,6 +63,7 @@ public struct RoadmapView<Header: View, Footer: View>: View {
                 ForEach(viewModel.filteredFeatures) { feature in
                     RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                         .macOSListRowSeparatorHidden()
+                        .listRowBackground(Color.clear)
                 }
                 footer
             }

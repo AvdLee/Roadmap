@@ -16,14 +16,17 @@ public struct RoadmapFeature: Codable, Identifiable {
     private var localizedStatus: [LocalizedItem]? = nil
     private var localizedDescription: [LocalizedItem]? = nil
     
-    var featureTitle: String {
+    var localizedFeatureTitle: String {
         localizedTitle.currentLocal ?? title ?? "N/A"
     }
-    var featureDescription: String? {
+    var localizedFeatureDescription: String? {
         localizedDescription.currentLocal ?? description
     }
-    var featureStatus: String? {
+    var localizedFeatureStatus: String? {
         localizedStatus.currentLocal ?? status
+    }
+    var unlocalizedFeatureStatus: String { // for statusTintColor(unlocalizedFeatureStatus)
+        status ?? ""
     }
     
     var isFinished: Bool? = nil
