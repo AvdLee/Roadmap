@@ -98,6 +98,19 @@ let configuration = RoadmapConfiguration(
 )
 ```
 
+Optional you can also handover a request for more advanced endpoints, for example protected by OAuth: 
+
+```swift
+
+var request = URLRequest(url: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!)
+request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+request.setValue("Bearer 1234567890", forHTTPHeaderField: "Authorization")
+
+let configuration = RoadmapConfiguration(
+    roadmapRequest: request
+)
+```
+
 ### Use the configuration to construct the view
 And use the configuration inside the `RoadmapView`:
 
@@ -105,7 +118,7 @@ And use the configuration inside the `RoadmapView`:
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
-        nameSpace: "yourappname" // Defaults to your apps bundle id
+        namespace: "yourappname" // Defaults to your apps bundle id
         allowVotes: true, // Present the roadmap in read-only mode by setting this to false
         allowSearching: false // Allow users to filter the features list by adding a searchbar
     )
