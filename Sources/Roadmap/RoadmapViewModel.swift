@@ -22,10 +22,14 @@ final class RoadmapViewModel: ObservableObject {
                 }
             } else {
                 return features.filter { feature in
+                    (feature
+                        .localizedFeatureTitle // check title field...
+                        .lowercased() // Roadmap localizes strings in Roadmap.json, so avoid .localizedCaseInsensitiveContains()
+                        .contains(searchText.lowercased())  ||
                     feature
-                        .localizedFeatureTitle
+                        .localizedFeatureDescription // ...and check description field
                         .lowercased()
-                        .contains(searchText.lowercased())
+                        .contains(searchText.lowercased()))
                     &&
                     feature.localizedFeatureStatus == statusToFilter
                 }
@@ -33,7 +37,11 @@ final class RoadmapViewModel: ObservableObject {
         } else {
             return features.filter { feature in
                 feature
-                    .localizedFeatureTitle
+                    .localizedFeatureTitle // check title field...
+                    .lowercased() // Roadmap localizes strings in Roadmap.json, so avoid .localizedCaseInsensitiveContains()
+                    .contains(searchText.lowercased())  ||
+                feature
+                    .localizedFeatureDescription // ...and check description field
                     .lowercased()
                     .contains(searchText.lowercased())
             }
