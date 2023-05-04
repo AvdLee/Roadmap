@@ -1,7 +1,5 @@
 ![RoadmapHeader Copy@1x](https://user-images.githubusercontent.com/5016984/220204032-55fada28-ca90-4dc9-a931-65242bb6060c.png)
 
-Unfortunately the service that Roadmap uses to increment votes is currently down. We're looking into replacements / fixes!
-
 # Roadmap
 Publish your roadmap inside your app and allow users to vote for upcoming features, without having to create a backend!
 
