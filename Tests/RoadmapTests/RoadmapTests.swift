@@ -41,13 +41,11 @@ class InMemoryFeatureVoter: FeatureVoter {
     
     func vote(for feature: RoadmapFeature) async -> Int? {
         count[feature.id] = await fetch(for: feature) + 1
-        feature.hasVoted = true
         return count[feature.id]
     }
     
     func unvote(for feature: RoadmapFeature) async -> Int? {
         count[feature.id] = await fetch(for: feature) - 1
-        feature.hasVoted = true
         return count[feature.id]
     }
 }
