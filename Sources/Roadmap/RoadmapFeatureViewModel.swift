@@ -14,15 +14,14 @@ final class RoadmapFeatureViewModel: ObservableObject {
     let canVote: Bool
 
     @Published var voteCount = 0
-    
 
     init(feature: RoadmapFeature, configuration: RoadmapConfiguration) {
         self.feature = feature
         self.configuration = configuration
-        
+
         self.canVote = configuration.allowVotes
     }
-    
+
     @MainActor
     func getCurrentVotes() async {
         voteCount = await configuration.voter.fetch(for: feature)
@@ -30,12 +29,15 @@ final class RoadmapFeatureViewModel: ObservableObject {
 
     @MainActor
     func vote() async {
-        guard !feature.hasVoted else {
-            print("already voted for this, can't vote again")
-            return
-        }
-        
         let newCount = await configuration.voter.vote(for: feature)
         voteCount = newCount ?? (voteCount + 1)
+        feature.hasVoted = true
+    }
+
+    @MainActor
+    func unvote() async {
+        let newCount = await configuration.voter.unvote(for: feature)
+        voteCount = newCount ?? (voteCount - 1)
+        feature.hasVoted = false
     }
 }

@@ -1,15 +1,14 @@
 //
 //  RoadmapVoteButton.swift
-//  
+//
 //
 //  Created by Hidde van der Ploeg on 20/02/2023.
 //
 
 import SwiftUI
 
-
-struct RoadmapVoteButton : View {
-    @ObservedObject var viewModel : RoadmapFeatureViewModel
+struct RoadmapVoteButton: View {
+    @ObservedObject var viewModel: RoadmapFeatureViewModel
     @Environment(\.dynamicTypeSize) var typeSize
     
     @State private var isHovering = false
@@ -20,7 +19,11 @@ struct RoadmapVoteButton : View {
         Button {
             if viewModel.canVote {
                 Task {
-                    await viewModel.vote()
+                    if !viewModel.feature.hasVoted {
+                        await viewModel.vote()
+                    } else {
+                        await viewModel.unvote()
+                    }
                     #if os(iOS)
                     let haptic = UIImpactFeedbackGenerator(style: .soft)
                     haptic.impactOccurred()
@@ -73,7 +76,6 @@ struct RoadmapVoteButton : View {
                     .frame(height: 64)
                     .background(backgroundView)
                 }
-                
             }
             .contentShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
             .overlay(overlayBorder)
@@ -111,17 +113,16 @@ struct RoadmapVoteButton : View {
     }
     
     @ViewBuilder
-    var overlayBorder : some View {
+    var overlayBorder: some View {
         if isHovering {
             RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous)
                 .stroke(viewModel.configuration.style.tintColor, lineWidth: 1)
         }
     }
     
-    private var backgroundView : some View {
+    private var backgroundView: some View {
         viewModel.configuration.style.tintColor
             .opacity(hasVoted ? 1 : 0.1)
             .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
     }
-    
 }
