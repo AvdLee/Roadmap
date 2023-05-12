@@ -1,5 +1,6 @@
 ![RoadmapHeader Copy@1x](https://user-images.githubusercontent.com/5016984/220204032-55fada28-ca90-4dc9-a931-65242bb6060c.png)
 
+⚠️ The countAPI which we use in Roadmap to let users vote has been down for two weeks or so. They're looking into it, but currently roadmap is unfortunately not working. 
 # Roadmap
 Publish your roadmap inside your app and allow users to vote for upcoming features, without having to create a backend!
 
