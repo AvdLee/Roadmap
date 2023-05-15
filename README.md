@@ -127,6 +127,9 @@ public struct RoadmapStyle {
     /// The image used for the upvote button
     let upvoteIcon : Image
     
+    /// The image used for the unvote button
+    let unvoteIcon : Image
+    
     /// The font used for the feature
     let titleFont : Font
     
@@ -151,7 +154,8 @@ public struct RoadmapStyle {
     /// The main tintColor for the roadmap views.
     let tintColor : Color
     
-    public init(icon: Image,
+    public init(upvoteIcon: Image,
+                unvoteIcon: Image,
                 titleFont: Font,
                 numberFont: Font,
                 statusFont: Font,

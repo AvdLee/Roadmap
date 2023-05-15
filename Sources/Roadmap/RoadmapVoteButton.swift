@@ -35,11 +35,19 @@ struct RoadmapVoteButton: View {
                 if typeSize.isAccessibilitySize {
                     HStack(spacing: isHovering ? 2 : 0) {
                         if viewModel.canVote {
-                            viewModel.configuration.style.upvoteIcon
-                                .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
-                                .imageScale(.large)
-                                .font(Font.system(size: 17, weight: .medium))
-                                .frame(maxWidth: 24, maxHeight: 24)
+                            if !viewModel.feature.hasVoted {
+                                viewModel.configuration.style.upvoteIcon
+                                    .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                                    .imageScale(.large)
+                                    .font(Font.system(size: 17, weight: .medium))
+                                    .frame(maxWidth: 24, maxHeight: 24)
+                            } else {
+                                viewModel.configuration.style.unvoteIcon
+                                    .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                                    .imageScale(.large)
+                                    .font(Font.system(size: 17, weight: .medium))
+                                    .frame(maxWidth: 24, maxHeight: 24)
+                            }
                         }
                         
                         if showNumber {
@@ -56,12 +64,21 @@ struct RoadmapVoteButton: View {
                 } else {
                     VStack(spacing: isHovering ? 6 : 4) {
                         if viewModel.canVote {
-                            viewModel.configuration.style.upvoteIcon
-                                .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
-                                .imageScale(.large)
-                                .font(viewModel.configuration.style.numberFont)
-                                .frame(maxWidth: 20, maxHeight: 20)
-                                .minimumScaleFactor(0.75)
+                            if !viewModel.feature.hasVoted {
+                                viewModel.configuration.style.upvoteIcon
+                                    .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                                    .imageScale(.large)
+                                    .font(viewModel.configuration.style.numberFont)
+                                    .frame(maxWidth: 20, maxHeight: 20)
+                                    .minimumScaleFactor(0.75)
+                            } else {
+                                viewModel.configuration.style.unvoteIcon
+                                    .foregroundColor(hasVoted ? viewModel.configuration.style.selectedForegroundColor : viewModel.configuration.style.tintColor)
+                                    .imageScale(.large)
+                                    .font(viewModel.configuration.style.numberFont)
+                                    .frame(maxWidth: 20, maxHeight: 20)
+                                    .minimumScaleFactor(0.75)
+                            }
                         }
                         
                         if showNumber {
@@ -106,8 +123,8 @@ struct RoadmapVoteButton: View {
                 hasVoted = viewModel.feature.hasVoted
             }
         }
-        .accessibilityHint(viewModel.canVote ? Text("Vote for \(viewModel.feature.localizedFeatureTitle)") : Text(""))
-        .help(viewModel.canVote ? "Vote for \(viewModel.feature.localizedFeatureTitle)" : "")
+        .accessibilityHint(viewModel.canVote ? !viewModel.feature.hasVoted ? Text("Vote for \(viewModel.feature.localizedFeatureTitle)") : Text("Remove vote for \(viewModel.feature.localizedFeatureTitle)") : Text(""))
+        .help(viewModel.canVote ? !viewModel.feature.hasVoted ? Text("Vote for \(viewModel.feature.localizedFeatureTitle)") : Text("Remove vote for \(viewModel.feature.localizedFeatureTitle)") : Text(""))
         .animateAccessible()
         .accessibilityShowsLargeContentViewer()
     }
