@@ -2,6 +2,9 @@
 
 ⚠️ The countAPI which we use in Roadmap to let users vote has been down for six weeks or so. They're looking into it, but currently roadmap is unfortunately not working. The provider of the countapi has let us know that they don't expect the API to be fixed anytime soon, so we are looking for alternatives.
 
+Have a look at this PR for an alternative that we might introduce as the default soon!
+https://github.com/AvdLee/Roadmap/pull/71
+
 # Roadmap
 Publish your roadmap inside your app and allow users to vote for upcoming features, without having to create a backend!
 
