@@ -1,5 +1,5 @@
-import XCTest
 @testable import Roadmap
+import XCTest
 
 final class RoadmapTests: XCTestCase {
     func testFeatureVoter() async throws {
@@ -25,6 +25,10 @@ final class RoadmapTests: XCTestCase {
         await model.vote()
         XCTAssertEqual(model.voteCount, 2)
         XCTAssertTrue(feature.hasVoted)
+        
+        await model.unvote()
+        XCTAssertEqual(model.voteCount, 1)
+        XCTAssertFalse(feature.hasVoted)
     }
 }
 
@@ -37,7 +41,11 @@ class InMemoryFeatureVoter: FeatureVoter {
     
     func vote(for feature: RoadmapFeature) async -> Int? {
         count[feature.id] = await fetch(for: feature) + 1
-        feature.hasVoted = true
+        return count[feature.id]
+    }
+    
+    func unvote(for feature: RoadmapFeature) async -> Int? {
+        count[feature.id] = await fetch(for: feature) - 1
         return count[feature.id]
     }
 }
