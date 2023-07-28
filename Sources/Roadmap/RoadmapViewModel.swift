@@ -40,7 +40,7 @@ final class RoadmapViewModel: ObservableObject {
             if configuration.shuffledOrder {
                 self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch().shuffled()
             } else {
-                self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch()
+                self.features = await FeaturesFetcher(featureJSONURL: roadmapJSONURL).fetch().sorted(by: <#T##(RoadmapFeature, RoadmapFeature) throws -> Bool#>)
             }
         }
     }

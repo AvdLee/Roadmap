@@ -27,6 +27,9 @@ public struct RoadmapConfiguration {
     /// Set this to true to if you want to add a search bar so users can filter which features are shown.
     public let allowSearching: Bool
 
+    /// If set, will be used for sorting.
+    public let sorting: ((RoadmapFeature, RoadmapFeature) throws -> Bool)?
+
     /// Creates a new Roadmap configuration instance.
     /// - Parameters:
     ///   - roadmapJSONURL: The URL pointing to the JSON in the `RoadmapFeature` format.
