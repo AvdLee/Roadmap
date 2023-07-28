@@ -9,8 +9,8 @@ import Foundation
 
 public struct RoadmapFeature: Codable, Identifiable {
     public let id: String
-    private let title: String?
-    private var status: String? = nil
+    public let title: String?
+    public var status: String? = nil
     private var description : String? = nil
     private var localizedTitle: [LocalizedItem]? = nil
     private var localizedStatus: [LocalizedItem]? = nil
