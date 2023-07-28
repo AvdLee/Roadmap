@@ -26,7 +26,10 @@ public struct RoadmapConfiguration {
     
     /// Set this to true to if you want to add a search bar so users can filter which features are shown.
     public let allowSearching: Bool
-    
+
+    /// If set, will be used for sorting features.
+    public let sorting: ((RoadmapFeature, RoadmapFeature) -> Bool)?
+
     /// Creates a new Roadmap configuration instance.
     /// - Parameters:
     ///   - roadmapJSONURL: The URL pointing to the JSON in the `RoadmapFeature` format.
@@ -36,12 +39,17 @@ public struct RoadmapConfiguration {
     ///   See `https://countapi.xyz/` for more information.
     ///   Defaults to your main bundle identifier.
     ///   - style: Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
+    ///   - shuffledOrder: Set this to true to have a different order of features everytime the view is presented
+    ///   - sorting: /// If set, will be used for sorting features.
+    ///   - allowVotes: Set this to true to if you want to let users vote. Set it to false for read-only mode. This can be used to only let paying users vote for example.
+    ///   - allowSearching: Set this to true to if you want to add a search bar so users can filter which features are shown.
     public init(roadmapJSONURL: URL? = nil,
                 roadmapRequest: URLRequest? = nil,
                 voter: FeatureVoter? = nil,
                 namespace: String? = nil,
                 style: RoadmapStyle = RoadmapTemplate.standard.style,
                 shuffledOrder: Bool = false,
+                sorting: ((RoadmapFeature, RoadmapFeature) -> Bool)? = nil,
                 allowVotes: Bool = true,
                 allowSearching: Bool = false) {
         
@@ -61,6 +69,7 @@ public struct RoadmapConfiguration {
         self.voter = voter ?? FeatureVoterCountAPI(namespace: namespace)
         self.style = style
         self.shuffledOrder = shuffledOrder
+        self.sorting = sorting
         self.allowVotes = allowVotes
         self.allowSearching = allowSearching
     }

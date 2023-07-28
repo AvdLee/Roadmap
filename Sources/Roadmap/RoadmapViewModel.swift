@@ -41,6 +41,8 @@ final class RoadmapViewModel: ObservableObject {
         Task { @MainActor in
             if configuration.shuffledOrder {
                 self.features = await FeaturesFetcher(featureRequest: request).fetch().shuffled()
+            } else if let sorting = configuration.sorting {
+                self.features = await FeaturesFetcher(featureRequest: request).fetch().sorted(by: sorting)
             } else {
                 self.features = await FeaturesFetcher(featureRequest: request).fetch()
             }
