@@ -5,6 +5,9 @@
 Have a look at this PR for an alternative that we might introduce as the default soon!
 https://github.com/AvdLee/Roadmap/pull/71
 
+Here's a step by step guide to host your own server with Vapor (Swift):
+https://github.com/valentin-mille/RoadmapBackend
+
 # Roadmap
 Publish your roadmap inside your app and allow users to vote for upcoming features, without having to create a backend!
 
