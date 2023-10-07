@@ -10,7 +10,7 @@ import SwiftUI
 extension Color {
     
     static public var defaultCellColor : Color {
-        #if os(macOS)
+        #if os(macOS) || os(watchOS)
             return Color.primary.opacity(0.08)
         #else
             return Color(uiColor: .secondarySystemFill)
