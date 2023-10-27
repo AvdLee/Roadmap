@@ -15,7 +15,7 @@ struct FeaturesFetcher {
         do {
             return try await JSONDataFetcher.loadJSON(request: featureRequest)
         } catch {
-            Logger.viewCycle.error("error:", error.localizedDescription)
+            Logger.viewCycle.error("error: \(error.localizedDescription)")
             return []
         }
     }
