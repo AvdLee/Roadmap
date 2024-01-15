@@ -1,39 +1,43 @@
 //
 //  RoadmapTemplates.swift
-//  
+//
 //
 //  Created by Hidde van der Ploeg on 20/02/2023.
 //
 
 import SwiftUI
-public enum RoadmapTemplate : CaseIterable {
+public enum RoadmapTemplate: CaseIterable {
     case standard
     case playful
     case classy
     case technical
     
-    public var style : RoadmapStyle {
+    public var style: RoadmapStyle {
         switch self {
         case .standard:
-            return RoadmapStyle(icon: Image(systemName: "arrowtriangle.up.fill"),
+            return RoadmapStyle(upvoteIcon: Image(systemName: "arrowtriangle.up.fill"),
+                                unvoteIcon: Image(systemName: "arrowtriangle.down.fill"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
                                 cornerRadius: 10)
         case .playful:
-            return RoadmapStyle(icon: Image(systemName: "arrow.up"),
+            return RoadmapStyle(upvoteIcon: Image(systemName: "arrow.up"),
+                                unvoteIcon: Image(systemName: "arrow.down"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
                                 cornerRadius: 15)
         case .classy:
-            return RoadmapStyle(icon: Image(systemName: "chevron.up"),
+            return RoadmapStyle(upvoteIcon: Image(systemName: "chevron.up"),
+                                unvoteIcon: Image(systemName: "chevron.down"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
                                 cornerRadius: 5)
         case .technical:
-            return RoadmapStyle(icon: Image(systemName: "chevron.up"),
+            return RoadmapStyle(upvoteIcon: Image(systemName: "chevron.up"),
+                                unvoteIcon: Image(systemName: "chevron.down"),
                                 titleFont: self.titleFont,
                                 numberFont: self.numberFont,
                                 statusFont: self.captionFont,
@@ -41,7 +45,7 @@ public enum RoadmapTemplate : CaseIterable {
         }
     }
     
-    var fontDesign : Font.Design {
+    var fontDesign: Font.Design {
         switch self {
         case .playful:
             return .rounded

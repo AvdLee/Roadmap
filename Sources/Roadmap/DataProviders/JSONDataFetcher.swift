@@ -21,6 +21,11 @@ struct JSONDataFetcher {
         return try JSONDecoder().decode(T.self, from: data)
     }
 
+    static func loadJSON<T: Decodable>(request: URLRequest) async throws -> T {
+        let data = try await urlSession.data(for: request).0
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+    
     static func loadJSON<T: Decodable>(fromURLString urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw Error.invalidURL

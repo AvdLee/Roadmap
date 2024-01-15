@@ -1,5 +1,13 @@
 ![RoadmapHeader Copy@1x](https://user-images.githubusercontent.com/5016984/220204032-55fada28-ca90-4dc9-a931-65242bb6060c.png)
 
+⚠️ The countAPI which we use in Roadmap to let users vote has been down for six weeks or so. They're looking into it, but currently roadmap is unfortunately not working. The provider of the countapi has let us know that they don't expect the API to be fixed anytime soon, so we are looking for alternatives.
+
+Have a look at this PR for an alternative that we might introduce as the default soon!
+https://github.com/AvdLee/Roadmap/pull/71
+
+Here's a step by step guide to host your own server with Vapor (Swift):
+https://github.com/valentin-mille/RoadmapBackend
+
 # Roadmap
 Publish your roadmap inside your app and allow users to vote for upcoming features, without having to create a backend!
 
@@ -9,7 +17,7 @@ Publish your roadmap inside your app and allow users to vote for upcoming featur
 
 ## Setting up Roadmap
 ### Create a Roadmap JSON
-Roadmap works with a remote JSON configuration listing all features and their statuses. We recommend hosting it on GitHub Pages or [simplejsoncms.com](https://simplejsoncms.com/).
+Roadmap works with a remote JSON configuration listing all features and their statuses. We recommend hosting it on GitHub Pages or [simplejsoncms.com](https://simplejsoncms.com).
 
 An example JSON looks as follows:
 
@@ -98,6 +106,19 @@ let configuration = RoadmapConfiguration(
 )
 ```
 
+Optional you can also handover a request for more advanced endpoints, for example protected by OAuth: 
+
+```swift
+
+var request = URLRequest(url: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!)
+request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+request.setValue("Bearer 1234567890", forHTTPHeaderField: "Authorization")
+
+let configuration = RoadmapConfiguration(
+    roadmapRequest: request
+)
+```
+
 ### Use the configuration to construct the view
 And use the configuration inside the `RoadmapView`:
 
@@ -105,7 +126,7 @@ And use the configuration inside the `RoadmapView`:
 struct ContentView: View {
     let configuration = RoadmapConfiguration(
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
-        nameSpace: "yourappname" // Defaults to your apps bundle id
+        namespace: "yourappname" // Defaults to your apps bundle id
         allowVotes: true, // Present the roadmap in read-only mode by setting this to false
         allowSearching: false // Allow users to filter the features list by adding a searchbar
     )
@@ -126,6 +147,9 @@ By initializing the `RoadmapConfiguration` with a `RoadmapStyle` you can create 
 public struct RoadmapStyle {
     /// The image used for the upvote button
     let upvoteIcon : Image
+    
+    /// The image used for the unvote button
+    let unvoteIcon : Image
     
     /// The font used for the feature
     let titleFont : Font
@@ -151,7 +175,8 @@ public struct RoadmapStyle {
     /// The main tintColor for the roadmap views.
     let tintColor : Color
     
-    public init(icon: Image,
+    public init(upvoteIcon: Image,
+                unvoteIcon: Image,
                 titleFont: Font,
                 numberFont: Font,
                 statusFont: Font,

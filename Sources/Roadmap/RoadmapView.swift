@@ -97,6 +97,6 @@ public extension RoadmapView where Header: View, Footer: View {
 
 struct RoadmapView_Previews: PreviewProvider {
     static var previews: some View {
-        RoadmapView(configuration: .sample())
+        RoadmapView(configuration: .sampleURL())
     }
 }
