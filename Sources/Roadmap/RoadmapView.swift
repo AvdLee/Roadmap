@@ -47,7 +47,7 @@ public struct RoadmapView<Header: View, Footer: View>: View {
                         }
                     }
                     .fixedSize()
-                    .tint(.black)
+                    .tint(.primary)
                     .pickerStyle(.menu)
                     .onChange(of: selectedFilter, perform: { newValue in
                         viewModel.filterFeatures(by: newValue)
