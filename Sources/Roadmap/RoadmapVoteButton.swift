@@ -110,6 +110,7 @@ struct RoadmapVoteButton: View {
                 hasVoted = newVote
             }
         }
+        #if !os(watchOS)
         .onHover { newHover in
             if viewModel.canVote && !hasVoted {
                 withAnimation(.spring(response: 0.4, dampingFraction: 0.7, blendDuration: 0)) {
@@ -117,6 +118,7 @@ struct RoadmapVoteButton: View {
                 }
             }
         }
+        #endif
         .onAppear {
             showNumber = viewModel.voteCount > 0
             withAnimation(.spring(response: 0.45, dampingFraction: 0.4, blendDuration: 0)) {

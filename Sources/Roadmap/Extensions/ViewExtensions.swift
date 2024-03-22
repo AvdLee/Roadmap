@@ -23,11 +23,15 @@ extension View {
 
     @ViewBuilder
     func macOSListRowSeparatorHidden() -> some View {
-        if #available(macOS 13.0, *) {
-            self.listRowSeparator(.hidden)
-        } else {
-            self
-        }
+        #if os(macOS)
+          if #available(macOS 13.0, *) {
+              self.listRowSeparator(.hidden)
+          } else {
+              self
+          }
+        #else
+          self
+        #endif
     }
 
     @ViewBuilder
