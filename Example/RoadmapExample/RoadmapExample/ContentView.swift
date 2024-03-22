@@ -13,7 +13,8 @@ struct ContentView: View {
         roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
         namespace: "roadmaptest",
         allowVotes: true,
-        allowSearching: true
+        allowSearching: true,
+        allowsFilterByStatus: true
     )
 
     var body: some View {

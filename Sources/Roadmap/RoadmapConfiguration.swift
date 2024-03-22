@@ -26,6 +26,9 @@ public struct RoadmapConfiguration {
     
     /// Set this to true to if you want to add a search bar so users can filter which features are shown.
     public let allowSearching: Bool
+    
+    /// Set this to true to if you want to allow users to filter features by any one status from a dynamically populated list of statuses.
+    public let allowsFilterByStatus: Bool
 
     /// If set, will be used for sorting features.
     public let sorting: ((RoadmapFeature, RoadmapFeature) -> Bool)?
@@ -51,7 +54,8 @@ public struct RoadmapConfiguration {
                 shuffledOrder: Bool = false,
                 sorting: ((RoadmapFeature, RoadmapFeature) -> Bool)? = nil,
                 allowVotes: Bool = true,
-                allowSearching: Bool = false) {
+                allowSearching: Bool = false,
+                allowsFilterByStatus: Bool = false) {
         
         guard roadmapJSONURL != nil || roadmapRequest != nil else {
             fatalError("Missing roadmap URL or request")
@@ -72,6 +76,7 @@ public struct RoadmapConfiguration {
         self.sorting = sorting
         self.allowVotes = allowVotes
         self.allowSearching = allowSearching
+        self.allowsFilterByStatus = allowsFilterByStatus
     }
 
 }

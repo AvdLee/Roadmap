@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 struct FeaturesFetcher {
     let featureRequest: URLRequest
@@ -14,7 +15,7 @@ struct FeaturesFetcher {
         do {
             return try await JSONDataFetcher.loadJSON(request: featureRequest)
         } catch {
-            print("error:", error.localizedDescription)
+            Logger.roadmap.error("error: \(error.localizedDescription)")
             return []
         }
     }

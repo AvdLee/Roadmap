@@ -10,29 +10,54 @@ import Foundation
 final class RoadmapViewModel: ObservableObject {
     @Published private var features: [RoadmapFeature] = []
     @Published var searchText = ""
+    @Published var statusToFilter = "all"
 
     var filteredFeatures: [RoadmapFeature] {
-        guard !searchText.isEmpty else {
+        if statusToFilter == "all" && searchText.isEmpty {
             return features
-        }
-        return features.filter { feature in
-            feature
-                .localizedFeatureTitle // check title field...
-                .lowercased() // Roadmap localizes strings in Roadmap.json, so avoid .localizedCaseInsensitiveContains()
-                .contains(searchText.lowercased()) ||
-            feature
-                .localizedFeatureDescription // ...and check description field
-                .lowercased()
-                .contains(searchText.lowercased())
+        } else if statusToFilter != "all" && searchText.isEmpty {
+            if searchText.isEmpty {
+                return features.filter { feature in
+                    feature.localizedFeatureStatus == statusToFilter
+                }
+            } else {
+                return features.filter { feature in
+                    (feature
+                        .localizedFeatureTitle // check title field...
+                        .lowercased() // Roadmap localizes strings in Roadmap.json, so avoid .localizedCaseInsensitiveContains()
+                        .contains(searchText.lowercased())  ||
+                    feature
+                        .localizedFeatureDescription // ...and check description field
+                        .lowercased()
+                        .contains(searchText.lowercased()))
+                    &&
+                    feature.localizedFeatureStatus == statusToFilter
+                }
+            }
+        } else {
+            return features.filter { feature in
+                feature
+                    .localizedFeatureTitle // check title field...
+                    .lowercased() // Roadmap localizes strings in Roadmap.json, so avoid .localizedCaseInsensitiveContains()
+                    .contains(searchText.lowercased())  ||
+                feature
+                    .localizedFeatureDescription // ...and check description field
+                    .lowercased()
+                    .contains(searchText.lowercased())
+            }
         }
     }
+    
     let allowSearching: Bool
-    private let configuration: RoadmapConfiguration
+    let allowsFilterByStatus: Bool
+    var statuses: [String] = []
 
+    private let configuration: RoadmapConfiguration
+    
     init(configuration: RoadmapConfiguration) {
         self.configuration = configuration
         self.allowSearching = configuration.allowSearching
-
+        self.allowsFilterByStatus = configuration.allowsFilterByStatus
         loadFeatures(request: configuration.roadmapRequest)
     }
 
@@ -46,7 +71,17 @@ final class RoadmapViewModel: ObservableObject {
             } else {
                 self.features = await FeaturesFetcher(featureRequest: request).fetch()
             }
+            
+            self.statuses = {
+                var featureStatuses = ["all"]
+                featureStatuses.append(contentsOf: Array(Set(self.features.map { $0.localizedFeatureStatus ?? "" })))
+                return featureStatuses
+            }()
         }
+    }
+    
+    func filterFeatures(by status: String) {
+        self.statusToFilter = status
     }
 
     func featureViewModel(for feature: RoadmapFeature) -> RoadmapFeatureViewModel {
