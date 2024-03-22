@@ -79,19 +79,19 @@ public extension RoadmapView where Header == EmptyView, Footer == EmptyView {
 
 public extension RoadmapView where Header: View, Footer == EmptyView {
     init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header) {
-        self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView(), selectedFilter: "")
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView(), selectedFilter: "all")
     }
 }
 
 public extension RoadmapView where Header == EmptyView, Footer: View {
     init(configuration: RoadmapConfiguration, @ViewBuilder footer: () -> Footer) {
-        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer(), selectedFilter: "")
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer(), selectedFilter: "all")
     }
 }
 
 public extension RoadmapView where Header: View, Footer: View {
     init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
-        self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer(), selectedFilter: "")
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer(), selectedFilter: "all")
     }
 }
 
