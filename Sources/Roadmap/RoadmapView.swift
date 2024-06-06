@@ -12,6 +12,7 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     let header: Header
     let footer: Footer
     @State private var selectedFilter: String
+    @Binding var selectedFeature: RoadmapFeature?
     
     private var filterHorizontalPadding: CGFloat {
         #if os(macOS)
@@ -64,6 +65,9 @@ public struct RoadmapView<Header: View, Footer: View>: View {
                     RoadmapFeatureView(viewModel: viewModel.featureViewModel(for: feature))
                         .macOSListRowSeparatorHidden()
                         .listRowBackground(Color.clear)
+                        .onTapGesture {
+                            selectedFeature = feature
+                        }
                 }
                 footer
             }
@@ -72,26 +76,26 @@ public struct RoadmapView<Header: View, Footer: View>: View {
 }
 
 public extension RoadmapView where Header == EmptyView, Footer == EmptyView {
-    init(configuration: RoadmapConfiguration) {
-        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: EmptyView(), selectedFilter: "")
+    init(configuration: RoadmapConfiguration, selectedFeature: Binding<RoadmapFeature?> = .constant(nil)) {
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: EmptyView(), selectedFilter: "", selectedFeature: selectedFeature)
     }
 }
 
 public extension RoadmapView where Header: View, Footer == EmptyView {
-    init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header) {
-        self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView(), selectedFilter: "")
+    init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header, selectedFeature: Binding<RoadmapFeature?> = .constant(nil)) {
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView(), selectedFilter: "", selectedFeature: selectedFeature)
     }
 }
 
 public extension RoadmapView where Header == EmptyView, Footer: View {
-    init(configuration: RoadmapConfiguration, @ViewBuilder footer: () -> Footer) {
-        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer(), selectedFilter: "")
+    init(configuration: RoadmapConfiguration, @ViewBuilder footer: () -> Footer, selectedFeature: Binding<RoadmapFeature?> = .constant(nil)) {
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer(), selectedFilter: "", selectedFeature: selectedFeature)
     }
 }
 
 public extension RoadmapView where Header: View, Footer: View {
-    init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
-        self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer(), selectedFilter: "")
+    init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer, selectedFeature: Binding<RoadmapFeature?> = .constant(nil)) {
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer(), selectedFilter: "", selectedFeature: selectedFeature)
     }
 }
 
