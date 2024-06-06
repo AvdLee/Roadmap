@@ -11,6 +11,7 @@ public struct RoadmapFeature: Codable, Identifiable {
     public let id: String
     public let title: String?
     public var status: String? = nil
+    public var votes: Int? = nil
     private var description : String? = nil
     private var localizedTitle: [LocalizedItem]? = nil
     private var localizedStatus: [LocalizedItem]? = nil
