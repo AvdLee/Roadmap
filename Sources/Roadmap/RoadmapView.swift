@@ -16,6 +16,8 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     private var filterHorizontalPadding: CGFloat {
         #if os(macOS)
         return 12
+        #elseif os(visionOS)
+        return 42
         #else
         return 22
         #endif
@@ -73,25 +75,25 @@ public struct RoadmapView<Header: View, Footer: View>: View {
 
 public extension RoadmapView where Header == EmptyView, Footer == EmptyView {
     init(configuration: RoadmapConfiguration) {
-        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: EmptyView(), selectedFilter: "")
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: EmptyView(), selectedFilter: RoadmapViewModel.allStatusFilter)
     }
 }
 
 public extension RoadmapView where Header: View, Footer == EmptyView {
     init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header) {
-        self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView(), selectedFilter: "")
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView(), selectedFilter: RoadmapViewModel.allStatusFilter)
     }
 }
 
 public extension RoadmapView where Header == EmptyView, Footer: View {
     init(configuration: RoadmapConfiguration, @ViewBuilder footer: () -> Footer) {
-        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer(), selectedFilter: "")
+        self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer(), selectedFilter: RoadmapViewModel.allStatusFilter)
     }
 }
 
 public extension RoadmapView where Header: View, Footer: View {
     init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
-        self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer(), selectedFilter: "")
+        self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer(), selectedFilter: RoadmapViewModel.allStatusFilter)
     }
 }
 
