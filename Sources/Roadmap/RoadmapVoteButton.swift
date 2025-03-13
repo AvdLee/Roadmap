@@ -98,6 +98,10 @@ struct RoadmapVoteButton: View {
             .overlay(overlayBorder)
         }
         .buttonStyle(.plain)
+        #if os(visionOS)
+        .buttonBorderShape(.roundedRectangle(radius: viewModel.configuration.style.radius))
+        .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
+        #endif
         .onChange(of: viewModel.voteCount) { newCount in
             if newCount > 0 {
                 withAnimation(.spring(response: 0.45, dampingFraction: 0.4, blendDuration: 0)) {

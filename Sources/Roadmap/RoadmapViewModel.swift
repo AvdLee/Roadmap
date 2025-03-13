@@ -8,9 +8,11 @@
 import Foundation
 
 final class RoadmapViewModel: ObservableObject {
+    static let allStatusFilter: String = "all"
+
     @Published private var features: [RoadmapFeature] = []
     @Published var searchText = ""
-    @Published var statusToFilter = "all"
+    @Published var statusToFilter = RoadmapViewModel.allStatusFilter
 
     var filteredFeatures: [RoadmapFeature] {
         if statusToFilter == "all" && searchText.isEmpty {
@@ -73,7 +75,7 @@ final class RoadmapViewModel: ObservableObject {
             }
             
             self.statuses = {
-                var featureStatuses = ["all"]
+                var featureStatuses = [RoadmapViewModel.allStatusFilter]
                 featureStatuses.append(contentsOf: Array(Set(self.features.map { $0.localizedFeatureStatus ?? "" })))
                 return featureStatuses
             }()

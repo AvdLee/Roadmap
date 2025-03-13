@@ -20,6 +20,10 @@ struct ContentView: View {
     var body: some View {
         #if os(macOS)
             roadmapView
+        #elseif os(visionOS)
+            NavigationStack {
+                roadmapView
+            }
         #else
         NavigationView {
             roadmapView

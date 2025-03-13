@@ -19,7 +19,7 @@ struct RoadmapFeatureView: View {
                 horizontalCell
             }
         }
-        .background(viewModel.configuration.style.cellColor)
+        .background(viewModel.configuration.style.cellBackground)
         .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
         .task {
             await viewModel.getCurrentVotes()
