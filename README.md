@@ -295,7 +295,7 @@ Yes, please! We would love to invite you to pick up any of the open issues. We'l
 - [Cronica](https://apps.apple.com/app/id1614950275)
 - [Photo Club Waalre](https://apps.apple.com/nl/app/fotogroep-waalre/id1178324330)
 - [Leximio](https://apps.apple.com/app/leximio/id1671844955)
-
+- [Discretion](https://apps.apple.com/app/discretion/id1635616662)
 
 If you've integrated Roadmap into your app and you want to add it to this list, please make a Pull Request.
 
