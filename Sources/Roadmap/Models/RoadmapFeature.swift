@@ -15,6 +15,7 @@ public struct RoadmapFeature: Codable, Identifiable {
     private var localizedTitle: [LocalizedItem]? = nil
     private var localizedStatus: [LocalizedItem]? = nil
     private var localizedDescription: [LocalizedItem]? = nil
+    public var votes: Int? = nil
     
     var localizedFeatureTitle: String {
         localizedTitle.currentLocal ?? title ?? "N/A"
