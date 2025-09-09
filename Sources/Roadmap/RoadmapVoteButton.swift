@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoadmapVoteButton: View {
-    @ObservedObject var viewModel: RoadmapFeatureViewModel
+    @State var viewModel: RoadmapFeatureViewModel
     @Environment(\.dynamicTypeSize) var typeSize
     
     @State private var isHovering = false
@@ -102,14 +102,14 @@ struct RoadmapVoteButton: View {
         .buttonBorderShape(.roundedRectangle(radius: viewModel.configuration.style.radius))
         .clipShape(RoundedRectangle(cornerRadius: viewModel.configuration.style.radius, style: .continuous))
         #endif
-        .onChange(of: viewModel.voteCount) { newCount in
+        .onChange(of: viewModel.voteCount) { _, newCount in
             if newCount > 0 {
                 withAnimation(.spring(response: 0.45, dampingFraction: 0.4, blendDuration: 0)) {
                     showNumber = true
                 }
             }
         }
-        .onChange(of: viewModel.feature.hasVoted) { newVote in
+        .onChange(of: viewModel.feature.hasVoted) { _, newVote in
             withAnimation(.spring(response: 0.45, dampingFraction: 0.4, blendDuration: 0)) {
                 hasVoted = newVote
             }

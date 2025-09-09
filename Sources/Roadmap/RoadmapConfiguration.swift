@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct RoadmapConfiguration {
+public struct RoadmapConfiguration: Sendable {
     /// Instead of a simple URL a Request is also possible for a more advanced way to the JSON
     public let roadmapRequest: URLRequest
     
@@ -31,7 +31,7 @@ public struct RoadmapConfiguration {
     public let allowsFilterByStatus: Bool
 
     /// If set, will be used for sorting features.
-    public let sorting: ((RoadmapFeature, RoadmapFeature) -> Bool)?
+    public let sorting: (@Sendable (RoadmapFeature, RoadmapFeature) -> Bool)?
 
     /// Creates a new Roadmap configuration instance.
     /// - Parameters:
@@ -52,7 +52,7 @@ public struct RoadmapConfiguration {
                 namespace: String? = nil,
                 style: RoadmapStyle = RoadmapTemplate.standard.style,
                 shuffledOrder: Bool = false,
-                sorting: ((RoadmapFeature, RoadmapFeature) -> Bool)? = nil,
+                sorting: (@Sendable (RoadmapFeature, RoadmapFeature) -> Bool)? = nil,
                 allowVotes: Bool = true,
                 allowSearching: Bool = false,
                 allowsFilterByStatus: Bool = false) {

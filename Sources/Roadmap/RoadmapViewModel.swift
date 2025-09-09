@@ -7,12 +7,14 @@
 
 import Foundation
 
-final class RoadmapViewModel: ObservableObject {
+@MainActor
+@Observable
+final class RoadmapViewModel {
     static let allStatusFilter: String = "all"
 
-    @Published private var features: [RoadmapFeature] = []
-    @Published var searchText = ""
-    @Published var statusToFilter = RoadmapViewModel.allStatusFilter
+    private var features: [RoadmapFeature] = []
+    var searchText = ""
+    var statusToFilter = RoadmapViewModel.allStatusFilter
 
     var filteredFeatures: [RoadmapFeature] {
         if statusToFilter == "all" && searchText.isEmpty {
