@@ -7,7 +7,7 @@ let package = Package(
     name: "Roadmap",
     platforms: [
         .iOS(.v17),
-        .macOS(.v12),
+        .macOS(.v14),
         .visionOS(.v1)
     ],
     products: [
