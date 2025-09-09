@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoadmapVoteButton: View {
-    @ObservedObject var viewModel: RoadmapFeatureViewModel
+    @State var viewModel: RoadmapFeatureViewModel
     @Environment(\.dynamicTypeSize) var typeSize
     
     @State private var isHovering = false

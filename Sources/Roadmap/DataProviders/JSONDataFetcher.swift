@@ -12,7 +12,7 @@ struct JSONDataFetcher {
         case invalidURL
     }
 
-    private static var urlSession: URLSession = {
+    private static let urlSession: URLSession = {
         URLSession(configuration: .ephemeral)
     }()
 

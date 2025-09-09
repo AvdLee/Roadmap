@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct RoadmapView<Header: View, Footer: View>: View {
-    @StateObject var viewModel: RoadmapViewModel
+    @State var viewModel: RoadmapViewModel
     let header: Header
     let footer: Footer
     @State private var selectedFilter: String
@@ -51,9 +51,9 @@ public struct RoadmapView<Header: View, Footer: View>: View {
                     .fixedSize()
                     .tint(.primary)
                     .pickerStyle(.menu)
-                    .onChange(of: selectedFilter, perform: { newValue in
+                    .onChange(of: selectedFilter) { _, newValue in
                         viewModel.filterFeatures(by: newValue)
-                    })
+                    }
                     Spacer()
                 }
                 .padding(.horizontal, filterHorizontalPadding)

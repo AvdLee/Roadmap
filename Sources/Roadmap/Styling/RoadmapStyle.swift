@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-public struct RoadmapStyle {
+public struct RoadmapStyle: Sendable {
     /// The image used for the upvote button
     public var upvoteIcon: Image
     
@@ -24,7 +24,7 @@ public struct RoadmapStyle {
     public var statusFont: Font
     
     /// The tint color of the status view
-    public var statusTintColor: (String) -> Color
+    public var statusTintColor: @Sendable (String) -> Color
     
     /// The corner radius for the upvote button
     public var radius: CGFloat
@@ -59,7 +59,7 @@ public struct RoadmapStyle {
                 titleFont: Font,
                 numberFont: Font,
                 statusFont: Font,
-                statusTintColor: @escaping (String) -> Color = { _ in Color.primary },
+                statusTintColor: @escaping @Sendable (String) -> Color = { _ in Color.primary },
                 cornerRadius: CGFloat,
                 cellColor: Color? = nil,
                 cellMaterial: Material? = nil,

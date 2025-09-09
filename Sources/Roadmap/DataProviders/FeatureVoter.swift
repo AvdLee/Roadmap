@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol FeatureVoter {
+public protocol FeatureVoter: Sendable {
     /// Fetches the current count for the given feature.
     func fetch(for feature: RoadmapFeature) async -> Int
 
