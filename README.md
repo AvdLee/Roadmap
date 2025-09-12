@@ -232,6 +232,16 @@ let configuration = RoadmapConfiguration(
 )
 ```
 
+### Sidetrack Voter Service
+As an alternative to CountAPI, we have compatibility with the [Sidetrack Roadmap service](https://roadmap.sidetrack.app/). Logging in with a free social account grants you access to unlimited roadmaps and items. Through an intuitive UI it allows you add, edit, and delete roadmap items which people can vote on. We provide the JSON for the roadmap URL, and an anonymous voter service allowing for voting in your app.
+
+```swift
+let configuration = RoadmapConfiguration(
+    roadmapJSONURL: URL(string: "https://roadmap.sidetrack.app/roadmap/669827fe83191f8a3a802b4d")!,
+    voter: FeatureVoterSidetrack()
+)
+```
+
 ### Defining Custom Voter Service
 If you'd rather use your own API, you may create a new struct conforming to `FeatureVoter`. This has two required functions in order to retrieve the current vote count and to cast a new vote.
 
@@ -276,6 +286,7 @@ Right now the list of features is loaded in random order. Our thinking is that t
 
 ### Do I need to make changes to my app privacy report if I use Roadmap?
 Roadmap does not do any analytics or tracking. If a user voted on a feature it will increment a number on the count api. No identifiers are stored, not even anonymous ones.
+
 ### Is it possible for stupid people to manipulate my roadmap?
 Yes, we wanted to keep Roadmap as simple as possible to setup. If you're worried about competitors (or a user that really wants a specific feature) messing with your priority list, maybe use something else.
 
