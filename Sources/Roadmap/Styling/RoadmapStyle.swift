@@ -90,19 +90,19 @@ public struct RoadmapStyle: Sendable {
     var cellBackground: some ShapeStyle {
         #if os(visionOS)
             if let cellMaterial {
-                return AnyShapeStyle(cellMaterial)
+                AnyShapeStyle(cellMaterial)
             } else if let cellColor {
-                return AnyShapeStyle(cellColor)
+                AnyShapeStyle(cellColor)
             } else {
-                return AnyShapeStyle(Material.defaultCellMaterial)
+                AnyShapeStyle(Material.defaultCellMaterial)
             }
         #else
             if let cellColor {
-                return AnyShapeStyle(cellColor)
+                AnyShapeStyle(cellColor)
             } else if let cellMaterial {
-                return AnyShapeStyle(cellMaterial)
+                AnyShapeStyle(cellMaterial)
             } else {
-                return AnyShapeStyle(Color.defaultCellColor)
+                AnyShapeStyle(Color.defaultCellColor)
             }
         #endif
     }

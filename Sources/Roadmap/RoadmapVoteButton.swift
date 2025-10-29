@@ -153,10 +153,7 @@ struct RoadmapVoteButton: View {
     // MARK: - A11y helpers
     
     private var accessibilityValue: String {
-        let c = viewModel.voteCount
-        if c == 0 { return "0 votes" }
-        if c == 1 { return "1 vote" }
-        return "\(c) votes"
+        "\(viewModel.voteCount) vote\(viewModel.voteCount == 1 ? "" : "s")"
     }
     
     private func announceAccessibility(_ text: String) {

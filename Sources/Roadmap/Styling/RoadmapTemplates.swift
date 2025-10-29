@@ -49,29 +49,25 @@ public enum RoadmapTemplate: CaseIterable {
     
     var fontDesign: Font.Design {
         switch self {
-        case .playful:
-            return .rounded
-        case .classy:
-            return .serif
-        case .technical:
-            return .monospaced
-        default:
-            return .default
+        case .playful: .rounded
+        case .classy: .serif
+        case .technical: .monospaced
+        default: .default
         }
     }
     
     var titleFont: Font {
         #if os(macOS)
             if #available(macOS 13.0, *) {
-                return Font.system(.headline, design: self.fontDesign, weight: .bold)
+                .system(.headline, design: self.fontDesign, weight: .bold)
             } else {
-                return Font.headline
+                .headline
             }
         #else
             if #available(iOS 16.0, *) {
-                return Font.system(.headline, design: self.fontDesign, weight: .bold)
+                .system(.headline, design: self.fontDesign, weight: .bold)
             } else {
-                return Font.system(.headline, design: self.fontDesign).weight(.bold)
+                .system(.headline, design: self.fontDesign).weight(.bold)
             }
         #endif
     }
@@ -79,15 +75,15 @@ public enum RoadmapTemplate: CaseIterable {
     var numberFont: Font {
         #if os(macOS)
             if #available(macOS 13.0, *) {
-                return Font.system(.body, design: self.fontDesign, weight: .semibold).monospacedDigit()
+                .system(.body, design: self.fontDesign, weight: .semibold).monospacedDigit()
             } else {
-                return Font.body.monospacedDigit()
+                .body.monospacedDigit()
             }
         #else
             if #available(iOS 16.0, *) {
-                return Font.system(.body, design: self.fontDesign, weight: .semibold).monospacedDigit()
+                .system(.body, design: self.fontDesign, weight: .semibold).monospacedDigit()
             } else {
-                return Font.system(.body, design: self.fontDesign).weight(.semibold).monospacedDigit()
+                .system(.body, design: self.fontDesign).weight(.semibold).monospacedDigit()
             }
         #endif
     }
@@ -95,15 +91,15 @@ public enum RoadmapTemplate: CaseIterable {
     var captionFont: Font {
         #if os(macOS)
             if #available(macOS 13.0, *) {
-                return Font.system(.caption, design: self.fontDesign, weight: .bold)
+                .system(.caption, design: self.fontDesign, weight: .bold)
             } else {
-                return Font.caption
+                .caption
             }
         #else
             if #available(iOS 16.0, *) {
-                return Font.system(.caption, design: self.fontDesign, weight: .bold)
+                .system(.caption, design: self.fontDesign, weight: .bold)
             } else {
-                return Font.system(.caption, design: self.fontDesign).weight(.bold)
+                .system(.caption, design: self.fontDesign).weight(.bold)
             }
         #endif
     }

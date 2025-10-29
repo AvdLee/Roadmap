@@ -11,9 +11,9 @@ extension Color {
     
     static public var defaultCellColor : Color {
         #if os(macOS)
-            return Color.primary.opacity(0.08)
+            .primary.opacity(0.08)
         #else
-            return Color(uiColor: .secondarySystemFill)
+            Color(uiColor: .secondarySystemFill)
         #endif
     }
 }
