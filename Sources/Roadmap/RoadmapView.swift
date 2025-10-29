@@ -15,19 +15,19 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     
     private var filterHorizontalPadding: CGFloat {
         #if os(macOS)
-        return 12
+            12
         #elseif os(visionOS)
-        return 42
+            42
         #else
-        return 22
+            22
         #endif
     }
     
     private var filterTopPadding: CGFloat {
         #if os(macOS)
-        return 12
+            12
         #else
-        return 0
+            0
         #endif
     }
     

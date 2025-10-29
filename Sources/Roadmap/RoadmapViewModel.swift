@@ -17,38 +17,14 @@ final class RoadmapViewModel {
     var statusToFilter = RoadmapViewModel.allStatusFilter
 
     var filteredFeatures: [RoadmapFeature] {
-        if statusToFilter == "all" && searchText.isEmpty {
-            return features
-        } else if statusToFilter != "all" && searchText.isEmpty {
-            if searchText.isEmpty {
-                return features.filter { feature in
-                    feature.localizedFeatureStatus == statusToFilter
-                }
-            } else {
-                return features.filter { feature in
-                    (feature
-                        .localizedFeatureTitle // check title field...
-                        .lowercased() // Roadmap localizes strings in Roadmap.json, so avoid .localizedCaseInsensitiveContains()
-                        .contains(searchText.lowercased())  ||
-                    feature
-                        .localizedFeatureDescription // ...and check description field
-                        .lowercased()
-                        .contains(searchText.lowercased()))
-                    &&
-                    feature.localizedFeatureStatus == statusToFilter
-                }
-            }
-        } else {
-            return features.filter { feature in
-                feature
-                    .localizedFeatureTitle // check title field...
-                    .lowercased() // Roadmap localizes strings in Roadmap.json, so avoid .localizedCaseInsensitiveContains()
-                    .contains(searchText.lowercased())  ||
-                feature
-                    .localizedFeatureDescription // ...and check description field
-                    .lowercased()
-                    .contains(searchText.lowercased())
-            }
+        features.filter { feature in
+            let matchesStatus = statusToFilter == "all" || feature.localizedFeatureStatus == statusToFilter
+            let matchesSearch =
+                searchText.isEmpty ||
+                feature.localizedFeatureTitle.lowercased().contains(searchText.lowercased()) ||
+                feature.localizedFeatureDescription.lowercased().contains(searchText.lowercased())
+            
+            return matchesStatus && matchesSearch
         }
     }
     

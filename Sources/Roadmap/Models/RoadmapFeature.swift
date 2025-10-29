@@ -34,17 +34,17 @@ public struct RoadmapFeature: Codable, Identifiable, Sendable {
     
     var hasVoted: Bool {
         get {
-            guard let votes = UserDefaults.standard.array(forKey: "roadmap_votes") as? [String] else { return false }
+            let votes = Set(UserDefaults.standard.stringArray(forKey: "roadmap_votes") ?? [])
             return votes.contains(id)
         }
         nonmutating set {
-            var votes = (UserDefaults.standard.array(forKey: "roadmap_votes") as? [String]) ?? []
+            var votes = Set(UserDefaults.standard.stringArray(forKey: "roadmap_votes") ?? [])
             if newValue {
-                votes.append(id)
+                votes.insert(id)
             } else {
-                votes.removeAll(where: { $0 == id })
+                votes.remove(id)
             }
-            UserDefaults.standard.set(votes, forKey: "roadmap_votes")
+            UserDefaults.standard.set(Array(votes), forKey: "roadmap_votes")
         }
     }
     
