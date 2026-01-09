@@ -254,6 +254,50 @@ let configuration = RoadmapConfiguration(
 Here's a step by step guide to host your own server with Vapor (Swift):
 https://github.com/valentin-mille/RoadmapBackend
 
+### Using CloudKit for Vote Persistence (No Backend)
+
+If you want to persist votes without running your own backend or using Sidetrack, you can use CloudKit as a backendless voting service.
+
+This approach stores:
+- Per-user vote markers in the **Private CloudKit database** (prevents double voting)
+- Aggregated vote counts in the **Public CloudKit database** (global totals)
+
+It requires CloudKit configuration but no server infrastructure.
+
+➡️ [CloudKit voting setup guide](/CloudKit.md)
+
+#### Example
+
+```swift
+import CloudKit
+import Roadmap
+import SwiftUI
+
+struct ContentView: View {
+
+    // If you rely on `.default()`, ensure the correct container is selected in
+    // Xcode Signing & Capabilities (iCloud + CloudKit).
+    private let voter = FeatureVoterCloudKit(
+        container: CKContainer(identifier: "iCloud.icloud.app.roadmap"), // replace with your container
+        recordNamePrefix: "roadmap" // change if you want to namespace record names
+    )
+
+    private var configuration: RoadmapConfiguration {
+        RoadmapConfiguration(
+            roadmapJSONURL: URL(string: "https://simplejsoncms.com/api/k2f11wikc6")!,
+            voter: voter,
+            namespace: "roadmap",
+            allowVotes: true,
+            allowSearching: true
+        )
+    }
+
+    var body: some View {
+        RoadmapView(configuration: configuration)
+    }
+}
+```
+
 ## FAQ
 ### Does Roadmap prevent users from voting multiple times?
 Yes, if a user has voted on a feature they won't be able to vote again from within your app. Users can intercept your network traffic and replay the api call if they're really desperate to manipulate your votes.
