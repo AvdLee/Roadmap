@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 struct RoadmapFeatureView: View {
     @Environment(\.dynamicTypeSize) var typeSize
     @State var viewModel: RoadmapFeatureViewModel
@@ -110,6 +111,7 @@ struct RoadmapFeatureView: View {
     }
 }
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 #Preview {
     RoadmapFeatureView(viewModel: .init(feature: .sample(), configuration: .sampleURL()))
 }

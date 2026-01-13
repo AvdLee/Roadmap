@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 struct RoadmapVoteButton: View {
     @State var viewModel: RoadmapFeatureViewModel
     @Environment(\.dynamicTypeSize) private var typeSize
