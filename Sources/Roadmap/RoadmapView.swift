@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 public struct RoadmapView<Header: View, Footer: View>: View {
     @State var viewModel: RoadmapViewModel
     let header: Header
@@ -37,7 +38,7 @@ public struct RoadmapView<Header: View, Footer: View>: View {
                 .listStyle(.plain)
                 .conditionalSearchable(if: viewModel.allowSearching, text: $viewModel.searchText)
     }
-    
+
     var featuresList: some View {
         VStack {
             if viewModel.allowsFilterByStatus {
@@ -76,32 +77,35 @@ public struct RoadmapView<Header: View, Footer: View>: View {
     }
 }
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 public extension RoadmapView where Header == EmptyView, Footer == EmptyView {
     init(configuration: RoadmapConfiguration) {
         self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: EmptyView(), selectedFilter: RoadmapViewModel.allStatusFilter)
     }
 }
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 public extension RoadmapView where Header: View, Footer == EmptyView {
     init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header) {
         self.init(viewModel: .init(configuration: configuration), header: header(), footer: EmptyView(), selectedFilter: RoadmapViewModel.allStatusFilter)
     }
 }
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 public extension RoadmapView where Header == EmptyView, Footer: View {
     init(configuration: RoadmapConfiguration, @ViewBuilder footer: () -> Footer) {
         self.init(viewModel: .init(configuration: configuration), header: EmptyView(), footer: footer(), selectedFilter: RoadmapViewModel.allStatusFilter)
     }
 }
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 public extension RoadmapView where Header: View, Footer: View {
     init(configuration: RoadmapConfiguration, @ViewBuilder header: () -> Header, @ViewBuilder footer: () -> Footer) {
         self.init(viewModel: .init(configuration: configuration), header: header(), footer: footer(), selectedFilter: RoadmapViewModel.allStatusFilter)
     }
 }
 
-struct RoadmapView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoadmapView(configuration: .sampleURL())
-    }
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
+#Preview {
+    RoadmapView(configuration: .sampleURL())
 }

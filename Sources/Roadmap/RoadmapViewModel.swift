@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 @MainActor
 @Observable
 final class RoadmapViewModel {
@@ -57,23 +58,24 @@ final class RoadmapViewModel {
     var statuses: [String] = []
 
     private let configuration: RoadmapConfiguration
-    
+    private let fetcher: FeaturesFetcher
+
     init(configuration: RoadmapConfiguration) {
         self.configuration = configuration
         self.allowSearching = configuration.allowSearching
         self.allowsFilterByStatus = configuration.allowsFilterByStatus
+        self.fetcher = configuration.fetcher
         loadFeatures(request: configuration.roadmapRequest)
     }
 
     func loadFeatures(request: URLRequest) {
-        
         Task { @MainActor in
             if configuration.shuffledOrder {
-                self.features = await FeaturesFetcher(featureRequest: request).fetch().shuffled()
+                self.features = await fetcher.fetch().shuffled()
             } else if let sorting = configuration.sorting {
-                self.features = await FeaturesFetcher(featureRequest: request).fetch().sorted(by: sorting)
+                self.features = await fetcher.fetch().sorted(by: sorting)
             } else {
-                self.features = await FeaturesFetcher(featureRequest: request).fetch()
+                self.features = await fetcher.fetch()
             }
             
             self.statuses = {

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@available(macOS 14.0, iOS 17.0, visionOS 1.0, *)
 @MainActor
 @Observable
 final class RoadmapFeatureViewModel {

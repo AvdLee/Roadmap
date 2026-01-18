@@ -14,7 +14,10 @@ public struct RoadmapConfiguration: Sendable {
     
     /// The interface for retrieving and saving votes.
     public let voter: FeatureVoter
-    
+
+    /// The interface for retrieving features
+    public let fetcher: FeaturesFetcher
+
     /// Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
     public let style: RoadmapStyle
     
@@ -60,15 +63,20 @@ public struct RoadmapConfiguration: Sendable {
         guard let url = roadmapJSONURL ?? roadmapRequest?.url else {
             fatalError("Missing URL")
         }
-        
-        self.roadmapRequest = roadmapRequest ?? URLRequest(url: url)
-        self.voter = voter
-        self.style = style
-        self.shuffledOrder = shuffledOrder
-        self.sorting = sorting
-        self.allowVotes = allowVotes
-        self.allowSearching = allowSearching
-        self.allowsFilterByStatus = allowsFilterByStatus
+
+        let roadmapRequest = roadmapRequest ?? URLRequest(url: url)
+
+        self.init(
+            roadmapRequest: roadmapRequest,
+            voter: voter,
+            fetcher: FeaturesFetcherJSON(featureRequest: roadmapRequest),
+            style: style,
+            shuffledOrder: shuffledOrder,
+            sorting: sorting,
+            allowVotes: allowVotes,
+            allowSearching: allowSearching,
+            allowsFilterByStatus: allowsFilterByStatus
+        )
     }
     
     /// Creates a new Roadmap configuration instance.
@@ -102,6 +110,37 @@ public struct RoadmapConfiguration: Sendable {
         )
     }
 
+    /// Creates a new Roadmap configuration instance.
+    /// - Parameters:
+    ///   - roadmapRequest: The Request pointing to the web endpoint.
+    ///   - voter: The interface to use for retrieving and persisting votes.
+    ///   - fetcher: The interface to fetch in the `RoadmapFeature` format
+    ///   - style: Pick a `RoadmapStyle` that fits your app best. By default the `.standard` option is used.
+    ///   - shuffledOrder: Set this to true to have a different order of features everytime the view is presented
+    ///   - sorting: If set, will be used for sorting features.
+    ///   - allowVotes: Set this to true to if you want to let users vote. Set it to false for read-only mode. This can be used to only let paying users vote for example.
+    ///   - allowSearching: Set this to true to if you want to add a search bar so users can filter which features are shown.
+    public init(
+        roadmapRequest: URLRequest,
+        voter: FeatureVoter,
+        fetcher: FeaturesFetcher,
+        style: RoadmapStyle = RoadmapTemplate.standard.style,
+        shuffledOrder: Bool = false,
+        sorting: (@Sendable (RoadmapFeature, RoadmapFeature) -> Bool)? = nil,
+        allowVotes: Bool = true,
+        allowSearching: Bool = false,
+        allowsFilterByStatus: Bool = false
+    ) {
+        self.roadmapRequest = roadmapRequest
+        self.voter = voter
+        self.fetcher = fetcher
+        self.style = style
+        self.shuffledOrder = shuffledOrder
+        self.sorting = sorting
+        self.allowVotes = allowVotes
+        self.allowSearching = allowSearching
+        self.allowsFilterByStatus = allowsFilterByStatus
+    }
 }
 
 extension RoadmapConfiguration {

@@ -2,6 +2,7 @@
 import XCTest
 
 final class RoadmapTests: XCTestCase {
+    @MainActor
     func testFeatureVoter() async throws {
         let featureID = "test"
         
@@ -30,9 +31,27 @@ final class RoadmapTests: XCTestCase {
         XCTAssertEqual(model.voteCount, 1)
         XCTAssertFalse(feature.hasVoted)
     }
+
+    @MainActor
+    func testFeatureFetcher() async throws {
+        let request =  URLRequest(url: URL(string: "http://localhost:3000/api")!)
+        let fetcher = FeaturesFetcherMock()
+        let voter = InMemoryFeatureVoter()
+        let configuration = RoadmapConfiguration(
+            roadmapRequest: request,
+            voter: voter,
+            fetcher: fetcher
+        )
+
+        let model = RoadmapViewModel(configuration: configuration)
+        try await Task.sleep(nanoseconds: 500_000_000)
+        let features = model.filteredFeatures
+        XCTAssertTrue(features.count > 0)
+    }
 }
 
-class InMemoryFeatureVoter: FeatureVoter {
+@MainActor
+fileprivate class InMemoryFeatureVoter: FeatureVoter {
     var count: [String: Int] = [:]
     
     func fetch(for feature: RoadmapFeature) async -> Int {
@@ -47,5 +66,18 @@ class InMemoryFeatureVoter: FeatureVoter {
     func unvote(for feature: RoadmapFeature) async -> Int? {
         count[feature.id] = await fetch(for: feature) - 1
         return count[feature.id]
+    }
+}
+
+fileprivate final class FeaturesFetcherMock: FeaturesFetcher {
+    var featureRequest: URLRequest {
+        URLRequest(url: URL(string: "http://localhost/api")!)
+    }
+
+    func fetch() async -> [Roadmap.RoadmapFeature] {
+        [
+            RoadmapFeature.sample(),
+            RoadmapFeature.sample()
+        ]
     }
 }

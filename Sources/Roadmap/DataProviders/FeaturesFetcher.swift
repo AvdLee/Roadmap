@@ -8,15 +8,8 @@
 import Foundation
 import OSLog
 
-struct FeaturesFetcher {
-    let featureRequest: URLRequest
+public protocol FeaturesFetcher: Sendable {
+    var featureRequest: URLRequest { get }
 
-    func fetch() async -> [RoadmapFeature] {
-        do {
-            return try await JSONDataFetcher.loadJSON(request: featureRequest)
-        } catch {
-            Logger.roadmap.error("error: \(error.localizedDescription)")
-            return []
-        }
-    }
+    func fetch() async -> [RoadmapFeature] 
 }
